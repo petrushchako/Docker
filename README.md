@@ -89,3 +89,13 @@
 
 `*` - send SIGTERM to the main process + SIGKILL 10 seconds later<br>
 `**` - `-f` allows removing running containers (= `docker kill` + `docker rm`)
+
+
+## Image transfer commands
+
+|**Command**|**Description**|
+|---|---|
+|**`docker pull`** _REPO_[_:TAG_]<br>**`docker push`** _REPO_[_:TAG_]<br>**`docker search`** _TEXT_| - pull an image/repo from a registry<br>- push an image/repo from a registry<br>- search and image on the official registry |
+|**`docker login`** ...<br>**`docker logout`** ...|- login to a registry<br>- logout from a registry|
+|**`docker save`** _REPO_[_:TAG_]<br>**`docker load`**| - export an image/repo as a tarbal<br>- load images from a tarball |
+|**`docker-ssh`**<br>| - proposed script to transfer images between two daemons over ssh |
