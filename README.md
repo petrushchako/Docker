@@ -24,7 +24,7 @@
 |... and map all ports<br><br><br>|**`docker run -P`** ___IMAGE___<br>Example: <br>`docker run -P nginx`|
 |... and start container in background<br><br><br>|**`docker run -d `** ___IMAGE___<br>Example:<br> `docker run -d nginx`|
 |... and assign it a hostname<br><br><br>|**`docker run --hostname`** ___HOSTNAME IMAGE___<br>Example: <br>`docker run --hostname srv nginx`|
-|... and add a dns entry<br><br><br>|**`docker run --add-host`** ___HOSTNAME:IP IMAGE___|
+|... and add a dns entry|**`docker run --add-host`** ___HOSTNAME:IP IMAGE___|
 |... and map a local dir into a container<br><br><br>|**`docker run -v `** ___HOST_DIR:TARGET_DIR IMAGE___<br>Example:<br> `docker run -v ~/:/usr/share/nginx/html nginx`|
 |... but change the entrypoint<br><br><br>|**`docker run -it --entrypoint`** ___EXECUTABLE IMAGE___<br>Example: <br>`docker run -it --entrypoint bash nginx`|
 
