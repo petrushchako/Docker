@@ -141,7 +141,10 @@ volumes:
 #### Labels
 
 ```Dockerfile
-
+services:
+    web:
+        labels:
+            com.example.description: "Accounting web app"
 ```
 
 #### DNS servers
