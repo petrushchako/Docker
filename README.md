@@ -82,10 +82,10 @@
 
 |**Command**|**Description**|
 |---|---|
-|`docker create` _image_ [_command_]<br>`docker run` _image_ [_command_]| create container<br>= create + start |
-|`docker start` _CONTAINER..._<br>`docker stop` _CONTAINER..._<br>`docker kill` _CONTAINER..._<br>`docker restart` _CONTAINER..._|start the container<br>* graceful stop<br>kill (SIGKILL) the container<br>= stop + start|
-|`docker pause` _CONTAINER..._<br>`docker unpause` _CONTAINER..._|suspend the container<br>resume the container|
-|`docker rm `[`-f`]** _CONTAINER..._|destroy the container|
+|**`docker create`** _image_ [_command_]<br>**`docker run`** _image_ [_command_]| create container<br>= create + start |
+|**`docker start`** _CONTAINER..._<br>**`docker stop`** _CONTAINER..._<br>**`docker kill`** _CONTAINER..._<br>**`docker restart`** _CONTAINER..._|start the container<br>* graceful stop<br>kill (SIGKILL) the container<br>= stop + start|
+|**`docker pause`** _CONTAINER..._<br>**`docker unpause`** _CONTAINER..._|suspend the container<br>resume the container|
+|**`docker rm`** [`-f`]** _CONTAINER..._|destroy the container|
 
 `*` - send SIGTERM to the main process + SIGKILL 10 seconds later<br>
 `**` - `-f` allows removing running containers (= `docker kill` + `docker rm`)
