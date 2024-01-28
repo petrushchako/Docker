@@ -55,60 +55,100 @@ image: example-registry:4000/postgresql
 ```
 
 
-
-
 #### Ports
 
+```Dockerfile
+ports:
+    - "3000"
+    - "8000:80" # guest:host
+```
+
+```Dockerfile
+# expose ports to linked services (not to host)
+expose: ["3000"]
+```
 
 
 
 #### Commands
 
+```Dockerfile
+
+```
+
+```Dockerfile
+
+```
 
 
 
 #### Environment variable
 
+```Dockerfile
+
+```
+
+```Dockerfile
+
+```
 
 
 
 #### Dependencies
 
+```Dockerfile
+
+```
+
+```Dockerfile
+
+```
 
 
 
 #### Other options
 
+```Dockerfile
 
+```
 
+```Dockerfile
+
+```
 
 ### Advanced features
 
 #### Labels
 
+```Dockerfile
 
-
+```
 
 #### DNS servers
 
+```Dockerfile
 
-
+```
 
 #### Devices
 
+```Dockerfile
 
+```
 
 
 #### External links
 
+```Dockerfile
 
-
+```
 
 
 #### Hosts
 
+```Dockerfile
 
-
+```
 
 #### services
 
