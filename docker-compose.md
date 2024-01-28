@@ -124,11 +124,16 @@ depends_on:
 #### Other options
 
 ```Dockerfile
-
+# make this service extend another
+extends:
+    file: common.yaml # optional
+    service: webapp
 ```
 
 ```Dockerfile
-
+volumes:
+    - /var/lib/mysql
+    - ./_data:/var/lib/mysql
 ```
 
 ### Advanced features
