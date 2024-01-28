@@ -27,3 +27,20 @@
 |... and add a dns entry|**`docker run --add-host`** ___HOSTNAME:IP IMAGE___|
 |... and map a local dir into a container|**`docker run -v `** ___HOST_DIR:TARGET_DIR IMAGE___<br>Example:<br> `docker run -v ~/:/usr/share/nginx/html nginx`|
 |... but change the entrypoint|**`docker run -it --entrypoint`** ___EXECUTABLE IMAGE___<br>Example: <br>`docker run -it --entrypoint bash nginx`|
+
+
+## Manage Containers
+
+|**Description**|**Command**|
+|---|---|
+|Show a list of running containers|**`docker ps`**|
+|Show a list of all containers|**`docker ps -a`**|
+|Delete container|**`docker rm CONTAINER`**<br>Exameple:<br>`docker rm web`|
+|Delete stopped containers|**`docker container prune`**|
+|Stop a running container|**`docker stop CONTAINER`**<br>Example:<br>`docker stop web`|
+|Start stopped container|**`docker start CONTAINER`**<br>Example<br>`docker start web`|
+|Copy file from container to the host|**`docker cp CONTAINER:SOURCE TARGET`**<br>Example:<br>`docker cp web:/index.html index.html`|
+|Copy file from the host to container|**`docker cp TARGET CONTAINER:SOURCE`**<br>Example:<br>`docker cp index.html web:/index.html`|
+|Start shell inside of running container|**`docker exec -it CONTAINER EXECUTABLE`**<br>Example:<br>`docker exec -it web bash`|
+|Rename container|**`docker rename OLD_NAME NEW_NAME`**<br>Example:<br>`docker rename 096 web`|
+|Create image out of container|**`docker commit CONTAINER`**<br>Example:<br>`docker commit web`|
