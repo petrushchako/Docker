@@ -74,3 +74,18 @@
 |Get detailed info about an object<br><br><br>|**`docker inspect NAME`**<br>Example:<br>`docker inspect nginx`|
 |Show all modified files in container<br><br><br>|**`docker diff CONTAINER`**<br>Example:<br>`docker diff web`|
 |Show mapped ports of a container<br><br><br>|**`docker port CONTAINER`**<br>Example:<br>`docker port web`|
+
+
+
+
+## Container management commands
+
+|**Command**|**Description**|
+|---|---|
+|`docker create` _image_ [_command_]<br>`docker run` _image_ [_command_]| create container<br>= create + start |
+|`docker start` _CONTAINER..._<br>`docker stop` _CONTAINER..._<br>`docker kill` _CONTAINER..._<br>`docker restart` _CONTAINER..._|start the container<br>* graceful stop<br>kill (SIGKILL) the container<br>= stop + start|
+|`docker pause` _CONTAINER..._<br>`docker unpause` _CONTAINER..._|suspend the container<br>resume the container|
+|`docker rm `[`-f`]** _CONTAINER..._|destroy the container|
+
+`*` - send SIGTERM to the main process + SIGKILL 10 seconds later<br>
+`**` - `-f` allows removing running containers (= `docker kill` + `docker rm`)
