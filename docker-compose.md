@@ -106,11 +106,17 @@ env_file: [.env, .development.env]
 #### Dependencies
 
 ```Dockerfile
-
+# makes the 'db' service available as the hostname 'database'
+# (implies depends_on)
+links:
+    - db:database
+    - redis
 ```
 
 ```Dockerfile
-
+# make sure 'db' is available before starting
+depends_on:
+    - db
 ```
 
 
