@@ -68,16 +68,18 @@ ports:
 expose: ["3000"]
 ```
 
-
-
 #### Commands
 
 ```Dockerfile
-
+# command to execute
+command: bundle exec thin -p 3000
+command: [bundle, exec, thin, -p, 3000]
 ```
 
 ```Dockerfile
-
+# over the entrypoint
+entrypoint: /app/start.sh
+entrypoint: [php, -d, vendor/bin/phpunit]
 ```
 
 
