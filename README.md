@@ -63,4 +63,14 @@
 
 
 
+## Info & Stats
 
+|**Description**|**Command**|
+|---|---|
+|Show the log of a container<br><br><br>|**`docker logs CONTAINER`**<br>Example:<br>`docker logs web`|
+|Show stats of running container|**`docker stats`**|
+|Show processes of container<br><br><br>|**`docker top CONTAINER`**<br>Example:<br>`docker top web`|
+|Show installed docker version|**`docker version`**|
+|Get detailed info about an object<br><br><br>|**`docker inspect NAME`**<br>Example:<br>`docker inspect nginx`|
+|Show all modified files in container<br><br><br>|**`docker diff CONTAINER`**<br>Example:<br>`docker diff web`|
+|Show mapped ports of a container<br><br><br>|**`docker port CONTAINER`**<br>Example:<br>`docker port web`|
