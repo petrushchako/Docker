@@ -87,11 +87,18 @@ entrypoint: [php, -d, vendor/bin/phpunit]
 #### Environment variable
 
 ```Dockerfile
+# environment vars
+environment:
+    RACK_ENV: development
 
+environment:
+    - RACK_ENV=development
 ```
 
 ```Dockerfile
-
+# environment vars from file
+env_file: .env
+env_file: [.env, .development.env]
 ```
 
 
