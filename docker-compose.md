@@ -161,14 +161,21 @@ services:
 #### Devices
 
 ```Dockerfile
-
+services:
+    web:
+        devices:
+            - "/dev/ttyUSB0:/dev/ttyUSB0"
 ```
 
 
 #### External links
 
 ```Dockerfile
-
+services:
+    web:
+        external_links:
+            - redis_1
+            - project_db_1:mysql
 ```
 
 
