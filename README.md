@@ -99,3 +99,24 @@
 |**`docker login`** ...<br>**`docker logout`** ...|- login to a registry<br>- logout from a registry|
 |**`docker save`** _REPO_[_:TAG_]<br>**`docker load`**| - export an image/repo as a tarbal<br>- load images from a tarball |
 |**`docker-ssh`**<br>| - proposed script to transfer images between two daemons over ssh |
+
+
+## Examples
+### docker exec
+```shell
+docker exec [options] CONTAINER COMMAND
+    -d, --detach        # run in beackground
+    -i, --interactive   # stdin
+    -t, --tty           # interactive
+
+docker exec CONTAINER tail logs/development.log
+docker exec -t -i CONTAINER rails c
+```
+
+### create container from an image
+```shell
+docker create --name app_redis_1 \
+--expose 6379 \
+redis:3.0.2
+```
+
