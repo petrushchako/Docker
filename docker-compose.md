@@ -150,7 +150,12 @@ services:
 #### DNS servers
 
 ```Dockerfile
-
+services:
+    web:
+        dns: 8.8.8.8
+        dns:
+        - 8.8.8.8
+        - 8.8.4.4
 ```
 
 #### Devices
