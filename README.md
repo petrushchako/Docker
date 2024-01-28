@@ -16,14 +16,14 @@
 
 
 ## Run a new Container
-|**Description**|**Command**|**Example**|
-|---|---|---|
-|Start a new container from image|**`docker run`** ___IMAGE___|
-|... and assign it a name|**`docker run --name`** ___NAME IMAGE___|
-|... and map a port|**`docker run -p`** ___HOSTPORT:CONTAINER_PORT IMAGE___|
-|... and map all ports|**`docker run -P`** ___IMAGE___|
-|... and start container in background|**`docker run -d `** ___IMAGE___|
-|... and assign it a hostname|**`docker run --hostname`** ___HOSTNAME IMAGE___|
+|**Description**|**Command**|
+|---|---|
+|Start a new container from image|**`docker run`** ___IMAGE___<br>Example: <br>`docker run nginx`|
+|... and assign it a name|**`docker run --name`** ___NAME IMAGE___<br>Example: <br>`docker run --name web nginx`|
+|... and map a port|**`docker run -p`** ___HOSTPORT:CONTAINER_PORT IMAGE___<br>Example:<br> `docker run -p 8080:80 nginx`|
+|... and map all ports|**`docker run -P`** ___IMAGE___<br>Example: <br>`docker run -P nginx`|
+|... and start container in background|**`docker run -d `** ___IMAGE___<br>Example:<br> `docker run -d nginx`|
+|... and assign it a hostname|**`docker run --hostname`** ___HOSTNAME IMAGE___<br>Example: <br>`docker run --hostname srv nginx`|
 |... and add a dns entry|**`docker run --add-host`** ___HOSTNAME:IP IMAGE___|
-|... and map a local dir into a container|**`docker run -v `** ___HOST_DIR:TARGET_DIR IMAGE___|
-|... but change the entrypoint|**`docker run -it --entrypoint`** ___EXECUTABLE IMAGE___|
+|... and map a local dir into a container|**`docker run -v `** ___HOST_DIR:TARGET_DIR IMAGE___<br>Example:<br> `docker run -v ~/:/usr/share/nginx/html nginx`|
+|... but change the entrypoint|**`docker run -it --entrypoint`** ___EXECUTABLE IMAGE___<br>Example: <br>`docker run -it --entrypoint bash nginx`|
