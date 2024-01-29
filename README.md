@@ -91,6 +91,19 @@
 `**` - `-f` allows removing running containers (= `docker kill` + `docker rm`)
 
 
+## Interacting with the container
+
+
+|**Command**|**Description**|
+|---|---|
+|**`docker attach`** _CONTAINER_| - attach to running container (stdin/stdout/stderr) |
+|**`docker cp`** _CONTAINER:PATH HOSTPATH_<br>**`docker cp`** _HOSTPATH CONTAINER:PATH| - copy files fomr container<br> - copy files into the container |
+|**`docker export`** _CONTAINER_| - export the content of the container (tar archive) |
+|**`docker exec`** _CONTAINER ARGS..._| - run a command in an existing container (usefull for debugging) |
+|**`docker wait`** _CONTAINER_| - wait until the container terminates and return the exit code |
+|**`docker commit`** _CONTAINER IMAGE_| - commit a new docker image (snapshot of the container) |
+
+
 ## Image transfer commands
 
 |**Command**|**Description**|

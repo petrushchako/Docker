@@ -182,7 +182,10 @@ services:
 #### Hosts
 
 ```Dockerfile
-
+services:
+    web:
+      extra_hosts:
+        - "somehost:192.168.1.100"
 ```
 
 #### services
