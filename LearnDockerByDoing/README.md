@@ -47,42 +47,199 @@ Everything in this course will be inside of a real Linux environment provisioned
 
 Docker is the leading containerization platform. If you are using containers, you are likely using Docker. In order to work with Docker, you must have the Docker daemon, and CLI available. This lab teaches you how to set up your environment, so you can get started working with Docker today!
 
-**Solution**
+### Solution
 
-- Log in to the server using the credentials provided:
+**Installing Docker**
 
-    - `ssh cloud_user@<PUBLIC_IP_ADDRESS>`
+1. Install the Docker prerequisites:
 
-- **Installing Docker**
+    `sudo yum install -y yum-utils device-mapper-persistent-data lvm2`
 
-    1. Install the Docker prerequisites:
+2. Using yum-config-manager, add the CentOS-specific Docker repo:
 
-        `sudo yum install -y yum-utils device-mapper-persistent-data lvm2`
+    `sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
 
-    2. Using yum-config-manager, add the CentOS-specific Docker repo:
+3. Install Docker:
 
-        `sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
+    `sudo yum -y install docker-ce`
 
-    3. Install Docker:
+**Enable the Docker Daemon**
 
-        `sudo yum -y install docker-ce`
+1. Enable the Docker daemon:
 
-- **Enable the Docker Daemon**
+    `sudo systemctl enable --now docker`
 
-    1. Enable the Docker daemon:
+**Configure User Permissions**
 
-        `sudo systemctl enable --now docker`
-
-- **Configure User Permissions**
-
-    1. Add the lab user to the docker group. This will allow `cloud_user` to use docker commands without `sudo`:
+1. Add the lab user to the docker group. This will allow `cloud_user` to use docker commands without `sudo`:
 
     `sudo usermod -aG docker cloud_user`
 
-    > Note: You will need to exit the server for the change to take effect.
+<br>
 
-- **Run a Test Image**
+*Verify configuration after restart by checking groups user is assigned to*:
 
-    1. Using docker, run the hello-world image to verify that the environment is set up properly:
+    `groups`
 
-    `docker run hello-world`
+> Note: You will need to exit the server for the change to take effect.
+
+**Run a Test Image**
+
+1. Using docker, run the hello-world image to verify that the environment is set up properly:
+
+`docker run hello-world`
+
+
+<br><br><br>
+
+## Working With Prebuilt Docker Images
+
+**ABOUT THIS LAB**
+
+After installation, the best way to familiarize yourself with Docker, is to run containers from a few prebuilt images. In this lab, you will explore Docker Hub for images that will run a website. Once you find suitable images, you will get them into your development environment, and begin experimenting. You will run, stop, and delete containers from those images. You will also learn how to use existing data in containers.
+
+
+
+### Solution
+
+**Explore Docker Hub**
+- Sign in to Docker Hub.
+- At the top of the page, search for "httpd".
+- In the left-hand menu, filter for **Application Infrastructure**, and **Official Images**.
+- Select the `httpd` project.
+- At the top of the page, click the **Tags** tab.
+- Under *latest*, select **linux/amd64**.
+- Back in the list of available images, select nginx
+- Review the *How to use this image* section.
+
+<br>
+
+**Get and View httpd**
+- In the Docker Instance, verify that docker is installed:
+
+    `docker ps`
+
+- Using docker, pull the httpd:2.4 image:
+
+    `docker pull httpd:2.4`
+
+- Run the image:
+
+    `docker run --name httpd -p 8080:80 -d httpd:2.4`
+
+- Check the status of the container:
+
+    `docker ps`
+    
+- In a web browser, test connectivity to the container:
+
+    `<PUBLIC_IP_ADDRESS>:8080`
+
+<br>
+
+**Run a Copy of the Website in httpd**
+- Clone the Widget Factory Inc repository:
+
+    `git clone https://github.com/linuxacademy/content-widget-factory-inc`
+
+- Change to the content-widget-factory-inc directory:
+
+    `cd content-widget-factory-inc`
+
+- Check the files:
+
+    `ll`
+
+- Move to the web directory:
+
+    `cd web`
+
+- Check the files:
+
+    `ll`
+
+- Stop the httpd container:
+
+    `docker stop httpd`
+
+- Remove the httpd container:
+
+    `docker rm httpd`
+
+- Verify that the container has been removed:
+
+    `docker ps -a`
+
+- Run the container with the website data:
+
+    `docker run --name httpd -p 8080:80 -v $(pwd):/usr/local/apache2/htdocs:ro -d httpd:2.4`
+
+- Check the status of the container:
+
+    `docker ps`
+
+- In a web browser, check connectivity to the container:
+
+    `<PUBLIC_IP_ADDRESS>:8080`
+
+<br>
+
+**Get and View Nginx**
+- Using docker, pull the latest version of nginx:
+
+    `docker pull nginx`
+
+- Verify that the image was pulled successfully:
+
+    `docker images`
+
+- Run the container using the nginx image:
+
+    `docker run --name nginx -p 8081:80 -d nginx `
+
+- Check the status of the container:
+
+    `docker ps`
+
+- Verify connectivity to the nginx container:
+
+    `<PUBLIC_IP_ADDRESS>:8081`
+
+<br>
+
+**Run a Copy of the Website in Nginx**
+- Stop the nginx container:
+
+    `docker stop nginx`
+
+- Remove the nginx container:
+
+    `docker rm nginx`
+
+- Verify that the container has been removed:
+
+    `docker ps -a`
+
+- Run the nginx container, and mount the website data:
+
+    `docker run --name nginx -v $(pwd):/usr/share/nginx/html:ro -p 8081:80 -d nginx`
+
+- Check the status of the container:
+
+    `docker ps`
+
+- In a web browser, verify connectivity to the container:
+
+    `<PUBLIC_IP_ADDRESS>:8081`
+
+- Stop the nginx container:
+
+    `docker stop nginx`
+
+- Remove the nginx container:
+
+    `docker rm nginx`
+
+- Verify that the container has been removed:
+
+    `docker ps -a`
