@@ -75,7 +75,7 @@ Docker is the leading containerization platform. If you are using containers, yo
 
 - **Configure User Permissions**
 
-    1. Add the lab user to the docker group:
+    1. Add the lab user to the docker group. This will allow `cloud_user` to use docker commands without `sudo`:
 
     `sudo usermod -aG docker cloud_user`
 
