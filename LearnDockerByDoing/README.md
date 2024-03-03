@@ -538,3 +538,70 @@ Storing data within a container image is one option for automating a container w
     `docker volume ls`
 
 <br>
+
+#### Back Up and Restore the Docker Volume  
+- Switch to the root user:
+
+    `sudo -i`
+    
+- Find where the website volume data is stored:
+
+    `docker volume inspect website`
+
+- Copy the **Mountpoint**.
+
+- Back up the volume:
+
+    `tar czf /tmp/website_$(date +%Y-%m-%d-%H%M).tgz -C /var/lib/docker/volumes/website/_data .`
+
+- Verify that the data was backed up properly:
+
+    `ls -l /tmp/website_*.tgz`
+
+- List the contents of the tgz file:
+
+    `tar tf <BACKUP_FILE_NAME>.tgz`
+
+- Exit out of root:
+    
+    `exit`
+
+- Run a new container using the website volume, and create a backup:
+
+    `docker run -it --rm -v website:/website -v /tmp:/backup bash tar czf /backup/website_$(date +%Y-%m-%d-%H-%M).tgz -C /website .`
+
+- Verify that the data was backed up properly:
+
+    `ls -l /tmp/website_*.tgz`
+
+- Switch to the root user:
+
+    `sudo -i`
+
+- Change to the /docker/volumes/ directory:
+
+    `cd /var/lib/docker/volumes/`
+
+- List the volumes:
+
+    `ls -l`
+
+- Change to the website/_data directory:
+
+    `cd website/_data/`
+
+- Remove the contents of the directory:
+
+    `rm * -rf`
+
+- Verify that the backups are still available:
+
+    `ls -l /tmp/website_*.tgz`
+
+- Restore the data to the current directory:
+
+    `tar xf /tmp/<BACKUP_FILE_NAME>.tgz .`
+
+- Verify that the data was restored successfully:
+
+    `ls -l`
