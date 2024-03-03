@@ -478,3 +478,39 @@ Storing data within a container image is one option for automating a container w
     `sudo ls -l /var/lib/docker/volumes/website/_data/`
 
 <br>
+
+
+#### Use the Website Volume with Containers  
+- Run a docker container with the website volume:
+
+    `docker run -d --name web1 -p 80:80 -v website:/usr/local/apache2/htdocs:ro httpd:2.4`
+    
+- Check the status of the container:
+
+    `docker ps`
+    
+- In a web browser, verify connectivity to the container:
+
+    `<PUBLIC_IP_ADDRESS>:80`
+    
+- Run a second container with the --rm flag:
+
+    `docker run -d --name webTmp --rm -v website:/usr/local/apache2/htdocs:ro httpd:2.4`
+    
+- Check the status of the containers:
+
+    `docker ps`
+    
+- Stop the webTmp container:
+
+    `docker stop webTmp`
+    
+- Check the status of the containers:
+
+    `docker ps -a`
+    
+- Verify that the website can still be accessed through a web browser:
+
+    `<PUBLIC_IP_ADDRESS>`
+
+<br>
