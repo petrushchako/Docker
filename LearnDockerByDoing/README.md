@@ -255,9 +255,9 @@ If you run your website from a pre-built base image, it will require a manual pr
 
 <br>
 
-**Solution**
+### Solution
 
-### Get and Run the Base Image
+#### Get and Run the Base Image
 - Retrieve the httpd image:
 
     `docker pull httpd:2.4`
@@ -270,8 +270,9 @@ If you run your website from a pre-built base image, it will require a manual pr
 
     `docker ps`
 
+<br>
 
-###Install Tools and Code in the Container
+#### Install Tools and Code in the Container
 - Log in to the container:
 
     `docker exec -it webtemplate bash`
@@ -282,7 +283,7 @@ If you run your website from a pre-built base image, it will require a manual pr
 
 - Clone the website code from GitHub:
 
-`git clone  https://github.com/linuxacademy/content-widget-factory-inc.git /tmp/widget-factory-inc`
+    `git clone  https://github.com/linuxacademy/content-widget-factory-inc.git /tmp/widget-factory-inc`
 
 - Verify that the code was cloned successfully:
 
@@ -308,6 +309,8 @@ If you run your website from a pre-built base image, it will require a manual pr
 
     `exit`
 
+<br>
+
 **Create an Image from the Container**
 - Copy the Container ID:
 
@@ -323,6 +326,7 @@ If you run your website from a pre-built base image, it will require a manual pr
 
 - Take note of the image size.
 
+<br>
 
 **Clean up the Template for a Second Version**
 - Log in to the container:
@@ -357,4 +361,33 @@ If you run your website from a pre-built base image, it will require a manual pr
 
     `docker rmi example/widgetfactory:v1`
 
+<br>
 
+**Run Multiple Containers from the Image**
+- Run multiple containers using the new image:
+    
+    `docker run -d --name web1 -p 8081:80 example/widgetfactory:v2`
+
+    `docker run -d --name web2 -p 8082:80 example/widgetfactory:v2`
+
+    `docker run -d --name web3 -p 8083:80 example/widgetfactory:v2`
+
+- Check the status of the containers:
+
+    `docker ps`
+
+- Stop the base webtemplate image:
+
+    `docker stop webtemplate`
+
+- Verify that only the created containers are running:
+
+    `docker ps`
+
+- Using a web browser, verify that the containers are running successfully:
+    
+    `<SERVER_PUBLIC_IP_ADDRESS>:8081`
+
+    `<SERVER_PUBLIC_IP_ADDRESS>:8082`
+
+    `<SERVER_PUBLIC_IP_ADDRESS>:8083`
