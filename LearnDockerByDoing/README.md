@@ -457,3 +457,24 @@ Storing data within a container image is one option for automating a container w
 
     `docker ps -a`
 
+<br>
+
+#### Create a Docker Volume
+    
+- Create a Docker volume:
+
+    `docker volume create website`
+    
+- Verify that the volume was created successfully:
+
+    `docker volume ls`
+    
+- Copy the widget-factory-inc data to the website container:
+
+    `sudo cp -r /home/cloud_user/widget-factory-inc/web/* /var/lib/docker/volumes/website/_data/`
+    
+- List the copied data:
+
+    `sudo ls -l /var/lib/docker/volumes/website/_data/`
+
+<br>
