@@ -514,3 +514,27 @@ Storing data within a container image is one option for automating a container w
     `<PUBLIC_IP_ADDRESS>`
 
 <br>
+
+#### Clean Up Unused Volumes
+    
+- Clean up the unused volumes:
+
+    `docker volume prune`
+    
+- Check the currently running containers:
+
+    `docker ps -a `   
+
+- Remove the db2 container:
+
+    `docker rm db2`
+    
+- Clean up the unused volumes again:
+
+    `docker volume prune`
+    
+- List the current volumes:
+
+    `docker volume ls`
+
+<br>
