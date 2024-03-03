@@ -311,15 +311,50 @@ If you run your website from a pre-built base image, it will require a manual pr
 **Create an Image from the Container**
 - Copy the Container ID:
 
-    docker ps
+    `docker ps`
 
 - Create an image from the container:
     
-    docker commit <CONTAINER_ID> example/widgetfactory:v1
+    `docker commit <CONTAINER_ID> example/widgetfactory:v1`
 
 - Verify that the image was created successfully:
 
-    docker images
+    `docker images`
 
 - Take note of the image size.
+
+
+**Clean up the Template for a Second Version**
+- Log in to the container:
+
+    `docker exec -it webtemplate bash`
+
+- Remove the cloned code from the /tmp/ directory:
+
+    `rm -rf /tmp/widget-factory-inc/`
+
+- Use apt to uninstall git and clean the cache:
+
+    `apt remove git -y && apt autoremove -y && apt clean `
+
+- Exit the container:
+
+    `exit`
+
+- Check the status of the container:
+
+    `docker ps`
+
+- Create an image from the updated container:
+
+    `docker commit <CONTAINER_ID> example/widgetfactory:v2`
+
+- Verify that both images are now running:
+
+    `docker images`
+
+- Delete the v1 image:
+
+    `docker rmi example/widgetfactory:v1`
+
 
