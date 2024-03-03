@@ -403,3 +403,57 @@ Storing data within a container image is one option for automating a container w
 
 ### Solution
 
+#### Discover Anonymous Docker Volumes
+
+- Check the docker images:
+
+    `docker images`
+
+- Run a container using the `postgres:12.1` repository:
+
+    `docker run -d --name db1 postgres:12.1`
+    
+- Run a second container using the same image:
+
+    `docker run -d --name db2 postgres:12.1`
+    
+- Check the status of the containers:
+
+    `docker ps`
+    
+- List the anonymous volumes:
+
+    `docker volume ls`
+    
+- Inspect the db1 container:
+
+    `docker inspect db1 -f '{{ json .Mounts }}' | python -m json.tool`
+    
+- Inspect the db2 container:
+
+    `docker inspect db2 -f '{{ json .Mounts}}' | python -m json.tool`
+    
+- Create a third container using the --rm flag:
+
+    `docker run -d --rm --name dbTmp postgres:12.1`
+    
+- Check the status of the container:
+
+    `docker ps -a`
+    
+- List the anonymous volumes:
+
+    `docker volume ls`
+    
+- Stop the db2 and dbTmp containers:
+
+    `docker stop db2 dbTmp`
+    
+- List the anonymous volumes:
+
+    `docker volume ls`
+    
+- Check the status of the containers:
+
+    `docker ps -a`
+
