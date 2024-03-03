@@ -243,3 +243,15 @@ After installation, the best way to familiarize yourself with Docker, is to run 
 - Verify that the container has been removed:
 
     `docker ps -a`
+
+
+<br><br><br>
+
+## Handcrafting a Container image
+
+**ABOUT THIS LAB**
+
+If you run your website from a pre-built base image, it will require a manual process to set up the container each time it runs. For repeatability and scalability, the container, and your website code should be made into an image. In this lab, you will start with a base webserver image, modify settings in the container for your website, and then create images from the container. You'll demonstrate the importance of small changes to your container, and how they affect your image. Lastly, you will use your new images to create containers to see your hard work in action.
+
+
+
