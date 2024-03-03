@@ -269,3 +269,42 @@ If you run your website from a pre-built base image, it will require a manual pr
 - Check the status of the webtemplate container:
 
     `docker ps`
+
+
+###Install Tools and Code in the Container
+- Log in to the container:
+
+    `docker exec -it webtemplate bash`
+
+- Run `apt update` and `install git`
+
+    `apt update && apt install git -y`
+
+- Clone the website code from GitHub:
+
+`git clone  https://github.com/linuxacademy/content-widget-factory-inc.git /tmp/widget-factory-inc`
+
+- Verify that the code was cloned successfully:
+
+    `ls -l /tmp/widget-factory-inc/`
+
+- List the files in the htdocs/ directory:
+
+    `ls -l htdocs/`
+
+- Remove the index.html file:
+    
+    `rm htdocs/index.html`
+
+- Copy the webcode from /tmp/ to the htdocs/ folder:
+
+    `cp -r /tmp/widget-factory-inc/web/* htdocs/`
+
+- Verify that they were copied over successfully:
+
+    `ls -l htdocs/`
+
+- Exit the container:
+
+    `exit`
+
