@@ -308,3 +308,18 @@ If you run your website from a pre-built base image, it will require a manual pr
 
     `exit`
 
+**Create an Image from the Container**
+- Copy the Container ID:
+
+    docker ps
+
+- Create an image from the container:
+    
+    docker commit <CONTAINER_ID> example/widgetfactory:v1
+
+- Verify that the image was created successfully:
+
+    docker images
+
+- Take note of the image size.
+
