@@ -619,3 +619,30 @@ This lab will show you how to mount an **S3 bucket** onto your local system as a
 
 This will demonstrate how flexible Docker can be. You can make changes to your bucket and all of your containers using the S3 bucket will near-instantly have access to the content.
 
+<br>
+
+### Solution
+
+#### Configuration and Installation
+- Install the `awscli`, while checking if there are any versions currently installed, and not stopping any user processes:
+
+    `pip install --upgrade --user awscli`
+
+- Configure the CLI:
+
+    `aws configure`
+
+- Enter the following:
+    - AWS Access Key ID: <ACCESS_KEY_ID>
+    - AWS Secret Access Key: <SECRET_ACCESS_KEY>
+    - Default region name: us-east-1
+    - Default output format: json
+
+- Copy the CLI configuration to the root user:
+
+    `sudo cp -r ~/.aws /root`
+
+- Install the s3fs package:
+    
+    `sudo yum install s3fs-fuse -y`
+
