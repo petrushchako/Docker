@@ -724,3 +724,43 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 - Export the BUCKET variable:
   
     `export BUCKET="widgetfactory-${projnum}"`
+
+<br>
+
+#### Prepare the Cloud Storage Bucket
+
+- Using gsutil, create a new bucket:
+
+    `gsutil mb -l us-central1 -c standard gs://$BUCKET`
+
+- Verify that the gcsfuse repo is available on the server:
+
+    `cat /etc/yum.repos.d/gcsfuse.repo`
+
+- Install gcsfuse (Note: please wait a few minutes before continuing to allow the lab's startup scripts to release the yum lock).
+
+    `sudo yum install -y gcsfuse`
+
+- Update the fuse.conf file to allow the user to mount the bucket properly:
+
+    `sudo sed -ri 's/# user_allow_other/user_allow_other/' /etc/fuse.conf`
+
+- Configure the directories needed to mount the bucket:
+
+    `sudo mkdir /mnt/widget-factory /tmp/gcs`
+
+- Change ownership of the directories to the cloud_user:
+
+    `sudo chown cloud_user: /mnt/widget-factory/ /tmp/gcs`
+
+- Mount the bucket:
+
+    `gcsfuse -o allow_other --temp-dir=/tmp/gcs $BUCKET /mnt/widget-factory/`
+
+- Copy the website files into the bucket:
+
+    `cp -r /home/cloud_user/widget-factory-inc/web/* /mnt/widget-factory/`
+
+- List the contents of the bucket:
+
+    `gsutil ls gs://$BUCKET`
