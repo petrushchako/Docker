@@ -799,3 +799,33 @@ This lab shows how to mount a Blob Storage container onto our local system as a 
 - Enter the code copied in a previous step and click Next.
 - Use the login credentials from the lab page to finish logging in.
 - Switch back to the terminal and wait for the confirmation.
+
+<br>
+
+#### Prepare the Storage
+- Find the name of the Storage account:
+
+    `az storage account list | grep name | head -1`
+
+- Copy the name of the Storage account to the clipboard.
+- Export the Storage account name:
+
+    `export AZURE_STORAGE_ACCOUNT=<COPIED_STORAGE_ACCOUNT_NAME>`
+
+- Retrieve the Storage access key:
+
+    `az storage account keys list --account-name=$AZURE_STORAGE_ACCOUNT`
+
+- Copy the key1 "value" for later use.
+- Export the key value:
+  
+    `export AZURE_STORAGE_ACCESS_KEY=<KEY1_VALUE>`
+
+- Install blobfuse:
+
+    `sudo rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm`
+    `sudo yum install blobfuse fuse -y`
+
+- Modify the fuse.conf configuration file:
+
+    `sudo sed -ri 's/# user_allow_other/user_allow_other/' /etc/fuse.conf`
