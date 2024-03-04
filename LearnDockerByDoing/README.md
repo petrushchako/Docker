@@ -633,16 +633,47 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
     `aws configure`
 
 - Enter the following:
-    - AWS Access Key ID: <ACCESS_KEY_ID>
-    - AWS Secret Access Key: <SECRET_ACCESS_KEY>
+    - AWS Access Key ID: <ACCESS_KEY_ID> (AKIAW3BU6B7QT624QTYM)
+    - AWS Secret Access Key: <SECRET_ACCESS_KEY> (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)
     - Default region name: us-east-1
     - Default output format: json
 
-- Copy the CLI configuration to the root user:
+- Copy the CLI configuration to the `root` user:
 
     `sudo cp -r ~/.aws /root`
 
-- Install the s3fs package:
+- Install the `s3fs` package:
     
     `sudo yum install s3fs-fuse -y`
 
+<br>
+
+#### Prepare the Bucket
+
+- Create a mount point for the s3 bucket:
+
+    `sudo mkdir /mnt/widget-factory`
+
+- Export the bucket name:
+
+    `export BUCKET=<S3_BUCKET_NAME>`
+
+- Mount the S3 bucket:
+
+    `sudo s3fs $BUCKET /mnt/widget-factory -o allow_other -o use_cache=/tmp/s3fs`
+
+- Verify that the bucket was mounted successfully:
+
+    `ll /mnt/widget-factory`
+
+- Copy the website files to the s3 bucket:
+
+    `cp -r ~/widget-factory-inc/web/* /mnt/widget-factory`
+
+- Verify the files are in the folder:
+
+    `ll /mnt/widget-factory`
+
+- Verify the files are in the s3 bucket:
+
+    `aws s3 ls s3://$BUCKET`
