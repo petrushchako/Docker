@@ -706,3 +706,21 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 - Verify that the page was added to the bucket:
 
     `aws s3 ls $BUCKET`
+
+
+<br><br><br>
+
+## Storing Container Data in Google Cloud Storage
+
+#### Configuration and Installation
+- Export the `projnum` variable:
+
+    `export projnum=$(curl http://metadata.google.internal/computeMetadata/v1/project/numeric-project-id -sH "Metadata-Flavor: Google")`
+
+- Verify that the variable was set successfully:
+
+    `echo $projnum`
+    
+- Export the BUCKET variable:
+  
+    `export BUCKET="widgetfactory-${projnum}"`
