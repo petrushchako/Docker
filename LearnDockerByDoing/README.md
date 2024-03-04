@@ -826,6 +826,42 @@ This lab shows how to mount a Blob Storage container onto our local system as a 
     `sudo rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm`
     `sudo yum install blobfuse fuse -y`
 
-- Modify the fuse.conf configuration file:
+- Modify the `fuse.conf` configuration file:
 
     `sudo sed -ri 's/# user_allow_other/user_allow_other/' /etc/fuse.conf`
+
+<br>
+
+#### Use the Azure Blob Storage Container
+
+- Create necessary directories:
+
+    `sudo mkdir -p /mnt/widget-factory /mnt/blobfusetmp`
+
+- Change ownership of the directories:
+
+    `sudo chown cloud_user /mnt/widget-factory/ /mnt/blobfusetmp/`
+
+- Mount the Blob Storage from Azure:
+
+    `blobfuse /mnt/widget-factory --container-name=website --tmp-path=/mnt/blobfusetmp -o allow_other`
+
+- Copy website files into the Blob Storage container:
+
+    `cp -r ~/widget-factory-inc/web/* /mnt/widget-factory/`
+
+- Verify the copy worked:
+
+    `ll /mnt/widget-factory/`
+
+- Verify the files made it to Azure Blob Storage:
+
+    `az storage blob list -c website --output table`
+
+- Run a Docker container:
+
+    `docker run -d --name web1 -p 80:80 --mount type=bind,source=/mnt/widget-factory,target=/usr/local/apache2/htdocs,readonly httpd:2.4`
+
+- Once the command is complete, open a web browser and navigate to the public IP address of the server.
+
+- Verify the website is up and running.
