@@ -605,3 +605,17 @@ Storing data within a container image is one option for automating a container w
 - Verify that the data was restored successfully:
 
     `ls -l`
+
+
+## Storing Container Data in AWS S3
+
+### Introduction
+
+Using Docker volumes is the preferred method of storing container data locally. Volume support is built directly into Docker, making it an easy tool to use for storage, as well as more portable. However, storing container data in Docker volumes still requires you to back up the data in those volumes on your own.
+
+There is another option - storing your container data in the cloud. It's not a solution for every problem, but after this lab, you'll have another tool at your disposal.
+
+This lab will show you how to mount an **S3 bucket** onto your local system as a directory. You will then mount that directory into your Docker container. We will use an **httpd** container to serve the contents of that bucket as a webpage, but you can use it to share any common data between containers.
+
+This will demonstrate how flexible Docker can be. You can make changes to your bucket and all of your containers using the S3 bucket will near-instantly have access to the content.
+
