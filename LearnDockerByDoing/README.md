@@ -764,3 +764,15 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 - List the contents of the bucket:
 
     `gsutil ls gs://$BUCKET`
+
+<br>
+
+#### Use the GCS Bucket in a Container
+
+- Mount the directory into the Docker container:
+
+    `sudo docker run -d --name web1 --mount type=bind,source=/mnt/widget-factory,target=/usr/local/apache2/htdocs,readonly -p 80:80 httpd:2.4`
+
+- Using a web browser, verify connectivity to the container:
+
+    `<SERVER_PUBLIC_IP_ADDRESS>`
