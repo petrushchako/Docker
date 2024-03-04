@@ -776,3 +776,12 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 - Using a web browser, verify connectivity to the container:
 
     `<SERVER_PUBLIC_IP_ADDRESS>`
+
+
+<br><br><br>
+
+## Storing Container Data in Azure Blob Storage
+
+### Introduction
+
+This lab shows how to mount a Blob Storage container onto our local system as a directory. We will then mount that directory into our Docker container. We will use an httpd container to serve the contents of that bucket as a webpage, but we can use it to share any common data between containers. This will demonstrate how flexible Docker can be. We can make changes to our bucket, and all our containers using the Blob Storage container will near-instantly have access to the content.
