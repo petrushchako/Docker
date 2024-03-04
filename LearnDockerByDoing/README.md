@@ -785,3 +785,17 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 ### Introduction
 
 This lab shows how to mount a Blob Storage container onto our local system as a directory. We will then mount that directory into our Docker container. We will use an httpd container to serve the contents of that bucket as a webpage, but we can use it to share any common data between containers. This will demonstrate how flexible Docker can be. We can make changes to our bucket, and all our containers using the Blob Storage container will near-instantly have access to the content.
+
+### Solution
+
+#### Configuration and Installation
+
+- Obtain the Azure login credentials:
+
+    `az login`
+
+- Copy the code provided by the command.
+- Open a browser and navigate to https://microsoft.com/devicelogin.
+- Enter the code copied in a previous step and click Next.
+- Use the login credentials from the lab page to finish logging in.
+- Switch back to the terminal and wait for the confirmation.
