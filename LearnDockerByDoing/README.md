@@ -677,3 +677,32 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
 - Verify the files are in the s3 bucket:
 
     `aws s3 ls s3://$BUCKET`
+
+<br>
+
+#### Use the S3 Bucket Files in a Docker Container
+
+- Run an `httpd` container using the S3 bucket:
+    `docker run -d --name web1 -p 80:80 --mount type=bind,source=/mnt/widget-factory,target=/usr/local/apache2/htdocs,readonly httpd:2.4`
+
+- In a web browser, verify connectivity to the container:
+
+    `<SERVER_PUBLIC_IP_ADDRESS>`
+
+- Check the bucket cache:
+
+- Change to the /mnt/widget-factory/ directory:
+
+    `cd /mnt/widget-factory`
+
+- Create a new page within the bucket:
+
+    `cp index.html newPage.html`
+
+- In a web browser, verify that the new page is accessible:
+
+    `<SERVER_PUBLIC_IP_ADDRESS>/newPage.html`
+
+- Verify that the page was added to the bucket:
+
+    `aws s3 ls $BUCKET`
