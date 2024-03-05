@@ -879,7 +879,7 @@ Creating a container image by hand is possible, but it requires manual processes
 
 ### Solution
 
-Build a First Version
+#### Build a First Version
 
 - Change to the widget-factory-inc directory:
 
@@ -928,3 +928,95 @@ Build a First Version
     `docker inspect -f "$showLayers" httpd:2.4`
 
 - Compare the layers. Are they the same?
+
+<br>
+
+#### Load the Website into the Container
+
+- Open the Dockerfile:
+
+    `vim Dockerfile`
+
+- Remove the Apache welcome page from the image by adding the following:
+
+    `RUN rm -f /usr/local/apache2/htdocs/index.html`
+
+- Save the file.
+
+- Build version 0.2 of the widgetfactory image:
+
+    `docker build -t widgetfactory:0.2 .`
+
+- Inspect both versions of the widgetfactory image to see the differences in size and layers:
+
+    `docker images`
+
+- Show the widgetfactory:0.1 image's size:
+
+    `docker inspect -f "$showSize" widgetfactory:0.1`
+
+- Compare it to the image size for widgetfactory:0.2:
+
+    `docker inspect -f "$showSize" widgetfactory:0.2`
+
+- Using an interactive terminal, check the htdocs folder for widgetfactory:0.2. Are the website files in the folder?:
+
+    `docker run --rm -it widgetfactory:0.2 bash`
+    
+    `ls htdocs`
+
+- Exit the container:
+
+    `exit`
+
+- Show the layers for the widgetfactory:0.1 image:
+
+    `docker inspect -f "$showLayers" widgetfactory:0.1`
+
+- Show the layers for the widgetfactory:0.2 image and compare the two:
+
+    `docker inspect -f "$showLayers" widgetfactory:0.2`
+
+- Open the Dockerfile:
+
+    `vim Dockerfile`
+
+- Add the website data to the container by adding the following to the end of the file:
+
+    `WORKDIR /usr/local/apache2/htdocs`
+
+    `COPY ./web .`
+
+- Save the file.
+
+- Build version 0.3 of the widgetfactory image:
+
+    `docker build -t widgetfactory:0.3 .`
+
+- Inspect versions 0.2 and 0.3 to see the differences in size and layers:
+
+    `docker images`
+
+- Show the widgetfactory:0.2 image's size:
+
+    `docker inspect -f "$showSize" widgetfactory:0.2`
+
+- Compare it to the image size for widgetfactory:0.3:
+
+    `docker inspect -f "$showSize" widgetfactory:0.3`
+
+- Show the layers for the widgetfactory:0.2 image:
+
+    `docker inspect -f "$showLayers" widgetfactory:0.2`
+
+- Show the layers for the widgetfactory:0.3 image and compare the two:
+
+    `docker inspect -f "$showLayers" widgetfactory:0.3`
+
+- Using an interactive terminal, check the htdocs folder for widgetfactory:0.3:
+
+    `docker run --rm -it widgetfactory:0.3 bash`
+
+- Are the website files in the folder?:
+
+    `ls -l`
