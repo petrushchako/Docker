@@ -39,7 +39,7 @@ Everything in this course will be inside of a real Linux environment provisioned
     - Scaling Pods in Kubernetes
     - Creating a Helm Chart
 
-<br><br><br>
+<br><br><br><br>
 
 ## Initializing the Docker Environment 
 
@@ -90,8 +90,7 @@ Docker is the leading containerization platform. If you are using containers, yo
 `docker run hello-world`
 
 
-<br><br><br>
-
+<br><br><br><br>
 ## Working With Prebuilt Docker Images
 
 **ABOUT THIS LAB**
@@ -245,7 +244,7 @@ After installation, the best way to familiarize yourself with Docker, is to run 
     `docker ps -a`
 
 
-<br><br><br>
+<br><br><br><br>
 
 ## Handcrafting a Container image
 
@@ -393,7 +392,7 @@ If you run your website from a pre-built base image, it will require a manual pr
     `<SERVER_PUBLIC_IP_ADDRESS>:8083`
 
 
-<br><br><br>
+<br><br><br><br>
 
 ## Storing Container Data In Docker Volumes
 
@@ -606,6 +605,7 @@ Storing data within a container image is one option for automating a container w
 
     `ls -l`
 
+<br><br><br><br>
 
 ## Storing Container Data in AWS S3
 
@@ -708,7 +708,7 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
     `aws s3 ls $BUCKET`
 
 
-<br><br><br>
+<br><br><br><br>
 
 ## Storing Container Data in Google Cloud Storage
 
@@ -778,7 +778,7 @@ This will demonstrate how flexible Docker can be. You can make changes to your b
     `<SERVER_PUBLIC_IP_ADDRESS>`
 
 
-<br><br><br>
+<br><br><br><br>
 
 ## Storing Container Data in Azure Blob Storage
 
@@ -865,3 +865,13 @@ This lab shows how to mount a Blob Storage container onto our local system as a 
 - Once the command is complete, open a web browser and navigate to the public IP address of the server.
 
 - Verify the website is up and running.
+
+
+<br><br><br><br>
+
+## Building Container Images Using Dockerfiles
+
+**Introduction**
+
+Creating a container image by hand is possible, but it requires manual processes. There has to be a more automatic way to build images. Manual processes do not scale and are not easily version controlled. Docker provides a solution to this problem - the Dockerfile. In this lab, you will create a Dockerfile to build an image, and host a static website.
+
