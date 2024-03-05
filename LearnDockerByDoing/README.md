@@ -875,3 +875,56 @@ This lab shows how to mount a Blob Storage container onto our local system as a 
 
 Creating a container image by hand is possible, but it requires manual processes. There has to be a more automatic way to build images. Manual processes do not scale and are not easily version controlled. Docker provides a solution to this problem - the Dockerfile. In this lab, you will create a Dockerfile to build an image, and host a static website.
 
+<br>
+
+### Solution
+
+Build a First Version
+
+- Change to the widget-factory-inc directory:
+
+    `cd widget-factory-inc`
+
+- Create a Dockerfile that uses httpd:2.4 as the base image:
+
+    `vim Dockerfile`
+
+- In the new file, insert the following:
+
+    ```yml
+    FROM httpd:2.4
+    RUN apt update -y && apt upgrade -y && apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists*
+    ```
+
+- Save the file.
+- Verify that the file was saved successfully:
+
+    `cat Dockerfile`
+
+- Build the 0.1 version of the widgetfactory image using the Dockerfile:
+
+    `docker build -t widgetfactory:0.1 .`
+
+- Set variables to examine the image's size and layers:
+
+    `export showLayers='{{ range .RootFS.Layers }}{{ println . }}{{end}}'`
+    
+    `export showSize='{{ .Size }}'`
+
+- Compare the httpd and widgetfactory images:
+
+    `docker images`
+
+- Show the widgetfactory image's size:
+
+    `docker inspect -f "$showSize" widgetfactory:0.1`
+
+- Show the layers:
+
+    `docker inspect -f "$showLayers" widgetfactory:0.1`
+
+- Show the layers of the httpd:2.4 image:
+
+    `docker inspect -f "$showLayers" httpd:2.4`
+
+- Compare the layers. Are they the same?
