@@ -1020,3 +1020,43 @@ Creating a container image by hand is possible, but it requires manual processes
 - Are the website files in the folder?:
 
     `ls -l`
+
+<br>
+
+#### Run a Container from the Image
+
+- Run a container from the widgetfactory:0.3 image. What commmand does it use to run the server? Remember to publish the web server port:
+
+    `docker run --name web1 -p 80:80 widgetfactory:0.3`
+
+- Exit the container:
+
+    `CTRL+C`
+
+- Check the status of the container:
+
+    `docker ps -a`
+
+- Start the container:
+
+    `docker start web1`
+
+- Using docker exec connect to the web1 container:
+
+    `docker exec -it web1 bash`
+
+- View the website files in the container:
+
+    `ls -l`
+
+- Exit the container:
+
+    `exit`
+
+- Retrieve the main website page from the container:
+
+    `wget localhost`
+
+- Compare it to the copy on the server:
+
+    `diff index.html web/index.html`
