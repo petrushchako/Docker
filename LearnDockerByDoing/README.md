@@ -1072,3 +1072,45 @@ Creating a container image by hand is possible, but it requires manual processes
 In this lab, we are going to configure syslog on a Docker instance, configure Docker to use syslog instead of the JSON logging driver, and spin up two containers to test our configuration.
 
 Let's get started. Open your terminal application, and log in to the live environment using the credentials provided on the lab instructions page.
+
+### Solution
+
+####  Configure Docker to Use Syslog
+- Open the rsyslog.conf file.
+
+    `vim /etc/rsyslog.conf`
+
+- In the file editor, uncomment the two lines under Provides UDP syslog reception by removing `#`.
+    ```yaml
+    $ModLoad imudp
+    $UDPServerRun 514
+    ```
+
+- Then, start the syslog service.
+
+    `systemctl start rsyslog`
+
+- Now that syslog is running, let's configure Docker to use syslog as the default logging driver. We'll do this by creating a file called daemon.json.
+    ```yml
+    mkdir /etc/docker
+    vi /etc/docker/daemon.json
+    ```
+
+- In the vi editor, enter the following, making sure to replace <PRIVATE_IP> with the private IP of your cloud server:
+    ```json
+    {
+        "log-driver": "syslog",
+        "log-opts": {
+            "syslog-address": "udp://<PRIVATE_IP>:514"
+        }
+    }
+    ```
+
+- Next, save and quit. Then, start the Docker service.
+
+    `systemctl start docker`
+
+- The next step is to see if there are any logs coming in from Docker.
+
+    `tail /var/log/messages`
+
