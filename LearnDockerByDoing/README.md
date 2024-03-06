@@ -1060,3 +1060,15 @@ Creating a container image by hand is possible, but it requires manual processes
 - Compare it to the copy on the server:
 
     `diff index.html web/index.html`
+
+
+
+<br><br><br><br>
+
+## Container Logging
+
+**Introduction**
+
+In this lab, we are going to configure syslog on a Docker instance, configure Docker to use syslog instead of the JSON logging driver, and spin up two containers to test our configuration.
+
+Let's get started. Open your terminal application, and log in to the live environment using the credentials provided on the lab instructions page.
