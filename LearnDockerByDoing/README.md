@@ -1101,7 +1101,7 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
 - Ping the web1 container using the IP address:
     
-    `ping <WEB1_IP_ADDRESS>`
+    `ping <WEB1_IP_ADDRESS>` (ping 172.17.0.2)
 
 - Attempt to ping the web1 container by name:
 
@@ -1115,7 +1115,57 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `exit`
 
+<br>
 
+#### Explore Bridge Networks
+
+- Create a new bridge network named test_application:
+
+    `docker network create test_application`
+
+- Run an httpd container named web2, in the test_application network:
+
+    `docker run -d --name web2 --network test_application httpd:2.4`
+
+- Check the status of the container:
+
+    `docker ps -a`
+
+- Verify that web2 was added to the test_application network:
+
+    `docker inspect web2`
+
+- Run a container using the busybox image, and see if you can connect to the web2 server, within the test_application network:
+
+    `docker run --rm -it --network test_application busybox`
+
+- Check the container's networking, and verify it is in the same IP range as web2:
+
+    `ip addr`
+
+- Ping the web2 container using the IP address:
+
+    `ping <WEB2_IP_ADDRESS>`
+
+- Attempt to ping the web2 container by name:
+
+    `ping web2`
+
+- Using wget, attempt to access web2 with the hostname:
+
+    `wget web2`
+
+- Attempt to ping web1:
+
+    `ping <WEB1_IP_ADDRESS>`
+
+- Attempt to access web1 using wget:
+
+    `wget <WEB1_IP_ADDRESS>`
+
+- Exit the container:
+
+    `exit`
 
 
 
