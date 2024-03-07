@@ -1167,8 +1167,46 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `exit`
 
+<br>
 
+#### Explore the Host Network
 
+- Run an httpd container named web3 on the host network:
+
+    `docker run -d --name web3 --network host httpd:2.4`
+
+- Check the status of the container:
+
+    `docker ps -a`
+
+- Attempt to connect to web3 directly from the server:
+
+    `wget localhost`
+
+- Stop web3:
+
+    `docker stop web3`
+
+- Attempt to connect to web3 directly from the server again:
+
+    `wget localhost`
+
+- Start web3:
+
+    `docker start web3`
+
+- Run a container using the busybox image, and see if you can connect to the web3 server:
+docker run --rm -it --network host busybox
+ping web3
+
+- Using wget, attempt to access localhost within the busybox image:
+wget localhost
+
+- Attempt to ping web2:
+ping <WEB2_IP_ADDRESS>
+
+- Attempt to ping web1:
+ping <WEB1_IP_ADDRESS>
 
 
 
