@@ -1061,6 +1061,85 @@ Creating a container image by hand is possible, but it requires manual processes
 
     `diff index.html web/index.html`
 
+<br><br><br><br>
+
+## Docker Container Networking
+
+### Introduction
+
+Each container should serve a single purpose, such as running one application like a web server. Containers can be powerful by themselves, but when connected together, they are far more useful.
+
+For example, a web server container can be connected to a database container to provide application storage. Docker provides multiple options for networking containers.
+
+In this lab, you'll explore a few of the common types of networks that Docker supports, and learn how containers within those networks interact.
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
+
+## 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
+
+## 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br><br><br>
