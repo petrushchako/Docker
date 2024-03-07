@@ -1107,9 +1107,13 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `ping web1`
 
+    > In bridge network, you can reach octher contaitners by IP address, but not by container's name.
+
 - Attempt to access web1 using wget:
 
     `wget <WEB1_IP_ADDRESS>`
+
+    > This works without publishing the port on the host, since you are on the same network.
 
 - Exit the container:
 
@@ -1147,6 +1151,8 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `ping <WEB2_IP_ADDRESS>`
 
+    > In non-dafult bridge network, you can still connect via IP address, but the added benefit is that you can also connect via container name. 
+
 - Attempt to ping the web2 container by name:
 
     `ping web2`
@@ -1159,9 +1165,13 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `ping <WEB1_IP_ADDRESS>`
 
+    > This will not work since web1 and web2 conatier are assigned to a different networks. 
+
 - Attempt to access web1 using wget:
 
     `wget <WEB1_IP_ADDRESS>`
+
+    > Does not work for the same reason as command above
 
 - Exit the container:
 
@@ -1183,6 +1193,8 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 
     `wget localhost`
 
+    > This command execution will return the index.html file
+
 - Stop web3:
 
     `docker stop web3`
@@ -1199,6 +1211,8 @@ In this lab, you'll explore a few of the common types of networks that Docker su
     `docker run --rm -it --network host busybox`
     `ping web3`
 
+    > The `ping web3` will not be able to connect to web3 conatiner, since web3 is not published name on the host network. 
+
 - Using wget, attempt to access localhost within the busybox image:
 
     `wget localhost`
@@ -1206,6 +1220,8 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 - Attempt to ping web2:
 
     `ping <WEB2_IP_ADDRESS>`
+
+    > `ping 172.18.0.2, as well as command below, should be reachable since we are pinging from the local host (host) network. 
 
 - Attempt to ping web1:
   
