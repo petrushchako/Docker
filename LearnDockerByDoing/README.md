@@ -1076,6 +1076,44 @@ In this lab, you'll explore a few of the common types of networks that Docker su
 <br>
 
 
+### Solution
+
+#### Explore the Default Network
+
+- List the default networks:
+
+    `docker network ls`
+
+- Run an httpd container named web1, without specifying a network, and see which network it uses:
+
+    `docker run -d --name web1 httpd:2.4`
+    `docker inspect web1`
+    
+- Take note of the IPAddress.
+
+- Run a container using the busybox image, and see if you can connect to the web1 server:
+
+    `docker run --rm -it busybox`
+
+- Check the container's networking, and verify it is in the same IP range as web1:
+
+    `ip addr`
+
+- Ping the web1 container using the IP address:
+    
+    `ping <WEB1_IP_ADDRESS>`
+
+- Attempt to ping the web1 container by name:
+
+    `ping web1`
+
+- Attempt to access web1 using wget:
+
+    `wget <WEB1_IP_ADDRESS>`
+
+- Exit the container:
+
+    `exit`
 
 
 
