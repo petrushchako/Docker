@@ -1238,8 +1238,54 @@ Migrating static content into containers was a great way to learn the basics of 
 This lab will show you the process to dockerize a Flask application. Flask is a lightweight Python WSGI micro web framework, however, you won't need to know any Python to complete this lab.
 
 
+#### Create the Build Files
 
+- Change to the notes directory:
 
+    `cd notes`
+
+- List the files in the directory:
+
+    `ls -la`
+
+- Inspect the config.py file:
+
+    `cat config.py`
+
+- Crate the .dockerignore file:
+
+    `vim .dockerignore`
+
+- In the file, paste the following:
+    ```yaml
+    .dockerignore
+    Dockerfile
+    .gitignore
+    Pipfile.lock
+    migrations/
+    ```
+- Create the Dockerfile:
+
+    `vim Dockerfile`
+
+- In the file, paste the following:
+    ```yaml
+    FROM python:3
+    ENV PYBASE /pybase
+    ENV PYTHONUSERBASE $PYBASE
+    ENV PATH $PYBASE/bin:$PATH
+    RUN pip install pipenv
+
+    WORKDIR /tmp
+    COPY Pipfile .
+    RUN pipenv lock
+    RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install -d --system --ignore-pipfile
+
+    COPY . /app/notes
+    WORKDIR /app/notes
+    EXPOSE 80
+    CMD ["flask", "run", "--port=80", "--host=0.0.0.0"]
+    ```
 
 
 
