@@ -1287,8 +1287,45 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
     CMD ["flask", "run", "--port=80", "--host=0.0.0.0"]
     ```
 
+<br>
 
+#### Build and Setup Environment
 
+- Build the notesapp image:
+
+    `docker build -t notesapp:0.1 .`
+
+- Check the status of the image:
+
+    `docker images`
+
+- List the containers:
+
+    `docker ps -a`
+
+- List the docker networks:
+
+    `docker network ls`
+
+- Run a container using the notesapp image and mount the migrations directory:
+
+    `docker run --rm -it --network notes -v /home/cloud_user/notes/migrations:/app/notes/migrations notesapp:0.1 bash`
+
+- Once connected to the container, enable SQLAlchemy:
+
+    `flask db init`
+
+- Check the migrations folder:
+
+    `ls -l migrations`
+
+- Create the files needed to configure the database:
+
+    `flask db migrate`
+
+- Apply the files:
+
+    `flask db upgrade`
 
 
 
