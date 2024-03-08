@@ -1327,8 +1327,45 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
 
     `flask db upgrade`
 
+<br>
 
+#### Run, Evaluate, and Upgrade
 
+- Run a container using the `notesapp:0.1` image:
+
+    `docker run --rm -it --network notes -p 80:80 notesapp:0.1`
+
+- Using a web browser, navigate to the public IP address for the server.
+
+- Sign up for a new account using an email address and password.
+
+- Once you are signed up, log in to your account.
+
+- Create your first note.
+
+- Verify that you can edit the note.
+
+- Back in the terminal, disable `Debug mode` by editing the `.env` file:
+
+    `vim .env`
+
+- Remove the `export FLASK_ENV='development'` line.
+
+- Build the image again:
+
+    `docker build -t notesapp:0.2 .`
+
+- Run a container using the updated image:
+
+    `docker run --rm -it --network notes -p 80:80 notesapp:0.2`
+
+- In a web browser, navigate to the public IP address for the server, and log in to your account.
+
+- Verify that you can add a second note.
+
+- In the terminal, stop the container:
+
+    `CTRL+C`
 
 
 
