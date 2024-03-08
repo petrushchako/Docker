@@ -1228,19 +1228,14 @@ In this lab, you'll explore a few of the common types of networks that Docker su
     `ping <WEB1_IP_ADDRESS>`
 
 
-
-
-
-
-
-
-
-
-
-
 <br><br><br><br>
 
-## 
+## Dockerize a Flask Application
+
+### Introduction
+Migrating static content into containers was a great way to learn the basics of Docker, but real-world uses are usually dynamic, including full applications.
+
+This lab will show you the process to dockerize a Flask application. Flask is a lightweight Python WSGI micro web framework, however, you won't need to know any Python to complete this lab.
 
 
 
