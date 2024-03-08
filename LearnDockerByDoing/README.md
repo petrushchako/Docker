@@ -1417,6 +1417,23 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
     ```
 <br>
 
+#### Build a Production Image
+
+- Build the updated notesapp image:
+
+    `docker build -t notesapp:0.3 .`
+
+- Run a detached container using the updated image:
+
+    `docker run -d --name notesapp --network notes -p 80:80 notesapp:0.3`
+
+- Check the status of the container:
+
+    `docker ps -a`
+
+- In a web browser, navigate to the public IP address for the server, and log in to your account.
+
+- Verify that you can create a new note.
 
 
 
