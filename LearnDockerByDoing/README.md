@@ -1367,8 +1367,55 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
 
     `CTRL+C`
 
+<br>
 
+#### Upgrade to Gunicorn
 
+- Check the Pipfile:
+
+    `cat Pipfile`
+
+- Run a container and modify the pip file:
+
+    `docker run --rm -it -v /home/cloud_user/notes/Pipfile:/tmp/Pipfile notesapp:0.2 bash`
+
+- Once connected, change to the /tmp directory:
+
+    `cd /tmp`
+
+- Add gunicorn to the list of dependencies:
+
+    `pipenv install gunicorn`
+
+- Exit the container:
+
+    `exit`
+
+- Verify that gunicorn was added under [packages]:
+
+    `cat Pipfile`
+
+- Modify the init.py script:
+
+    `vim __init__.py`
+
+- Beneath the import section, add the following:
+    ```python
+    from dotenv import load_dotenv, find_dotenv
+    load_dotenv(find_dotenv())
+    ```
+- Open the Dockerfile:
+
+    `vim Dockerfile`
+
+- To the bottom of the file, make the following changes:
+    ```yaml
+    COPY . /app/notes
+    WORKDIR /app
+    EXPOSE 80
+    CMD ["gunicorn", "-b 0.0.0.0:80", "notes:create_app()"]
+    ```
+<br>
 
 
 
