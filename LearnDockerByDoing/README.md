@@ -1508,9 +1508,55 @@ Docker provides this capability through multi-stage builds. In this lab, you wil
 
     `docker inspect -f "$showSize" notesapp:default | numfmt --to=iec`
 
+<br>
 
+#### Add a Build Stage
 
+- Open the Dockerfile:
 
+    `vim Dockerfile`
+
+- Add a build stage by adding the following:
+    ```yml
+    FROM python:3 AS base
+    ENV PYBASE /pybase
+    ENV PYTHONUSERBASE $PYBASE
+    ENV PATH $PYBASE/bin:$PATH
+
+    FROM base AS builder
+    RUN pip install pipenv
+    WORKDIR /tmp
+    COPY Pipfile .
+    RUN pipenv lock
+    RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install -d --system --ignore-pipfile
+
+    FROM base
+    COPY --from=builder /pybase /pybase
+    COPY . /app/notes
+    WORKDIR /app/notes
+    EXPOSE 80
+    CMD [ "flask", "run", "--port=80", "--host=0.0.0.0" ]
+    ```
+
+<br>
+
+#### Create a Smaller Image
+
+- Build the image:
+
+    `docker build -t notesapp:multistage .`
+
+- Show the multistage image layers:
+
+    `docker inspect -f "$showLayers" notesapp:multistage`
+
+- Count the layers:
+
+    `docker inspect -f "$showLayers" notesapp:multistage | wc -l`
+
+- Show the size of the image:
+
+    `docker inspect -f "$showSize" notesapp:multistage | numfmt --to=iec`
 
 
 
