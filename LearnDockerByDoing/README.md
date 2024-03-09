@@ -1228,6 +1228,10 @@ In this lab, you'll explore a few of the common types of networks that Docker su
     `ping <WEB1_IP_ADDRESS>`
 
 
+
+
+
+
 <br><br><br><br>
 
 ## Dockerize a Flask Application
@@ -1441,16 +1445,68 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
 
 <br><br><br><br>
 
-## 
+## Building Smaller Images with Multi-Stage Builds
 
+### Introduction
+Containers are made of layers. Compile and install operations performed in the image, add to the layers, increasing the size of the container.
 
+Instead of keeping all of those layers into the final image, you can split those steps off, and only use the finished product.
 
+Docker provides this capability through multi-stage builds. In this lab, you will build an image the usual way, and inspect the image to see how it is put together. You'll then convert the Dockerfile to use Multi-Stage builds, and see how the new image compares.
 
+<br>
 
+#### Do Prep Work in the Image
 
+- Change to the notes directory:
 
+    `cd notes`
 
+- Check the Dockerfile:
 
+    `cat Dockerfile`
+
+    ```yml
+    FROM python:3
+    ENV PYBASE /pybase
+    ENV PYTHONUSERBASE $PYBASE
+    ENV PATH $PYBASE/bin:$PATH
+
+    RUN pip install pipenv
+    WORKDIR /tmp
+    COPY Pipfile .
+    RUN pipenv lock
+    RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install -d --system --ignore-pipfile
+
+    COPY . /app/notes
+    WORKDIR /app/notes
+    EXPOSE 80
+    CMD [ "flask", "run", "--port=80", "--host=0.0.0.0" ]
+    ```
+
+- Build an image using the file:
+
+    `docker build -t notesapp:default .`
+
+- Set a variable to view the layers of the image:
+
+    `export showLayers='{{ range .RootFS.Layers }}{{ println . }}{{end}}'`
+
+- Set a variable to show the size of the image:
+
+    `export showSize='{{ .Size }}'`
+
+- Show the image layers:
+
+    `docker inspect -f "$showLayers" notesapp:default`
+
+- Count the number of layers:
+
+    `docker inspect -f "$showLayers" notesapp:default | wc -l`
+
+- Show the size of the image:
+
+    `docker inspect -f "$showSize" notesapp:default | numfmt --to=iec`
 
 
 
