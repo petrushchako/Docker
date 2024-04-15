@@ -1439,12 +1439,6 @@ This lab will show you the process to dockerize a Flask application. Flask is a 
 
 
 
-<br><br><br><br>
-
-## 
-
-
-
 
 
 
