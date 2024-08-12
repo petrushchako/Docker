@@ -19,3 +19,11 @@ A simple web application that displays a "Hello, World!" message using Spring Bo
     ```
 
 3. Access the application by navigating to `http://localhost:8080` in your browser.
+
+
+
+### Troubleshooting guide
+
+Manually run first stage of Docker file:
+
+`docker run --rm -it -v "$PWD":/app -w /app maven:3.8.5-openjdk-17-slim mvn clean package -DskipTests`

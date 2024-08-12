@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Step 1: Clean and package the application using Maven
-#echo "Building the Maven project..."
-#mvn clean package -DskipTests
+echo "Building the Maven project..."
+mvn clean package -DskipTests
 
 # Step 1: Build the Docker image
 echo "Building the Docker image..."

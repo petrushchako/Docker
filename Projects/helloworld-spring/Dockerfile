@@ -21,7 +21,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar from the previous stage
-COPY --from=build /app/target/helloworld-spring-0.0.1-SNAPSHOT.jar /app/helloworld-spring.jar
+COPY --from=build /app/target/helloworld-spring-1.0-SNAPSHOT.jar /app/helloworld-spring.jar
 
 # Expose the port the app runs on
 EXPOSE 8080
