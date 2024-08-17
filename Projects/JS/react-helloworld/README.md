@@ -10,18 +10,17 @@ This project is a simple "Hello, World" web application built using React and co
 
 ```
 react-helloworld/
-│
-├── public/
-│   └── index.html
-├── src/
-│   ├── App.js
-│   ├── index.js
-│   └── App.css
-├── Dockerfile
-├── package.json
-├── build_and_run.sh
-├── .gitignore
-└── README.md
+├── public/                       # Publicly accessible files
+│   ├── favicon.ico               # Icon shown in the browser tab
+│   ├── index.html                # Main HTML file that contains the root div for React
+├── src/                          # Source code for the React application
+│   ├── App.js                    # Main App component that defines the application's UI
+│   ├── App.css                   # CSS file for styling the App component
+│   └── index.js                  # Entry point of the React application that renders the App component
+├── .gitignore                    # Specifies files and directories to be ignored by Git
+├── package.json                  # Project metadata, dependencies, and scripts
+└── README.md                     # Documentation about the project, setup instructions, and usage
+
 ```
 
 ### Prerequisites
