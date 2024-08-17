@@ -23,4 +23,5 @@ RUN npm install -g serve
 EXPOSE 3000
 
 # Command to run the application
+# `serve -s` (single-page-application) serves the static files from the build directory.
 CMD ["serve", "-s", "build"]
