@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: `<h1>Hello World</h1>`,
-  styles: [`h1 { font-family: Lato; }`]
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
-export class AppComponent { }
+export class AppComponent {
+  title = 'angular-hello-world';
+}
