@@ -57,13 +57,28 @@ Containers help developers pack up their applications, ensuring they run smoothl
 #### Previous Solutions
 - **Configuration managment tools (Chef, Puppet, Ansible)**<br>Require knowledge about hardware and operating system
 - **Virtual machines as code (Vagrant)**<br>Heavy, slowish, require inconvenient configuration
-### Docker
+#### Docker
 Docker uses **images** and **containers** to allow apps to run anywhere, consistently.
 
 <br>
 
 ### Containers vs. virtual machines
+Containers and virtual machines are often compared, but they differ significantly. Here's a breakdown:
 
+#### Key Differences
+
+| **Area** | **VMs** | **Containers** |
+|---|---|---|
+|**Virtualization Layer**|Virtualize hardware via a hypervisor | Virtualize the operating system kernel via container runtimes.|
+|**Operation**|Operate using a hypervisor that emulates hardware (memory, processors, disks, etc.).| Utilize the host operating system and hardware directly through container runtimes, avoiding emulation.|
+|**Setup and Booting**|Require separate installation of operating systems and configuration for each VM.|Share the host's operating system and do not require a boot-up process, leading to faster application startups.|
+|**Resource Usage**|Require virtual memory and disks, consuming significant disk space.|Do not need virtual memory or disks, enabling more applications to run simultaneously and using less space.|
+|**Application Hosting**|Can host multiple apps simultaneously within one VM.|Designed to run only one app per container.|
+|**Security and Isolation**|Apps running on VMs are isolated and cannot interact with the host directly.|Share the host's operating system, allowing visibility and potential modification of the host (a resolved security concern in most cases).|
+
+#### Summary of Advantages
+- **Virtual Machines**: Flexibility, isolation, and the ability to emulate a complete computer system.
+- **Containers**: Faster startup times, lower resource consumption, and higher density of applications on the same hardware.
 
 <br>
 
