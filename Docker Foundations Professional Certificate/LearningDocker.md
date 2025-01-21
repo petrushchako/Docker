@@ -50,25 +50,48 @@ Containers help developers pack up their applications, ensuring they run smoothl
   - Taking it to the next level with Docker Compose
   - Level up even more with Kubernetes
 
-<br><br>
+<br><br><br>
 
 ## Docker Explained
 ### What is Docker?
+#### Previous Solutions
+- **Configuration managment tools (Chef, Puppet, Ansible)**<br>Require knowledge about hardware and operating system
+- **Virtual machines as code (Vagrant)**<br>Heavy, slowish, require inconvenient configuration
+### Docker
+Docker uses **images** and **containers** to allow apps to run anywhere, consistently.
+
+<br>
 
 ### Containers vs. virtual machines
 
+
+<br>
+
 ### The anatomy of a container
+
+
+<br>
 
 ### The Docker difference
 
 
+<br><br><br>
 
 ## Installing Docker
 ### Docker Desktop
 
+
+<br>
+
 ### Install Docker on a Mac with Docker Desktop
 
+
+<br>
+
 ### Install Docker on Windows with Docker Desktop
+
+
+<br>
 
 ### Install Docker on Linux
 
@@ -78,49 +101,106 @@ Containers help developers pack up their applications, ensuring they run smoothl
 ## Using Docker
 ### Exploring the Docker CLI
 
+
+<br>
+
 ### Create a Docker container
+
+
+<br>
 
 ### Create a Docker container: The short way
 
+
+<br>
+
 ### Create a Docker container from Dockerfiles, part 1
+
+
+<br>
 
 ### Create a Docker container from Dockerfiles, part 2
 
+
+<br>
+
 ### Interact with your container
+
+
+<br>
 
 ### Stopping and removing the container
 
+
+<br>
+
 ### Binding ports to your container
+
+
+<br>
 
 ### Saving data from containers
 
+
+<br>
+
 ### Introducing the Docker Hub
+
+
+<br>
 
 ### Pushing images to the Docker registry
 
+
+<br>
+
 ### Checking your images in Docker Hub
 
+
+<br>
+
 ### Challenge: Starting NGINX
+
+
+<br>
 
 ### Solution: Starting NGINX
 
 
+<br><br><br>
 
 ## When Things Go Wrong
 ### Help! I can't seem to create more containers
 
+
+<br>
+
 ### Help! My container is really slow
 
+
+<br>
+
 ### Challenge: Fix a broken container
+
+
+<br>
 
 ### Solution: Fix a broken container
 
 
-
+<br><br><br>
 
 ## Additional Docker Resources
 ### Docker best practices
 
+
+<br>
+
 ### Taking it to the next level with Docker Compose
 
+
+<br>
+
 ### Level up even more with Kubernetes
+
+
