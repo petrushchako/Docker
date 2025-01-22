@@ -83,6 +83,47 @@ Containers and virtual machines are often compared, but they differ significantl
 <br>
 
 ### The anatomy of a container
+Containers rely on specific Linux kernel features to function. They consist of two primary components: **Linux Namespaces** and **Linux Control Groups (cgroups)**. Here's a breakdown:
+
+#### Components of a Container
+
+1. **Linux Namespaces**
+   - **Purpose**: Provide isolation by exposing different "views" of the system to applications running within the container.
+   - **Functionality**: Allow an application to perceive it has access to a full system while limiting actual access.
+   - **Types of Namespaces**:
+     |Namespace|Description|
+     |---|---|
+     |**USERNS**| Manages user views and permissions |
+     |**MOUNT**| Controls file system access |
+     |**NET**| Manages network communication capabilities |
+     |**IPC**| Handles interprocess communication |
+     |**TIME**| Controls the ability to modify time settings (not used by Docker containers) |
+     |**PID**| Manages process IDs |
+     |**CGROUP**| Controls creation and listing of control groups |
+     |**UTS**| Manages host and domain names |
+   - **Docker Limitation**: Docker uses all namespaces except for the TIME namespace.
+
+2. **Linux Control Groups (cgroups)**
+   - **Purpose**: Restrict and monitor hardware resource usage per process.
+   - **Functions**:
+     - Monitor and limit **CPU usage** (CPU time per container).
+     - Restrict **network and disk bandwidth**.
+     - Control **memory consumption**, preventing resource overuse by busy containers.
+   - **Limitations**:
+     - Cannot assign disk quotas directly; container-native storage solutions address this.
+
+#### Key Characteristics of Containers
+
+- **Lightweight Isolation**: Instead of virtualizing entire hardware components (as virtual machines do), containers use namespaces and cgroups for efficient resource management and isolation.
+- **Linux Dependency**: 
+  - Containers rely on Linux kernel features, making Docker natively compatible only with Linux (and newer versions of Windows).
+- **Kernel Compatibility**: 
+  - Containers are tied to the kernel they were created from.
+  - **Linux Containers** run only on Linux.
+  - **Windows Containers** run only on Windows.
+
+#### Limitations and Workarounds
+- Containers can't natively run across different kernels (e.g., Linux containers on Windows), but established workarounds exist to address these limitations.
 
 
 <br>
