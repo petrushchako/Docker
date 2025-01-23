@@ -135,11 +135,16 @@ Containers rely on specific Linux kernel features to function. They consist of t
     - Introduced by Bill Joy, popularized in 1982 with 4.2 BSD.  
     - **Purpose**: Isolates file systems by changing the root directory for applications.  
     - **Limitation**: Applications in chroots could still interact with other applications on the host if they had the necessary libraries.
+   
+      ![](img/chroot.png)
+      
   - **1999: BSD Jails**  
     - Extended the idea of chroots by creating isolated virtual environments for applications.  
     - Provided process and resource restrictions similar to modern containers.  
   - **2004: Solaris Zones**  
-    - Introduced by Solaris, offering similar capabilities to BSD Jails.  
+    - Introduced by Solaris, offering similar capabilities to BSD Jails.
+   
+      ![](img/BSD-Solaris.png)
   - **2007: Linux Containers (LXC)**  
     - Leveraged **control groups (cgroups)** and **namespaces** to isolate workloads.  
     - Supported restricting and isolating processes, networking, and resources.  
