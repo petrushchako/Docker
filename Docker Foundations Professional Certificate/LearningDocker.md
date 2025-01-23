@@ -171,7 +171,54 @@ Docker revolutionized the container ecosystem by making containerization more ac
 
 ## Installing Docker
 ### Docker Desktop
+#### Containers on Non-Linux Systems
+- **Background**:  
+  Containers rely on Linux-specific features like **namespaces** and **control groups**, making Docker natively Linux-based. However, most developers use macOS or Windows, posing a challenge for Docker to support these platforms.
 
+#### Early Solution: Docker Machine
+- **What It Was**:  
+  A tool that used Oracle’s **VirtualBox** to create a small Linux virtual machine (VM) solely for running the Docker engine. Developers had to run scripts to connect their Docker CLI to the VM.  
+
+- **Limitations**:  
+  1. **Complexity**:  
+     - Users needed knowledge of VirtualBox and its CLI tool, `VBoxManage`, for tasks like:  
+       - Exposing network ports.  
+       - Mounting directories.  
+     - This complexity slowed adoption.  
+  2. **Performance Issues**:  
+     - **Slow disk performance** when using mounted volumes.  
+     - **Slow networking** when exposing ports.  
+     - These issues stemmed from VirtualBox dependencies, which Docker couldn't control.  
+
+#### Modern Solution: Docker Desktop
+- **Introduced in 2016**:  
+  A more efficient alternative to Docker Machine, improving usability and performance for Mac and Windows users.  
+
+- **Key Features**:  
+  1. **Performance**:  
+     - Uses a smaller, faster VM:  
+       - **Mac**: Apple’s native **Hypervisor.framework** (Virtual Kit).  
+       - **Windows**: Microsoft’s **Hyper-V**.  
+  2. **Ease of Use**:  
+     - Automatic handling of:  
+       - Mounting volumes.  
+       - Exposing network ports.  
+  3. **User-Friendly Interface**:  
+     - Includes a GUI for:  
+       - Configuring the VM.  
+       - Managing Kubernetes clusters.  
+       - Performing common Docker tasks.  
+
+#### Licensing Changes and Alternatives
+- **2021 License Update**:  
+  Mirantis, Docker’s parent company, required companies with:  
+  - **>250 employees** or  
+  - **> $10 million revenue**  
+  to purchase Docker subscriptions for Docker Desktop use.  
+
+- **Emergence of Alternatives**:  
+  - Due to licensing changes, new tools emerged as alternatives to Docker Desktop.  
+  - Some developers reverted to using Docker Machine.  
 
 <br>
 
