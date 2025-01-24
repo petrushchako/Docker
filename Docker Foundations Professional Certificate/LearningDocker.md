@@ -250,6 +250,38 @@ Docker revolutionized the container ecosystem by making containerization more ac
    - Look for the Docker whale icon in the taskbar. When the boxes on the whale stop moving, Docker is ready.
 
 
+#### Installation via Homebrew
+1. **Install Homebrew**:
+   - Visit [Homebrew's website](https://brew.sh).
+   - Copy the Shell command provided.
+   - Open **Terminal** (`Command + Space`, type **Terminal**, and press Enter).
+   - Paste the copied command and press Enter.
+   - Enter your password when prompted.
+
+2. **Install Docker**:
+   - In Terminal, type:
+     ```bash
+     brew install docker --cask
+     ```
+   - Homebrew will download, install, and configure Docker automatically.
+
+3. **Launch Docker**:
+   - Open Docker using `Command + Space`, search **Docker**, and press Enter.
+
+<br>
+
+#### Verify Docker is Working
+1. Open **Terminal**.
+2. Run the following command:
+   ```bash
+   docker run --rm hello-world
+   ```
+3. Docker will:
+   - Pull the `hello-world` image.
+   - Create a container from it.
+   - Print a "Hello, world!" message.
+   - Remove the container due to the `--rm` flag.
+
 <br>
 
 ### Install Docker on Windows with Docker Desktop
