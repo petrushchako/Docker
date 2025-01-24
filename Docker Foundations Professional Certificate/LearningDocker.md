@@ -223,6 +223,31 @@ Docker revolutionized the container ecosystem by making containerization more ac
 <br>
 
 ### Install Docker on a Mac with Docker Desktop
+#### Prerequisites
+- **macOS Version**: 10.15 or newer.
+- **Memory**: At least 4 GB.
+- **Check System Information**:  
+  1. Click the Apple icon in the upper left corner of your screen.  
+  2. Select **About This Mac** to view your macOS version and memory.
+
+#### Installation via Docker Website
+1. **Visit Docker's Website**:
+   - Go to [docker.com](https://www.docker.com).
+   - Click the blue **Download** button for macOS.
+   - If using an M1 or M2 chip, select the **Apple Chip** option.
+
+2. **Download and Install**:
+   - Open the downloaded `.dmg` file.
+   - Drag the Docker icon into the **Applications** folder.
+
+3. **Launch Docker**:
+   - Press `Command + Space`, type **Docker**, and hit Enter.
+   - macOS will prompt you to open Docker since it was downloaded from the internet. Click **Open**.
+   - Enter your password when prompted to install backend components.
+   - Accept the Docker license agreement.
+
+4. **Verify Installation**:
+   - Look for the Docker whale icon in the taskbar. When the boxes on the whale stop moving, Docker is ready.
 
 
 <br>
