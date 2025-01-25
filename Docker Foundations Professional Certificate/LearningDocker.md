@@ -315,26 +315,78 @@ Docker revolutionized the container ecosystem by making containerization more ac
    - Accept the Docker Subscription Service Agreement.
 
 #### Verify Docker Installation
-
 1. **Check Initialization**:
    - Look at the **status bar** in the bottom left corner of Docker Desktop:
      - Orange = Initializing.
      - Green = Ready.
    - The Docker whale icon in the taskbar will have moving boxes while initializing. Hover over it to see the status.
-
 2. **Address WSL 2 Update Errors**:
    - If prompted, install the latest WSL 2 update using the provided link.
    - Restart Docker Desktop after completing the update.
-
 3. **Optional Tutorial**:
    - After initialization, Docker Desktop will present a tutorial wizard. You can start the tutorial or skip it.
 
 <br>
 
 ### Install Docker on Linux
+#### Overview
+Docker works natively with Linux, so you don’t need Docker Desktop—only the **Docker Engine** and the **Docker CLI**. This guide uses Ubuntu, but the steps are similar for other distributions. For distribution-specific instructions, visit the [Docker documentation](https://docs.docker.com).
 
+#### Step-by-Step Installation
+1. **Install `curl`**:
+   - Open a terminal and ensure `curl` is installed:
+     ```bash
+     sudo apt update
+     sudo apt install curl
+     ```
+   - Enter your password if prompted.
+2. **Download Docker's Installation Script**:
+   - Use `curl` to download Docker's official installation script to the `/tmp` directory:
+     ```bash
+     curl -o /tmp/get-docker.sh https://get.docker.com
+     ```
+   - *(Optional)* Review the script to ensure it meets your security standards:
+     ```bash
+     less /tmp/get-docker.sh
+     ```
+3. **Run the Installation Script**:
+   - Execute the script to install Docker Engine:
+     ```bash
+     sh /tmp/get-docker.sh
+     ```
+   - The script will download and install Docker components. This might take a few minutes depending on your system.
+4. **Test Docker Installation**:
+   - Verify that Docker is installed by running a test container:
+     ```bash
+     sudo docker run hello-world
+     ```
+   - If successful, you’ll see a "Hello from Docker!" message.
+5. **Add Your User to the Docker Group**:
+   - To avoid using `sudo` every time you run Docker, add your user to the `docker` group:
+     ```bash
+     sudo usermod -aG docker $USER
+     ```
+   - Replace `$USER` with your username if necessary. To check your username:
+     ```bash
+     whoami
+     ```
+6. **Apply Group Changes**:
+   - Normally, you’d need to log out and back in for the group changes to take effect. Alternatively, you can apply them without logging out:
+     ```bash
+     newgrp docker
+     ```
+   - Confirm your membership in the `docker` group:
+     ```bash
+     groups
+     ```
+7. **Run Docker Without `sudo`**:
+   - Test Docker without `sudo` to confirm everything is set up:
+     ```bash
+     docker run hello-world
+     ```
+   - You should see the same "Hello from Docker!" message.
 
-
+<br><br><br>
 
 ## Using Docker
 ### Exploring the Docker CLI
