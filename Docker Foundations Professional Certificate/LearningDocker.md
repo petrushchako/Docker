@@ -285,7 +285,49 @@ Docker revolutionized the container ecosystem by making containerization more ac
 <br>
 
 ### Install Docker on Windows with Docker Desktop
+#### Prerequisites
+- **Windows Version**: Windows 10 or 11 (Docker requires Windows Pro, Enterprise, or Education editions for Hyper-V).
+- **Requirements**: Verify all minimum requirements on Docker's website, such as:
+  - Hardware virtualization enabled in BIOS.
+  - At least 4 GB of memory.
 
+#### Installation Steps
+1. **Download Docker Desktop**:
+   - Open your browser and visit [docker.com](https://www.docker.com).
+   - Click the **Download** button for Windows.
+   - Save the `.exe` file to your computer.
+2. **Run the Installer**:
+   - Locate and double-click the downloaded `.exe` file.
+   - If prompted, ensure the publisher is verified as **Docker Inc.** and click **Yes** to continue.
+3. **Select Backend**:
+   - Choose the **WSL 2** (Windows Subsystem for Linux 2) backend:
+     - Recommended by Docker as it performs nearly as well as a native Linux install.
+     - Check the box for WSL 2 if not already selected.
+   - Alternatively, you can choose **Hyper-V** to run Docker in a virtual machine.
+4. **Shortcut Option**:
+   - If you want a shortcut on your desktop, leave the box checked. Otherwise, uncheck it.
+   - Click **OK** to start the installation.
+5. **Complete Installation**:
+   - Wait for the installation to complete.
+   - If prompted, restart your computer.
+6. **Launch Docker Desktop**:
+   - Click the **Start** button, type **Docker Desktop**, and select it.
+   - Accept the Docker Subscription Service Agreement.
+
+#### Verify Docker Installation
+
+1. **Check Initialization**:
+   - Look at the **status bar** in the bottom left corner of Docker Desktop:
+     - Orange = Initializing.
+     - Green = Ready.
+   - The Docker whale icon in the taskbar will have moving boxes while initializing. Hover over it to see the status.
+
+2. **Address WSL 2 Update Errors**:
+   - If prompted, install the latest WSL 2 update using the provided link.
+   - Restart Docker Desktop after completing the update.
+
+3. **Optional Tutorial**:
+   - After initialization, Docker Desktop will present a tutorial wizard. You can start the tutorial or skip it.
 
 <br>
 
