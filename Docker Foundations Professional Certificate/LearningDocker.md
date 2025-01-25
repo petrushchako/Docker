@@ -390,7 +390,47 @@ Docker works natively with Linux, so you don’t need Docker Desktop—only the 
 
 ## Using Docker
 ### Exploring the Docker CLI
+### Exploring the Docker CLI
 
+#### Overview
+The **Docker Command Line Interface (CLI)** is the primary tool for interacting with Docker containers. It’s straightforward to use and provides a variety of commands to manage containers, images, networks, and more.
+
+#### Key Features of the Docker CLI
+1. **Top-Level Commands**:
+   - Commands like `run`, `pull`, `network`, and `image` allow you to perform high-level operations. For example:
+     - `docker run` starts a container.
+     - `docker pull` downloads an image.
+     - `docker network` manages Docker networks.
+2. **Subcommands**:
+   - Some top-level commands have **subcommands**. For example:
+     ```bash
+     docker network --help
+     ```
+   - This will list subcommands like `connect`, `create`, and `disconnect`.
+3. **Options and Flags**:
+   - Many commands support additional **options** to customize behavior. For example:
+     ```bash
+     docker run --name my_container -d nginx
+     ```
+     - `--name my_container`: Names the container "my_container."
+     - `-d`: Runs the container in detached mode (background).
+
+#### Using `--help`
+The `--help` flag is available for every Docker command and subcommand. It provides:
+- A **description** of the command.
+- A **usage example**.
+- A list of **supported options**.
+
+Examples:
+- View help for `docker network`:
+  ```bash
+  docker network --help
+  ```
+- View help for a subcommand, such as `docker network create`:
+  ```bash
+  docker network create --help
+  ```
+If you try running a command incorrectly or without required arguments, Docker will often display a shorter usage message to guide you.
 
 <br>
 
