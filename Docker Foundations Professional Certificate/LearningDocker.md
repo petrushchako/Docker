@@ -435,7 +435,42 @@ If you try running a command incorrectly or without required arguments, Docker w
 <br>
 
 ### Create a Docker container
+#### Overview
+Docker containers are instances of Docker images. While images contain the app, its environment, and configuration, containers are the running (or stopped) versions of those images. 
 
+#### **The Long Way to Create a Docker Container**
+1. **Pulling the Image**:
+   - Containers are created from Docker images. If an image is not available locally, Docker automatically pulls it from Docker Hub or another registry.
+   - Use the `docker container create` command to specify the image:
+     ```bash
+     docker container create hello-world:linux
+     ```
+     - `hello-world` is the image name.
+     - `:linux` is the image tag (to specify the Linux-specific version).
+2. **Checking the Container**:
+   - After creating the container, Docker assigns it a unique **ID**. The container will be in the "created" state but not running.
+   - Verify its status using:
+     ```bash
+     docker ps --all
+     ```
+     - The `--all` flag lists all containers, including stopped ones.
+3. **Starting the Container**:
+   - Start the created container:
+     ```bash
+     docker container start <container-ID>
+     ```
+     - Replace `<container-ID>` with the actual container ID or even the first few characters of it.
+4. **Viewing Logs**:
+   - If the container exited quickly (as with the `hello-world` image), view its output using:
+     ```bash
+     docker logs <container-ID>
+     ```
+     - You’ll see the "Hello from Docker!" message.
+5. **Attaching to the Container**:
+   - To attach your terminal to the container and view its output live:
+     ```bash
+     docker container start --attach <container-ID>
+     ```
 
 <br>
 
