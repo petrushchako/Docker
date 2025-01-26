@@ -474,6 +474,20 @@ Docker containers are instances of Docker images. While images contain the app, 
 
 <br>
 
+#### **The Short Way to Create and Run a Docker Container**
+The long process can be simplified using `docker run`, which combines image creation, container creation, and starting it into a single command:
+
+```bash
+docker run hello-world:linux
+```
+
+- **What Happens**:
+  - Docker pulls the image (if not already available locally).
+  - Creates a container from the image.
+  - Starts the container.
+  - Attaches your terminal to the container’s output, so you see the friendly "Hello from Docker!" message immediately.
+
+
 ### Create a Docker container: The short way
 
 
