@@ -487,6 +487,35 @@ docker run hello-world:linux
   - Starts the container.
   - Attaches your terminal to the container’s output, so you see the friendly "Hello from Docker!" message immediately.
 
+<br>
+
+### Key Commands for Managing Containers
+- **List Active Containers**:
+  ```bash
+  docker ps
+  ```
+- **List All Containers (Including Stopped)**:
+  ```bash
+  docker ps --all
+  ```
+- **View Logs**:
+  ```bash
+  docker logs <container-ID>
+  ```
+- **Start a Container**:
+  ```bash
+  docker container start <container-ID>
+  ```
+- **Attach to a Container**:
+  ```bash
+  docker container start --attach <container-ID>
+  ```
+- **Run a Container (Short Way)**:
+  ```bash
+  docker run <image-name>:<tag>
+  ```
+
+<br>
 
 ### Create a Docker container: The short way
 
