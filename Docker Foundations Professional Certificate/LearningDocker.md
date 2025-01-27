@@ -592,6 +592,25 @@ Let’s explore some common keywords in the provided example:
      docker images
      ```
 
+#### **Step-by-Step: Running a Container from the Image**
+1. **Create and Run the Container**:
+   - Start a container from your custom image:
+     ```bash
+     docker run my-custom-app
+     ```
+   - This executes the `entrypoint.bash` script as defined in the `ENTRYPOINT`.
+2. **Test the Output**:
+   - If the `entrypoint.bash` script displays the current time, you’ll see the output in the terminal.
+
+
+#### **Important Notes**
+- **Build Context**: The directory where the `docker build` command is run is the **context**, which Docker uses to find files specified in the `COPY` command.
+- **Security**: Running containers as a non-root user (like `nobody`) prevents potential vulnerabilities from being exploited.
+- **Difference Between `CMD` and `ENTRYPOINT`**: 
+  - `ENTRYPOINT` defines the container's primary process.
+  - `CMD` provides default arguments for the `ENTRYPOINT` or runs as the container’s command if no `ENTRYPOINT` is set.
+
+
 <br>
 
 ### Create a Docker container from Dockerfiles, part 2
