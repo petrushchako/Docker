@@ -674,6 +674,23 @@ When working with containers, especially servers or applications that run contin
    - Exit the shell session by pressing `Ctrl+D`.
 
 
+#### **Key Commands Recap**
+|**Command**| **Description**|
+|---|---|
+| `docker build -f <file> -t <tag> .` | Build an image from a Dockerfile with a specific name and tag.|
+| `docker run -d <image>`| Run a container in detached mode.|
+| `docker ps`| List all running containers.|
+| `docker kill <container-id>`| Stop a running container forcefully.|
+| `docker exec <id> <command>`| Execute a specific command in a running container.|
+| `docker exec -it <id> bash`| Start an interactive shell session in a container.|
+| `Ctrl+D`| Exit a container’s shell session.|
+
+#### **Troubleshooting Tips**
+- If the container is unresponsive, always check its ID using `docker ps` and manage it with commands like `docker kill` or `docker stop`.
+- Use `docker logs <container-id>` to view container logs for debugging.
+- Be cautious with `Ctrl+D` to avoid accidentally logging out of your terminal.
+
+
 <br>
 
 ### Stopping and removing the container
