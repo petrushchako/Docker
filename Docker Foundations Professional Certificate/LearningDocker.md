@@ -612,16 +612,28 @@ Let’s explore some common keywords in the provided example:
   - `ENTRYPOINT` defines the container's primary process.
   - `CMD` provides default arguments for the `ENTRYPOINT` or runs as the container’s command if no `ENTRYPOINT` is set.
 
-
-<br>
-
-### Create a Docker container from Dockerfiles, part 2
-
-
 <br>
 
 ### Interact with your container
+When working with containers, especially servers or applications that run continuously, it's crucial to understand how to manage and interact with them effectively. Let’s dive into the key steps for interacting with your Docker containers.
 
+#### **Building and Running a Server Container**
+1. **Custom Dockerfile**:
+   - In this example, the Dockerfile is named `server.dockerfile` and copies a file named `server.bash` into the image.
+   - To build this image:
+     ```bash
+     docker build --file server.dockerfile --tag my-first-server .
+     ```
+     - `--file`: Specifies the Dockerfile name.
+     - `--tag`: Assigns a name (`my-first-server`) to the image.
+     - `.`: Indicates the current directory as the build context.
+2. **Running the Container**:
+   - Start the container:
+     ```bash
+     docker run my-first-server
+     ```
+     - By default, this attaches your terminal to the container.
+     - If the application is a server (like `server.bash`), it will continue running and wait for commands, causing the terminal to "hang."
 
 <br>
 
