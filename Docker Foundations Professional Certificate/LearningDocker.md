@@ -656,6 +656,24 @@ When working with containers, especially servers or applications that run contin
      docker ps
      ```
 
+#### **Interacting with a Running Container**
+1. **Execute Commands Inside the Container**:
+   - Use `docker exec` to run commands within the container.
+   - Example: Retrieve the date from the container:
+     ```bash
+     docker exec <container-id> date
+     ```
+2. **Start a Shell Session**:
+   - Use `docker exec` with options to start an interactive shell session:
+     ```bash
+     docker exec --interactive --tty <container-id> bash
+     ```
+     - `--interactive (-i)`: Enables interaction.
+     - `--tty (-t)`: Allocates a pseudo-terminal.
+   - Once inside the container, you can run additional commands.
+   - Exit the shell session by pressing `Ctrl+D`.
+
+
 <br>
 
 ### Stopping and removing the container
