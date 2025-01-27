@@ -474,7 +474,7 @@ Docker containers are instances of Docker images. While images contain the app, 
 
 <br>
 
-#### **The Short Way to Create and Run a Docker Container**
+### Create a Docker container: The short way
 The long process can be simplified using `docker run`, which combines image creation, container creation, and starting it into a single command:
 
 ```bash
@@ -517,13 +517,52 @@ docker run hello-world:linux
 
 <br>
 
-### Create a Docker container: The short way
-
-
-<br>
-
 ### Create a Docker container from Dockerfiles, part 1
+#### **Dockerfile**
+A **Dockerfile** is a plain text file with a set of instructions that define how to build a custom Docker image. Each line in a Dockerfile specifies a command or configuration step for the resulting image.
 
+#### **Key Dockerfile Keywords**
+Let’s explore some common keywords in the provided example:
+1. **`FROM`**:
+   - Specifies the base image for your custom image.
+   - Example:
+     ```dockerfile
+     FROM ubuntu:latest
+     ```
+     This sets the base image to the latest Ubuntu image. If the image isn’t available locally, Docker pulls it from Docker Hub.
+2. **`LABEL`**:
+   - Adds metadata to the image, such as the maintainer.
+   - Example:
+     ```dockerfile
+     LABEL maintainer="your-email@example.com"
+     ```
+3. **`USER`**:
+   - Sets the user for executing subsequent commands.
+   - By default, commands run as the `root` user, but it’s safer to use a non-root user like `nobody`.
+   - Example:
+     ```dockerfile
+     USER nobody
+     ```
+4. **`COPY`**:
+   - Copies files from the local build context to the image.
+   - Example:
+     ```dockerfile
+     COPY entrypoint.bash /app/entrypoint.bash
+     ```
+5. **`RUN`**:
+   - Executes commands during the build process to configure the image.
+   - Example:
+     ```dockerfile
+     RUN apt-get update && apt-get install -y curl bash
+     ```
+     This installs `curl` and `bash` inside the image.
+6. **`ENTRYPOINT`**:
+   - Defines the default command to run when a container starts.
+   - Example:
+     ```dockerfile
+     ENTRYPOINT ["/app/entrypoint.bash"]
+     ```
+     This ensures the container runs the specified script upon startup.
 
 <br>
 
