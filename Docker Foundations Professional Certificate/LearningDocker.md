@@ -635,6 +635,27 @@ When working with containers, especially servers or applications that run contin
      - By default, this attaches your terminal to the container.
      - If the application is a server (like `server.bash`), it will continue running and wait for commands, causing the terminal to "hang."
 
+#### **Detaching from a Running Container**
+1. **Force Stop the Container**:
+   - Open a new terminal and use `docker ps` to list running containers:
+     ```bash
+     docker ps
+     ```
+   - Copy the container ID, then use `docker kill` to stop the container:
+     ```bash
+     docker kill <container-id>
+     ```
+2. **Run in Detached Mode**:
+   - Avoid attaching your terminal by running the container in **detached mode**:
+     ```bash
+     docker run -d my-first-server
+     ```
+     - `-d`: Starts the container in the background.
+   - Verify it’s running:
+     ```bash
+     docker ps
+     ```
+
 <br>
 
 ### Stopping and removing the container
