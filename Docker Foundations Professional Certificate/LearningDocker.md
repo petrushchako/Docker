@@ -547,20 +547,21 @@ Let’s explore some common keywords in the provided example:
    - Copies files from the local build context to the image.
    - Example:
      ```dockerfile
-     COPY entrypoint.bash /app/entrypoint.bash
+     COPY /entrypoint.bash /
      ```
 5. **`RUN`**:
    - Executes commands during the build process to configure the image.
    - Example:
      ```dockerfile
      RUN apt-get update && apt-get install -y curl bash
+     RUN chmod 755 /entrypoint.bash
      ```
-     This installs `curl` and `bash` inside the image.
+     This installs `curl` and `bash` inside the image. Change permission on the copied script.
 6. **`ENTRYPOINT`**:
    - Defines the default command to run when a container starts.
    - Example:
      ```dockerfile
-     ENTRYPOINT ["/app/entrypoint.bash"]
+     ENTRYPOINT ["/entrypoint.bash"]
      ```
      This ensures the container runs the specified script upon startup.
 
@@ -575,9 +576,10 @@ Let’s explore some common keywords in the provided example:
      FROM ubuntu:latest
      LABEL maintainer="your-email@example.com"
      RUN apt-get update && apt-get install -y curl bash
-     COPY entrypoint.bash /app/entrypoint.bash
+     COPY ./entrypoint.bash /
+     RUN chmod 755 /entrypoint.bash
      USER nobody
-     ENTRYPOINT ["/app/entrypoint.bash"]
+     ENTRYPOINT ["/entrypoint.bash"]
      ```
 3. **Build the Image**:
    - Run the following command in the same directory as your `Dockerfile`:
