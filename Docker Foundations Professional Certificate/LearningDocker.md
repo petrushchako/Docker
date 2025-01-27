@@ -564,6 +564,34 @@ Let’s explore some common keywords in the provided example:
      ```
      This ensures the container runs the specified script upon startup.
 
+#### **Step-by-Step: Building an Image from a Dockerfile**
+1. **Prepare Your Files**:
+   - Make sure you have:
+     - A `Dockerfile`.
+     - The app script (e.g., `entrypoint.bash`).
+2. **Create the Dockerfile**:
+   - Here’s an example `Dockerfile`:
+     ```dockerfile
+     FROM ubuntu:latest
+     LABEL maintainer="your-email@example.com"
+     RUN apt-get update && apt-get install -y curl bash
+     COPY entrypoint.bash /app/entrypoint.bash
+     USER nobody
+     ENTRYPOINT ["/app/entrypoint.bash"]
+     ```
+3. **Build the Image**:
+   - Run the following command in the same directory as your `Dockerfile`:
+     ```bash
+     docker build -t my-custom-app .
+     ```
+     - `-t` specifies the image name (`my-custom-app`).
+     - The `.` specifies the current directory as the build context.
+4. **Verify the Image**:
+   - List your images to confirm the build was successful:
+     ```bash
+     docker images
+     ```
+
 <br>
 
 ### Create a Docker container from Dockerfiles, part 2
