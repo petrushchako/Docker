@@ -768,10 +768,10 @@ Managing containers and images efficiently is crucial for keeping your system cl
 | `docker stop -t 0 <id>`                   | Immediately stops a running container.                                                          |
 | `docker rm <id>`                          | Removes a stopped container.                                                                    |
 | `docker rm -f <id>`                       | Forcefully stops and removes a running container.                                               |
-| `docker ps -a -q | xargs docker rm`       | Removes all stopped containers.                                                                 |
+| `docker ps -a -q \| xargs docker rm`       | Removes all stopped containers.                                                                 |
 | `docker rmi <image-name>`                 | Removes a specific image.                                                                       |
 | `docker rmi -f <image-name>`              | Forcefully removes an image even if containers depend on it.                                    |
-| `docker images -q | xargs docker rmi`     | Removes all unused images.                                                                      |
+| `docker images -q \| xargs docker rmi`     | Removes all unused images.                                                                      |
 
 
 #### **Best Practices**
