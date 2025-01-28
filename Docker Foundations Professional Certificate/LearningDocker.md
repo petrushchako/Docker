@@ -694,9 +694,23 @@ When working with containers, especially servers or applications that run contin
 <br>
 
 ### Stopping and removing the container
+Managing containers and images efficiently is crucial for keeping your system clean and ensuring Docker doesn’t consume unnecessary resources. Here's a detailed guide to stopping and removing containers and images.
+
+#### **Stopping a Container**
+1. **Graceful Stop**:
+   - Use the `docker stop` command followed by the container ID or name:
+     ```bash
+     docker stop <container-id>
+     ```
+   - Docker will attempt to gracefully stop the running application. If the application takes too long, it may delay the process.
+2. **Forceful Stop**:
+   - If the container does not stop in a timely manner, use the `-t 0` option to force an immediate stop:
+     ```bash
+     docker stop -t 0 <container-id>
+     ```
+   - **Warning**: Forcefully stopping a container may result in **data loss**, depending on the application.
 
 
-<br>
 
 ### Binding ports to your container
 
