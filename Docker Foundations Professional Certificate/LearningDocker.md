@@ -751,6 +751,17 @@ Managing containers and images efficiently is crucial for keeping your system cl
 
 <br>
 
+#### **Automating Cleanup**
+
+##### **Removing All Stopped Containers and Images**
+- Combine multiple commands to remove unused containers and images:
+  ```bash
+  docker ps -a -q | xargs docker rm
+  docker images -q | xargs docker rmi
+  ```
+- **Caution**: Double-check before running, as this will remove **all stopped containers and unused images**.
+
+
 
 <br>
 
