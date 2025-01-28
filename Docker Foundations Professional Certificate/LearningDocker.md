@@ -711,6 +711,26 @@ Managing containers and images efficiently is crucial for keeping your system cl
    - **Warning**: Forcefully stopping a container may result in **data loss**, depending on the application.
 
 
+#### **Removing Containers**
+1. **Remove a Specific Container**:
+   - Use the `docker rm` command followed by the container ID or name:
+     ```bash
+     docker rm <container-id>
+     ```
+   - If the container is running, you’ll need to stop it first or use the `-f` option to force removal:
+     ```bash
+     docker rm -f <container-id>
+     ```
+2. **Remove All Stopped Containers**:
+   - List container IDs with `docker ps -a -q` and use `xargs` to remove them all:
+     ```bash
+     docker ps -a -q | xargs docker rm
+     ```
+     - `docker ps -a -q`: Lists all container IDs.
+     - `|`: Feeds the output of the left command to the right command.
+     - `xargs docker rm`: Removes each container listed.
+
+
 
 ### Binding ports to your container
 
