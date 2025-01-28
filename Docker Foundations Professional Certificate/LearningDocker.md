@@ -731,6 +731,28 @@ Managing containers and images efficiently is crucial for keeping your system cl
      - `xargs docker rm`: Removes each container listed.
 
 
+#### **Removing Images**
+1. **Remove a Specific Image**:
+   - First, list images:
+     ```bash
+     docker images
+     ```
+   - Then remove an image by its name or ID:
+     ```bash
+     docker rmi <image-name>
+     ```
+2. **Force Remove an Image**:
+   - If Docker prevents the removal of an image due to dependencies (e.g., running containers), use the `-f` option:
+     ```bash
+     docker rmi -f <image-name>
+     ```
+3. **Note**:
+   - Before removing an image, ensure no containers are using it. Stop and remove dependent containers first.
+
+<br>
+
+
+<br>
 
 ### Binding ports to your container
 
