@@ -752,7 +752,6 @@ Managing containers and images efficiently is crucial for keeping your system cl
 <br>
 
 #### **Automating Cleanup**
-
 ##### **Removing All Stopped Containers and Images**
 - Combine multiple commands to remove unused containers and images:
   ```bash
@@ -761,6 +760,31 @@ Managing containers and images efficiently is crucial for keeping your system cl
   ```
 - **Caution**: Double-check before running, as this will remove **all stopped containers and unused images**.
 
+
+#### **Key Commands Recap**
+| **Command**                               | **Description**                                                                                  |
+|-------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `docker stop <id>`                        | Gracefully stops a running container.                                                           |
+| `docker stop -t 0 <id>`                   | Immediately stops a running container.                                                          |
+| `docker rm <id>`                          | Removes a stopped container.                                                                    |
+| `docker rm -f <id>`                       | Forcefully stops and removes a running container.                                               |
+| `docker ps -a -q | xargs docker rm`       | Removes all stopped containers.                                                                 |
+| `docker rmi <image-name>`                 | Removes a specific image.                                                                       |
+| `docker rmi -f <image-name>`              | Forcefully removes an image even if containers depend on it.                                    |
+| `docker images -q | xargs docker rmi`     | Removes all unused images.                                                                      |
+
+
+#### **Best Practices**
+
+- Regularly stop and remove unused containers to free up resources.
+- Use `docker system prune` to clean up all unused containers, networks, images, and volumes in one command:
+  ```bash
+  docker system prune
+  ```
+  - Add `-a` to remove all unused images as well:
+    ```bash
+    docker system prune -a
+    ```
 
 
 <br>
