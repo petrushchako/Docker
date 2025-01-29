@@ -762,16 +762,16 @@ Managing containers and images efficiently is crucial for keeping your system cl
 
 
 #### **Key Commands Recap**
-| **Command**                               | **Description**                                                                                  |
-|-------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `docker stop <id>`                        | Gracefully stops a running container.                                                           |
-| `docker stop -t 0 <id>`                   | Immediately stops a running container.                                                          |
-| `docker rm <id>`                          | Removes a stopped container.                                                                    |
-| `docker rm -f <id>`                       | Forcefully stops and removes a running container.                                               |
-| `docker ps -a -q \| xargs docker rm`       | Removes all stopped containers.                                                                 |
-| `docker rmi <image-name>`                 | Removes a specific image.                                                                       |
-| `docker rmi -f <image-name>`              | Forcefully removes an image even if containers depend on it.                                    |
-| `docker images -q \| xargs docker rmi`     | Removes all unused images.                                                                      |
+| **Command**|**Description**|
+|---|---|
+|`docker stop <id>`| Gracefully stops a running container.|
+|`docker stop -t 0 <id>`| Immediately stops a running container.|
+|`docker rm <id>`| Removes a stopped container.|
+|`docker rm -f <id>`| Forcefully stops and removes a running container.|
+|`docker ps -a -q \| xargs docker rm`| Removes all stopped containers.|
+|`docker rmi <image-name>`| Removes a specific image.|
+|`docker rmi -f <image-name>`| Forcefully removes an image even if containers depend on it.|
+|`docker images -q \| xargs docker rmi`| Removes all unused images.|
 
 
 #### **Best Practices**
@@ -790,7 +790,57 @@ Managing containers and images efficiently is crucial for keeping your system cl
 <br>
 
 ### Binding ports to your container
+#### Accessing Container Network Services from Your Host
+Docker provides the ability to access network ports within the container using **port binding**. This feature allows Docker to take a port on your machine and map it to a port within the container.
 
+#### Building the Web Server Image
+We will use a Dockerfile named `web-server.Dockerfile` to build an image for our web server.
+
+- **server.bash**
+  ```bash
+  #!/usr/bin/env bash
+
+  bash_is_current_version() {
+    bash --version | grep -q 'version 5'
+  }
+
+  start_server() {
+    echo "Server started. Press CTRL-C to stop..."
+    while true
+    do sleep 10
+    done
+  }
+
+  if ! bash_is_current_version
+  then
+    >&2 echo "ERROR: Bash not installed or not the right version."
+    exit 1
+  fi
+
+  start_server
+  ```
+
+- **server.Dockerfile**
+  ```dockerfile
+  FROM ubuntu
+  LABEL maintainer="Alex Petrushchak <petrushchako@gmail.com>"
+
+  USER root
+  COPY ./server.bash /
+
+  RUN chmod 755 /server.bash
+  RUN apt -y update
+  RUN apt -y install bash
+
+  USER nobody
+
+  ENTRYPOINT [ "/server.bash" ]
+  ```
+
+- **Build command**:
+  ```sh
+  docker build -t our-web-server -f web-server.Dockerfile .
+  ```
 
 <br>
 
