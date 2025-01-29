@@ -865,6 +865,29 @@ Before mapping ports, stop and remove the container:
 docker rm -f our-web-server
 ```
 
+#### Mapping Ports
+Now, let's run the container with port mapping:
+```sh
+docker run -d --name our-web-server -p 5001:5000 our-web-server
+```
+Here, `5001:5000` means:
+- **5001** → Port on the host machine (outside the container)
+- **5000** → Port inside the container
+
+#### Verifying the Running Container
+Check if the container is running with the mapped port:
+```sh
+docker ps
+```
+You should see an entry showing that port `5000` inside the container is mapped to port `5001` on the host.
+
+#### Accessing the Web Page
+Now, open your web browser and visit:
+```
+http://localhost:5001
+```
+On some machines, this might take a couple of minutes before it starts working. Once it does, you should see the web page served from the container.
+
 <br>
 
 ### Saving data from containers
