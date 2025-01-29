@@ -842,6 +842,29 @@ We will use a Dockerfile named `web-server.Dockerfile` to build an image for our
   docker build -t our-web-server -f web-server.Dockerfile .
   ```
 
+#### Running the Container
+Start a container in detached mode:
+```sh
+docker run -d --name our-web-server our-web-server
+```
+Verify that the container is running:
+```sh
+docker ps
+```
+
+#### Checking Logs
+Since the server is running in the background, check its logs:
+```sh
+docker logs our-web-server
+```
+You should see instructions telling you to visit `http://localhost:5000`. However, this will not work yet because the port is not mapped.
+
+#### Stopping and Removing the Container
+Before mapping ports, stop and remove the container:
+```sh
+docker rm -f our-web-server
+```
+
 <br>
 
 ### Saving data from containers
