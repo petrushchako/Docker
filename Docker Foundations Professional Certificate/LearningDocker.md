@@ -911,7 +911,23 @@ cat /tmp/file
 ```
 The file does not exist. Any data created inside a container is lost when the container stops. This behavior is problematic for applications requiring persistent storage.
 
+#### Using Volume Mounting for Persistence
+Docker provides **volume mounting** as a solution, allowing a folder on the host to be mapped to a folder inside the container. The syntax follows:
+```sh
+-v host_path:container_path
+```
+Where **host_path** refers to a directory on the host machine, and **container_path** is the corresponding directory inside the container.
 
+To map `/tmp/container` on the host to `/tmp` inside the container, execute:
+```sh
+docker run --rm -v /tmp/container:/tmp --entrypoint sh ubuntu -c "echo 'Hello there.' > /tmp/file && cat /tmp/file"
+```
+
+Since `/tmp/container` is mapped to `/tmp`, the created file should persist. Verification can be done using:
+```sh
+cat /tmp/container/file
+```
+The file remains accessible outside the container.
 
 
 
