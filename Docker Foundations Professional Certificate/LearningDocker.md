@@ -890,7 +890,31 @@ On some machines, this might take a couple of minutes before it starts working. 
 
 <br>
 
+
 ### Saving data from containers
+#### Overview
+Containers are designed to be ephemeral. When deleted, all data within them is lost permanently. This includes any files created inside the container during its execution.
+
+#### Running a Temporary Container
+A temporary Ubuntu container can be created and removed immediately using `docker run --rm`. The `--entrypoint` flag allows execution of a shell command within the container. The following command writes `Hello there.` to `/tmp/file` and then prints its contents:
+
+```sh
+docker run --rm --entrypoint sh ubuntu -c "echo 'Hello there.' > /tmp/file && cat /tmp/file"
+```
+
+This command successfully creates the file and outputs `Hello there.` to the terminal.
+
+#### Data Persistence Issue
+Attempting to access the file from the host machine results in an error:
+```sh
+cat /tmp/file
+```
+The file does not exist. Any data created inside a container is lost when the container stops. This behavior is problematic for applications requiring persistent storage.
+
+
+
+
+
 
 
 <br>
