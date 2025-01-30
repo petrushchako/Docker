@@ -929,6 +929,40 @@ cat /tmp/container/file
 ```
 The file remains accessible outside the container.
 
+#### Mapping Files Instead of Directories
+Volume mounting also supports individual file mapping. However, if a specified file does not exist on the host, Docker will interpret it as a directory.
+
+##### Mapping an Existing File
+First, create a file on the host system:
+```sh
+touch /tmp/change_this_file
+```
+
+Modify the previous command to map the specific file instead of a directory:
+```sh
+docker run --rm -v /tmp/change_this_file:/tmp/file --entrypoint sh ubuntu -c "echo 'New content' > /tmp/file && cat /tmp/file"
+```
+
+Checking the file on the host confirms that the content has been modified:
+```sh
+cat /tmp/change_this_file
+```
+
+##### Mapping a Non-Existent File
+Executing the command with a non-existent file:
+```sh
+docker run --rm -v /tmp/this_file_does_not_exist:/tmp/file --entrypoint sh ubuntu -c "echo 'Should fail' > /tmp/file"
+```
+
+Instead of a file, Docker creates a directory. Running:
+```sh
+ls -ld /tmp/this_file_does_not_exist
+```
+confirms that `/tmp/this_file_does_not_exist` is now a directory.
+
+
+> When using `-v` to map files, ensure the file already exists on the host system. If not, Docker will create a directory instead of treating it as a file.
+
 
 
 
