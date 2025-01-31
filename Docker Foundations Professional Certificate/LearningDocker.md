@@ -1010,6 +1010,23 @@ docker tag our-web-server username/our-web-server:0.0.1
 ```  
 Using explicit versioning (`0.0.1` instead of `latest`) is recommended to maintain clarity when managing multiple versions of the same image.  
 
+#### Verifying the Tagged Image  
+To confirm that the image has been correctly tagged, list the available images:  
+```sh
+docker images
+```  
+The output should display an entry similar to:  
+```sh
+REPOSITORY                 TAG       IMAGE ID       CREATED        SIZE
+username/our-web-server    0.0.1     abc123456789   2 hours ago    50MB
+```
+
+#### Pushing an Image to Docker Hub  
+Once tagged, the image can be pushed to Docker Hub using:  
+```sh
+docker push username/our-web-server:0.0.1
+```  
+This command uploads the image, displaying logs similar to those seen during a `docker pull` operation but in the reverse direction.
 
 <br>
 
