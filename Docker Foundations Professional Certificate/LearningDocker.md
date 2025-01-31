@@ -987,9 +987,33 @@ To explore Docker Hub's functionality, an account must be created. This account 
 
 
 ### Pushing images to the Docker registry
+#### Logging into Docker Hub via CLI  
+Authentication with Docker Hub can be performed using the **Docker CLI** with the following command:  
+```sh
+docker login
+```  
+The CLI will prompt for a username and password. Upon successful authentication, Docker stores the credentials in the user's home directory for future use.  
+
+#### Tagging an Image for the Registry  
+Before pushing an image to Docker Hub, it must be **tagged** correctly. This is done using the **docker tag** command, which renames images similarly to the `mv` command in Linux. The general syntax for tagging an image is:  
+```sh
+docker tag <existing-image> <repository>/<image-name>:<tag>
+```  
+- `<existing-image>` → The name of the local Docker image to be tagged.  
+- `<repository>` → The Docker Hub username or organization name.  
+- `<image-name>` → The new name for the image in the registry.  
+- `<tag>` → The version tag (e.g., `0.0.1`). If omitted, Docker defaults to `latest`.  
+
+For example, to tag an image named `our-web-server` before pushing it to Docker Hub under the username `username`, the command would be:  
+```sh
+docker tag our-web-server username/our-web-server:0.0.1
+```  
+Using explicit versioning (`0.0.1` instead of `latest`) is recommended to maintain clarity when managing multiple versions of the same image.  
 
 
 <br>
+
+
 
 ### Checking your images in Docker Hub
 
