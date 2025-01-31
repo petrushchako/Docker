@@ -970,9 +970,21 @@ confirms that `/tmp/this_file_does_not_exist` is now a directory.
 <br>
 
 ### Introducing the Docker Hub
+#### Overview
+One of Docker’s key features is the ability to push container images to **container image registries**, enabling storage, versioning, and sharing of images. As long as authentication credentials are available, images can be pushed to a registry.
 
+#### Understanding Container Image Registries
+A **container image registry** is a centralized repository for storing and managing container images. Each image is tracked using **tags**, which consist of the image name and, optionally, a version identifier. If no version is specified, Docker assigns the default tag `latest`. This tagging mechanism simplifies image retrieval, similar to versioned software downloads from platforms like Homebrew or GitHub.
+
+#### Docker Hub: The Default Registry
+Docker Hub serves as the default image registry for Docker. It is a publicly accessible repository where users can push, pull, and share container images. Whenever an image is pulled—either manually or as part of a `FROM` instruction in a Dockerfile—Docker retrieves it from Docker Hub by default.
+
+#### Storing and Versioning Images
+To explore Docker Hub's functionality, an account must be created. This account will be used to store the `our-web-server` image. Subsequently, an updated version of the image will be built and pushed to Docker Hub, demonstrating the image versioning capabilities.
 
 <br>
+
+
 
 ### Pushing images to the Docker registry
 
