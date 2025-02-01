@@ -1058,6 +1058,17 @@ Docker optimizes this process by identifying layers that already exist in the re
 #### **Verifying the New Tag in Docker Hub**  
 Refreshing the repository page on Docker Hub will display the newly pushed `0.0.2` tag, confirming its availability for pulling.  
 
+#### **Deleting an Image from Docker Hub**  
+To remove an image from Docker Hub, the web interface must be used, as there is no direct CLI command for repository deletion.  
+
+1. Navigate to the repository in Docker Hub.  
+2. Open the **Settings** tab.  
+3. Click **Delete Repository**.  
+4. Enter the **repository name** (not the full tag).  
+5. Click **Delete** to confirm the removal.  
+
+Once deleted, the repository disappears from the list, removing all associated tags and data.
+
 <br>
 
 
