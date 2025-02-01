@@ -1033,9 +1033,37 @@ This command uploads the image, displaying logs similar to those seen during a `
 
 
 ### Checking your images in Docker Hub
+Once the image has been successfully pushed to Docker Hub, verification can be performed by logging into the Docker Hub web interface. If not already signed in, click the **Sign In** button near the **Register** button and provide the necessary credentials.  
 
+Upon authentication, a list of repositories associated with the account is displayed. The most recently pushed image should appear at the top of the list, confirming a successful push operation. Clicking on the repository provides further details, including:  
+- **Tags** associated with the image  
+- **Operating system compatibility**  
+- **Timestamp** of the last push operation  
+
+#### **Pushing an Updated Image with a New Tag**  
+To push the same image with a different tag, update the version identifier using the `docker tag` command:  
+
+```sh
+docker tag carlosnunez/our-web-server:0.0.1 carlosnunez/our-web-server:0.0.2
+```  
+
+The updated image can then be pushed using:  
+
+```sh
+docker push carlosnunez/our-web-server:0.0.2
+```  
+
+Docker optimizes this process by identifying layers that already exist in the registry. If no changes were made to the image itself, only metadata is updated, and no additional layers are pushed.  
+
+#### **Verifying the New Tag in Docker Hub**  
+Refreshing the repository page on Docker Hub will display the newly pushed `0.0.2` tag, confirming its availability for pulling.  
 
 <br>
+
+
+
+
+
 
 ### Challenge: Starting NGINX
 
