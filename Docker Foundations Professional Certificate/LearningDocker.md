@@ -1072,16 +1072,20 @@ Once deleted, the repository disappears from the list, removing all associated t
 <br>
 
 
+### **Challenge: Deploying NGINX in Docker**  
+#### **Objective**  
+Deploy an NGINX container to serve a static website using Docker. The website files are provided in the `website/` directory within the exercise file bundle.
+#### **Requirements**  
+- Utilize the official NGINX image from Docker Hub.  
+- Serve the website from a container named **website**.  
+- NGINX listens on **port 80** by default, but the website must be accessible from **http://localhost:8080**.  
+- The container should be removed once it is no longer needed.  
+- If using volume mounts, ensure that:  
+  - The current working directory is **03_14**.  
+  - The volume maps `$PWD/website` (host) to `/usr/share/nginx/html` (container).  
 
 
 
-
-### Challenge: Starting NGINX
-
-
-<br>
-
-### Solution: Starting NGINX
 
 
 <br><br><br>
