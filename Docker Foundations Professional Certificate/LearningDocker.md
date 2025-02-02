@@ -1084,6 +1084,33 @@ Deploy an NGINX container to serve a static website using Docker. The website fi
   - The current working directory is **03_14**.  
   - The volume maps `$PWD/website` (host) to `/usr/share/nginx/html` (container).  
 
+#### **Solution Guidelines**  
+Run the following command to start the container and serve the website:  
+
+```sh
+docker run --rm -d -p 8080:80 --name website -v $PWD/website:/usr/share/nginx/html nginx
+```
+
+**Explanation:**  
+- `--rm` → Ensures the container is removed upon exit.  
+- `-d` → Runs the container in detached mode.  
+- `-p 8080:80` → Maps **host port 8080** to **container port 80**.  
+- `--name website` → Assigns the container the name **website**.  
+- `-v $PWD/website:/usr/share/nginx/html` → Mounts the website directory to NGINX’s default HTML serving location.  
+- `nginx` → Specifies the official NGINX image from Docker Hub.  
+
+#### **Verification**  
+1. Open a browser and navigate to **http://localhost:8080**.  
+2. Confirm that the website is displayed.  
+3. Stop the container (if needed) with:  
+
+   ```sh
+   docker stop website
+   ```
+
+Since `--rm` is used, the container is automatically removed upon stopping.  
+
+
 
 
 
