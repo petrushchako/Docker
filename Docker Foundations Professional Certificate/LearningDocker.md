@@ -1088,37 +1088,51 @@ Deploy an NGINX container to serve a static website using Docker. The website fi
 Run the following command to start the container and serve the website:  
 
 ```sh
-docker run --rm -d -p 8080:80 --name website -v $PWD/website:/usr/share/nginx/html nginx
+docker run --name website -v "$PWD/website:/usr/share/nginx/html" -p 8080:80 --rm nginx 
 ```
-
-**Explanation:**  
-- `--rm` → Ensures the container is removed upon exit.  
-- `-d` → Runs the container in detached mode.  
-- `-p 8080:80` → Maps **host port 8080** to **container port 80**.  
+**Explanation:**    
 - `--name website` → Assigns the container the name **website**.  
 - `-v $PWD/website:/usr/share/nginx/html` → Mounts the website directory to NGINX’s default HTML serving location.  
+- `-p 8080:80` → Maps **host port 8080** to **container port 80**.
+- `--rm` → Ensures the container is removed upon exit.  
+- (Optional) `-d` → Runs the container in detached mode.  
 - `nginx` → Specifies the official NGINX image from Docker Hub.  
 
 #### **Verification**  
 1. Open a browser and navigate to **http://localhost:8080**.  
 2. Confirm that the website is displayed.  
-3. Stop the container (if needed) with:  
-
-   ```sh
-   docker stop website
-   ```
-
-Since `--rm` is used, the container is automatically removed upon stopping.  
-
-
-
-
-
+3. Stop container in terminal with `CMD+C`.
+4. Verify that container is removed with `docker ps -a`. Since `--rm` is used, the container is automatically removed upon stopping.  
 
 <br><br><br>
 
+
 ## When Things Go Wrong
 ### Help! I can't seem to create more containers
+If you can't create new containers because Docker reports **no space left**, but your disk seems fine (`df -h` shows enough free space), the issue is likely due to Docker's storage filling up. This is common on macOS and Windows, where Docker runs inside a small virtual machine.  
+
+#### **Step 1: Check Unused Docker Images**
+First, check for unused images that may be taking up space:  
+```sh
+docker images
+```
+Delete images you no longer need with:  
+```sh
+docker rmi <image_id>
+```
+You can delete multiple images at once:  
+```sh
+docker rmi image1 image2 image3
+```
+If an image is in use by a running container, stop and remove the container first:  
+```sh
+docker stop <container_id>
+docker rm <container_id>
+```
+If necessary, force-delete images:  
+```sh
+docker rmi -f <image_id>
+```
 
 
 <br>
