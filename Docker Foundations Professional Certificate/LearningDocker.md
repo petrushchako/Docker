@@ -1134,6 +1134,26 @@ If necessary, force-delete images:
 docker rmi -f <image_id>
 ```
 
+#### **Step 2: Clean Up Docker System Data**
+Docker accumulates **dangling images, stopped containers, networks, and build cache** over time. You can clear this with:  
+```sh
+docker system prune
+```
+You'll see a warning before proceeding. If you're sure, confirm with `y`.  
+
+For an even deeper cleanup that also removes **unused volumes**, use:  
+```sh
+docker system prune -a --volumes
+```
+This may free **gigabytes** of space.  
+
+#### **Step 3: Verify and Restart Docker**
+After cleanup, restart Docker and try running your container again:  
+```sh
+docker run ...
+```
+If the issue persists, consider increasing Docker’s disk allocation (especially on macOS/Windows, where Docker uses a virtual machine). You can adjust this in **Docker Desktop Settings > Resources > Disk Image Size**.  
+
 
 <br>
 
