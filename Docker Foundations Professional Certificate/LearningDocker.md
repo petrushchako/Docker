@@ -1210,6 +1210,18 @@ yes
 ```
 To stop it, press `Ctrl+C`.  
 
+#### **5. Stop & Restart Slow Containers**
+If your container is lagging, try restarting it:  
+```sh
+docker restart <container_name_or_id>
+```
+Or, if needed, remove and recreate the container:  
+```sh
+docker rm -f <container_name>
+docker run ...  # Restart with your original command
+```
+These basic commands help identify the cause of slow performance. If issues persist, consider checking system resource limits, adjusting container resource allocations, or using profiling tools.
+
 <br>
 
 ### Challenge: Fix a broken container
