@@ -1187,6 +1187,29 @@ docker top alpine
 ```
 This displays all currently running processes within the container.  
 
+#### **3. Get Detailed Container Info with `docker inspect`**
+For advanced debugging, use:  
+```sh
+docker inspect <container_name_or_id>
+```
+Example:  
+```sh
+docker inspect alpine | less
+```
+This outputs detailed JSON information, including:  
+- Restart count  
+- Mounts and volumes  
+- Network settings  
+- Environment variables  
+
+#### **4. Test High CPU Load with `yes`**
+If you want to simulate high CPU usage inside a container, run:  
+```sh
+docker exec -it <container_name> sh
+yes
+```
+To stop it, press `Ctrl+C`.  
+
 <br>
 
 ### Challenge: Fix a broken container
