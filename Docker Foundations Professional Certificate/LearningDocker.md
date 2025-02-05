@@ -1158,7 +1158,25 @@ If the issue persists, consider increasing Docker’s disk allocation (especiall
 <br>
 
 ### Help! My container is really slow
+If your container is running slower than expected, you can diagnose the issue with a few key Docker commands.  
 
+#### **1. Monitor Live Resource Usage with `docker stats`**
+The `docker stats` command provides real-time CPU, memory, and network statistics for running containers.  
+
+```sh
+docker stats <container_name_or_id>
+```
+Example:  
+```sh
+docker stats alpine
+```
+This will show:  
+- **CPU usage (%)**  
+- **Memory usage (%)**  
+- **Network I/O**  
+- **Block I/O (disk read/write)**  
+
+If CPU or memory usage is high, the container might be consuming too many resources.  
 
 <br>
 
