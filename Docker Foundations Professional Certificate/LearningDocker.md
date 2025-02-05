@@ -1162,7 +1162,6 @@ If your container is running slower than expected, you can diagnose the issue wi
 
 #### **1. Monitor Live Resource Usage with `docker stats`**
 The `docker stats` command provides real-time CPU, memory, and network statistics for running containers.  
-
 ```sh
 docker stats <container_name_or_id>
 ```
@@ -1175,8 +1174,18 @@ This will show:
 - **Memory usage (%)**  
 - **Network I/O**  
 - **Block I/O (disk read/write)**  
-
 If CPU or memory usage is high, the container might be consuming too many resources.  
+
+#### **2. Check Running Processes with `docker top`**
+To see what’s running inside the container without entering it, use:  
+```sh
+docker top <container_name_or_id>
+```
+Example:  
+```sh
+docker top alpine
+```
+This displays all currently running processes within the container.  
 
 <br>
 
