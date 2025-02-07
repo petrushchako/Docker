@@ -1237,6 +1237,38 @@ These basic commands help identify the cause of slow performance. If issues pers
 ## Additional Docker Resources
 ### Docker best practices
 
+Docker makes it easier to develop and deploy applications across multiple environments. However, to ensure security, stability, and efficiency, follow these best practices.  
+
+### **1. Use Verified and Trusted Images**  
+Downloading images from **Docker Hub** is easy, but not all images are safe. Some contain **malicious code** (e.g., crypto miners) that can exploit your system.  
+
+#### **Best Practices:**  
+- **Use verified images** (official images marked by Docker).  
+- **Scan images** before using them with tools like:  
+  - **Clair**  
+  - **Trivy**  
+  - **Dagda**  
+- **Avoid unofficial or untrusted images** unless you inspect their Dockerfile.  
+
+#### **Example:**  
+Instead of `alpine2`, always use **official Alpine Linux (`alpine`)**.  
+
+<br>
+
+### **2. Always Specify Image Versions**  
+By default, Docker uses the `latest` tag if you do not specify a version. This can lead to **unexpected updates** and breaking changes.  
+
+#### **Best Practices:**  
+- **Specify image versions explicitly** (`nginx:1.21.1` instead of `nginx:latest`).  
+- **Use semantic versioning** (`major.minor.patch`).  
+- **Avoid using `latest` in production** to prevent unexpected updates.  
+
+#### **Example:**  
+```sh
+docker pull python:3.10.6  # Instead of python:latest
+```
+
+<br>
 
 <br>
 
