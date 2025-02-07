@@ -1340,6 +1340,54 @@ COPY . .  # Copy app files last
 
 <br>
 
+### **6. Clean Up Unused Resources to Free Space**  
+Docker accumulates **dangling images, unused volumes, and stopped containers** over time, consuming disk space.  
+
+#### **Best Practices:**  
+- Remove **unused images, containers, and networks** regularly.  
+- Use `docker system prune` to free space.  
+
+#### **Commands:**  
+```sh
+docker system prune -a  # Remove all unused containers, images, and volumes
+docker volume prune     # Remove unused volumes
+docker image prune      # Remove dangling images
+```
+
+<br>
+
+### **7. Use Environment Variables Instead of Hardcoded Configs**  
+Avoid **hardcoding sensitive information** (e.g., API keys, database credentials) inside Dockerfiles.  
+
+#### **Best Practices:**  
+- Use **`--env` or `ENV`** in Dockerfiles to store configs.  
+- Store secrets **securely** (e.g., in AWS Secrets Manager or Vault).  
+
+#### **Example:**  
+```sh
+docker run --env DB_HOST=db.example.com --env DB_PASS=secret myapp
+```
+Inside Dockerfile:  
+```dockerfile
+ENV DB_HOST=db.example.com
+```
+
+<br>
+
+### **Final Thoughts**  
+Following these **best practices** will make your Dockerized applications **more secure, efficient, and reliable**.  
+
+- **Use verified images**  
+- **Specify version tags**  
+- **Run containers as a non-root user**  
+- **Use multi-stage builds**  
+- **Optimize Dockerfile layer caching**  
+- **Clean up unused Docker resources**  
+- **Use environment variables for configs**  
+
+
+<br>
+
 ### Taking it to the next level with Docker Compose
 
 
