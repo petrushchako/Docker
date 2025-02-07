@@ -1270,6 +1270,74 @@ docker pull python:3.10.6  # Instead of python:latest
 
 <br>
 
+### **3. Run Containers as a Non-Root User**  
+By default, Docker containers run as **root**, which can be a **security risk**. If a container is compromised, it could **damage the host system**.  
+
+#### **Best Practices:**  
+- **Run containers with a non-root user** using `--user` in `docker run`.  
+- **Set a non-root user inside your Dockerfile** with the `USER` command.  
+
+#### **Example:**  
+Run a container as a non-root user:  
+```sh
+docker run --user 1001 -it ubuntu bash
+```  
+Define a non-root user inside a **Dockerfile**:  
+```dockerfile
+RUN useradd -m myuser
+USER myuser
+```
+
+<br>
+
+### **4. Use Multi-Stage Builds for Smaller Images**  
+Multi-stage builds **reduce image size** by removing unnecessary dependencies in the final build.  
+
+#### **Best Practices:**  
+- **Use one stage for building** and another for running.  
+- **Keep the final image lightweight** by copying only necessary files.  
+
+#### **Example (Multi-Stage Build for Go App):**  
+```dockerfile
+# First stage: Build the app
+FROM golang:1.19 AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o myapp
+
+# Second stage: Run the app
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/myapp .
+CMD ["./myapp"]
+```
+
+<br>
+
+### **5. Optimize Layer Caching in Dockerfiles**  
+Docker caches **each layer** in a Dockerfile, so **ordering matters** to speed up builds.  
+
+#### **Best Practices:**  
+- **Put frequently changing instructions at the end** (e.g., `COPY . .`).  
+- **Install dependencies before copying app files** to **reuse cached layers**.  
+
+#### **Bad Example (Slow Builds):**  
+```dockerfile
+FROM node:18
+WORKDIR /app
+COPY . .  # This invalidates the cache too often
+RUN npm install
+```
+
+#### **Good Example (Optimized Builds):**  
+```dockerfile
+FROM node:18
+WORKDIR /app
+COPY package.json package-lock.json .  # Cache dependencies first
+RUN npm install
+COPY . .  # Copy app files last
+```
+
 <br>
 
 ### Taking it to the next level with Docker Compose
