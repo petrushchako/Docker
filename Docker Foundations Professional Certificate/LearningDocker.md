@@ -1246,6 +1246,31 @@ These basic commands help identify the cause of slow performance. If issues pers
 
 <br>
 
+### Solution: Fix a broken container
+This solution breaks down the debugging and fixing process for a broken Docker container. The key takeaways are:  
+
+### **1. Identify the Issue**  
+- **Docker build failed** because the `FROM` image name was misspelled (`xeniall` instead of `xenial`).  
+- **Container ran too slowly** because of excessive CPU usage caused by the `yes` command in the script.  
+
+### **2. Debugging Steps**  
+- Checked Docker Hub for the correct `Ubuntu:xenial` image.  
+- Used `docker stats` to monitor CPU usage.  
+- Used `docker top` to find the problematic `yes` command.  
+
+### **3. Fixing the Dockerfile & Script**  
+- Corrected the `FROM` statement in the Dockerfile.  
+- Removed the `yes` command from `app.sh`.  
+- Rebuilt the Docker image (`docker build -t app .`).  
+
+### **4. Running the Fixed Container**  
+- Removed the conflicting stopped container (`docker rm app_container`).  
+- Ran the container again (`docker run -it --name app_container app`).  
+- The script executed **immediately**, as expected.  
+
+This structured approach—**identifying, debugging, fixing, and verifying**—is essential when troubleshooting Docker containers.
+
+
 <br><br><br>
 
 ## Additional Docker Resources
