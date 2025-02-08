@@ -1225,12 +1225,26 @@ These basic commands help identify the cause of slow performance. If issues pers
 <br>
 
 ### Challenge: Fix a broken container
+- Path to files: `Exercise Files/04_03_before`
+- Fix the Dockerfile and script provided
+- You will see the below when the container is working properly
+  ```sh
+  Application started.
+  Application processing (0/5)
+  Application processing (1/5)
+  Application processing (2/5)
+  Application processing (3/5)
+  Application processing (4/5)
+  Application processing (5/5)
+  Application complete!
+  ```
 
+#### Hints
+- Use the - i t flag when you run your container
+- Use docker ps and docker rm in another terminal if yours hangs!
+- No shell scripting experience required, but consult any docs you need!
 
 <br>
-
-### Solution: Fix a broken container
-
 
 <br><br><br>
 
