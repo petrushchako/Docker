@@ -74,3 +74,28 @@ To set up your local development environment, you will need Docker Desktop, Visu
 - Open VS Code and navigate to the Extensions tab.
 - Search for "Docker" and install the Docker extension.
 - This extension allows you to run Docker commands and manage images, containers, networks, and other resources within VS Code.
+
+<br>
+
+## Reviewing a Project on GitHub    
+### **Accessing the Repository**  
+- The GitHub repository contains branches for each section of the course:
+    - https://github.com/LinkedInLearning/docker-your-first-project-4485003
+- Each branch is named according to the chapter and movie number (e.g., `02_01` for Chapter 2, Movie 1).  
+
+### **Navigating the Project**  
+- To switch to a specific branch:  
+  ```sh
+  git checkout <branch_name>
+  ```  
+  - Example:  
+    ```sh
+    git checkout 02_01
+    ```  
+- To list all available branches:  
+  ```sh
+  git branch
+  ```  
+
+<br>
+
