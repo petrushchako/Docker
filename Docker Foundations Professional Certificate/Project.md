@@ -56,3 +56,21 @@ The final project will include:
 - Automated and error-free DevOps processes, reducing time spent on manual configurations.
 - Improved efficiency in testing, development, and deployment workflows.
 
+<br>
+
+## Setting up your development environment
+To set up your local development environment, you will need Docker Desktop, Visual Studio Code (VS Code), and the Docker extension for VS Code.
+
+### Install Docker Desktop:
+- Navigate to the Docker website and download Docker Desktop.
+- It's available for Windows, Mac, and Linux.
+- Once installed, open Docker Desktop and sign in with your Docker Hub credentials.
+- If you don’t have a Docker Hub account, you can create one during the sign-in process.
+
+### Install Visual Studio Code (VS Code):
+- Download and install VS Code from code.visualstudio.com.
+- It is available for Windows, Mac, and Linux.
+- Install the Docker Extension for VS Code:
+- Open VS Code and navigate to the Extensions tab.
+- Search for "Docker" and install the Docker extension.
+- This extension allows you to run Docker commands and manage images, containers, networks, and other resources within VS Code.
