@@ -59,3 +59,96 @@ For private repos in **CI/CD**, you typically:
 - Ensures builds always use the latest version from source control  
 
 
+<br><br><br>
+
+## **Building a Docker Image from a Remote Repository in Jenkins**  
+
+### **Prerequisites**
+- **Jenkins Installed** with Docker support  
+- **Docker Installed** on Jenkins agents  
+- **Jenkins Pipeline Plugin** enabled  
+- **Git Installed** on Jenkins agents (if cloning manually for private repos)  
+
+### **Example: Jenkinsfile for Public GitHub Repository**  
+
+This pipeline will:  
+1. Pull the Dockerfile from a **public GitHub repository**  
+2. Build a Docker image using `docker build <URL>`  
+3. Tag the image  
+4. Push the image to **Docker Hub**  
+
+```groovy
+pipeline {
+    agent any
+    environment {
+        DOCKER_IMAGE = "myrepo/myapp"
+        DOCKER_TAG = "latest"
+    }
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG https://github.com/docker-library/python.git'
+                }
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                }
+            }
+        }
+    }
+}
+```
+
+
+
+### **Example: Handling a Private Repository**  
+Since `docker build <URL>` **cannot authenticate private repositories**, we must:  
+1. **Manually clone the repo**  
+2. **Use the cloned directory as the build context**  
+
+### **Jenkinsfile for Private GitHub Repo**
+```groovy
+pipeline {
+    agent any
+    environment {
+        GIT_REPO = "git@github.com:private/repo.git"
+        BRANCH = "main"
+        DOCKER_IMAGE = "myrepo/myapp"
+        DOCKER_TAG = "latest"
+    }
+    stages {
+        stage('Clone Repo') {
+            steps {
+                script {
+                    sh 'git clone --branch $BRANCH $GIT_REPO app_repo'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG ./app_repo'
+                }
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                }
+            }
+        }
+    }
+}
+```
+
+
+### **Storing Credentials Securely in Jenkins**
+- **GitHub Credentials**: Store SSH private key in **Jenkins Credentials**  
+- **Docker Hub Credentials**: Add **DOCKER_USERNAME & DOCKER_PASSWORD** as Jenkins environment variables  
