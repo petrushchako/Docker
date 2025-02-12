@@ -25,6 +25,8 @@ Docker Foundations Professional Certificate
     - Reviewing your daily workflow
 
 
+<br><br><br>
+
 ## Project Requirements: Big Star Collectibles Website Containerization
 
 ### Overview
@@ -98,12 +100,12 @@ To set up your local development environment, you will need Docker Desktop, Visu
   ```  
 
 
-<br>
+<br><br><br>
 
 ## Building a Docker Image from a Dockerfile  
 To create a Docker image, we use the `docker build` command. Below is a step-by-step guide on how to build an image using a Dockerfile.  
 
-> branch `02_02`
+> Branch > `02_02`
 
 ### **Understanding the Docker Build Command**  
 The basic syntax for building a Docker image:  
@@ -149,5 +151,59 @@ docker build --help
 ```
 - This displays all available flags and their descriptions.  
 
-<br>
+<br><br><br>
+
+### Searching for Images in Docker Hub  
+When creating a **Dockerfile**, you often need a **base image**. You can find suitable images using the `docker search` command, which searches the **Docker Hub Registry** for available images.  
+
+> Branch > `03_01`
+
+### **Basic Search Command**  
+To search for a Python image:  
+```sh
+docker search python
+```
+This returns a list of images with:  
+- **Name** – Image name  
+- **Stars** – Number of users who liked the image  
+- **Official** – Whether it’s an official image from Docker  
+- **Automated** – Indicates if it’s automatically built  
+
+### **Filtering Search Results**  
+
+| Filter | Command Example | Description |
+|---------|----------------|-------------|
+| **Official Images Only** | `docker search --filter=is-official=true python` | Show only **official** images. |
+| **Minimum Stars** | `docker search --filter=stars=100 python` | Show images with at least **100 stars**. |
+| **Automated Builds** | `docker search --filter=is-automated=true python` | Show images built automatically from GitHub. |
+| **Limit Results** | `docker search --limit=4 python` | Display only **top 4** results. |
+| **No Truncate** | `docker search --no-trunc python` | Show full descriptions without truncation. |
+
+### **Formatting Search Results**  
+To customize output using **Go templates**:  
+```sh
+docker search --format "{{.Name}}\t{{.Description}}" python
+```
+- `\t` adds tab spacing for table formatting.  
+- Available columns: `Name`, `IsOfficial`, `IsAutomated`, `Description`, `StarCount`.  
+
+### **Pulling an Image from Docker Hub**  
+Once you've identified an image, pull it using:  
+```sh
+docker pull python
+```
+- This pulls the **latest** version by default.  
+
+To pull a **specific version** (recommended for stability):  
+```sh
+docker pull python:3.10
+```
+- Versions (tags) can be found on the **Docker Hub website**.  
+
+### **Why Avoid `latest` in Dockerfiles?**  
+Using `latest` can lead to **unexpected errors** due to automatic updates.  
+- Instead, **explicitly specify** a version to ensure **stability**.  
+
+<br><br><br>
+
 
