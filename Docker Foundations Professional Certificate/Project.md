@@ -97,5 +97,57 @@ To set up your local development environment, you will need Docker Desktop, Visu
   git branch
   ```  
 
+
+<br>
+
+## Building a Docker Image from a Dockerfile  
+To create a Docker image, we use the `docker build` command. Below is a step-by-step guide on how to build an image using a Dockerfile.  
+
+> branch `02_02`
+
+### **Understanding the Docker Build Command**  
+The basic syntax for building a Docker image:  
+```sh
+docker build [OPTIONS] <PATH> | <URL>
+```
+- **Path**: Local directory containing the **Dockerfile** (most common).  
+- **URL**: A remote repository (useful for CI/CD pipelines).  
+
+### **Building an Image Using a Local Path**  
+- The most common command:  
+  ```sh
+  docker build .
+  ```
+  - The `.` (dot) sets the **current directory** as the build context.  
+  - Docker looks for a **Dockerfile** in this directory by default.  
+
+### **Specifying a Custom Dockerfile**  
+- If your **Dockerfile** is not in the root directory, specify its location:  
+  ```sh
+  docker build -f path/to/Dockerfile .
+  ```
+  - Useful when managing different Dockerfiles for **QA, staging, and production** environments.  
+
+### **Optimizing Builds with Additional Options**  
+
+|**Option**|**Description**|
+|---|---|
+|`--force-rm`|Removes intermediate containers after a failed build.|
+|`--rm=true`|Keeps intermediate containers for debugging (default: true).|
+|`--no-cache`|Forces a **clean build**, bypassing cached layers.|
+
+Example:  
+```sh
+docker build --no-cache --force-rm .
+```
+- This ensures **fresh** layers and removes failed build artifacts.  
+
+### **Viewing Available Build Options**  
+To see more build options, use:  
+```sh
+docker build --help
+```
+- This displays all available flags and their descriptions.  
+
 <br>
 
