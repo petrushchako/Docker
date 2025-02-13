@@ -207,3 +207,53 @@ Using `latest` can lead to **unexpected errors** due to automatic updates.
 <br><br><br>
 
 
+
+## Working with Custom Images
+When you pull images from an image repository, the image is saved locally. You can manage and inspect these images using various Docker commands.
+
+### Listing Local Images
+
+To view your local images, use the following command:
+
+```sh
+docker image ls
+```
+
+By default, this command hides intermediate images. Below are some useful options:
+
+- `-a`, `--all`: Show all images, including intermediate images.
+- `--no-trunc`: Prevents truncation of output.
+- `-q`, `--quiet`: Returns only image IDs, suppressing other columns.
+- `--digests`: Displays the image digest (a unique hash that identifies an image).
+
+### Filtering Images
+
+The `docker image ls` command allows filtering using the `--filter` option. Some common filters include:
+
+- `reference=<name>`: Isolates images with a specific name or tag.
+- `before=<image>`: Lists images created before a given image (cannot specify a date/time).
+- `since=<image>`: Lists images created after a given image.
+- `dangling=true`: Shows untagged images (also known as dangling images).
+- `label=<key>=<value>`: Filters images based on labels.
+
+### Formatting Output
+
+To format output, use the `--format` option with Go templates. Common placeholders:
+
+- `.ID`: Image ID  
+- `.Repository`: Image repository name  
+- `.Tag`: Image tag  
+- `.Size`: Image size  
+- `.CreatedSince`: Time since image creation  
+- `.CreatedAt`: Exact timestamp of image creation  
+- `.Digest`: Image digest  
+
+Example: Display only image names and tags in table format:
+
+```sh
+docker image ls --format "table {{.Repository}}\t{{.Tag}}"
+```
+
+### Viewing Images in VS Code
+
+You can also view and manage your Docker images using the **Docker Extension** for VS Code. This provides a graphical interface to explore images, containers, and networks.
