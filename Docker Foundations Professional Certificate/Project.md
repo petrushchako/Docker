@@ -257,3 +257,84 @@ docker image ls --format "table {{.Repository}}\t{{.Tag}}"
 ### Viewing Images in VS Code
 
 You can also view and manage your Docker images using the **Docker Extension** for VS Code. This provides a graphical interface to explore images, containers, and networks.
+
+
+<br><br><br>
+
+## Tagging and Labeling Images
+Tags and labels help organize Docker images.
+
+### **Tags**
+Tags are used to identify distinct versions of an image. They are commonly used to mark releases so users can select between different versions.
+
+- In a **Dockerfile**, the base image is specified with a tag:
+  ```Dockerfile
+  FROM python:3.9-alpine
+  ```
+  - Here, `python` is the image name.
+  - `3.9-alpine` is the tag, specifying both version and operating system.
+  
+- **Tagging Conventions:**
+  - Industry standard: `<version>-<OS>` (e.g., `3.9-alpine`).
+  - Helps differentiate versions when multiple exist.
+
+- **Tagging an Image During Build:**
+  ```sh
+  docker build -t myapp:1.0 .
+  ```
+  - `-t` specifies a tag.
+  - If no tag is provided, `latest` is used by default.
+
+- **Best Practices for Tags:**
+  - Always specify the image version explicitly.
+  - Ensure `latest` represents the most stable release.
+  - Example of building multiple tags:
+    ```sh
+    docker build -t myapp:latest -t myapp:1.0 --no-cache .
+    ```
+  - The `--no-cache` option ensures images are rebuilt without using cached layers.
+
+- **Viewing Image Tags:**
+  ```sh
+  docker image ls
+  ```
+  - Displays images, including repository, tag, and image ID.
+  - Multiple tags can exist for the same image ID.
+
+- **Applying Tags to an Existing Image:**
+  ```sh
+  docker tag myapp:1.0 myapp:v1
+  ```
+  - The same image gets a new tag without re-building.
+
+- **Avoiding Overwriting Images:**
+  - Always build new versions with a fresh image ID using:
+    ```sh
+    docker build -t myapp:2.0 .
+    ```
+  - This prevents accidental overwrites.
+
+
+### **Labels**
+Labels allow adding metadata to images using key-value pairs.
+
+- **Adding Labels in a Dockerfile:**
+  ```Dockerfile
+  LABEL vendor="My Company" \
+        version="1.0" \
+        description="My application"
+  ```
+  - Uses key-value pairs.
+  - `\` allows better readability in multiple lines.
+
+- **Filtering Images by Labels:**
+  ```sh
+  docker image ls --filter "label=vendor=My Company"
+  ```
+  - Searches images based on label metadata.
+
+### **Summary**
+- **Tags** organize versions of an image.
+- **Labels** provide metadata for filtering and categorization.
+- **Use both** to keep images well-structured, especially in repositories.
+```
