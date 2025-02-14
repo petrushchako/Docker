@@ -397,3 +397,64 @@ docker pull sbenhoff/big-star-collectibles-repo:v1
 - If the image already exists locally, Docker will indicate that it is **up to date**.
 
 <br><br><br>
+
+
+
+## Inspecting Docker Images
+Inspecting Docker images provides key details for troubleshooting and verifying configurations.
+
+### **Using VS Code Docker Extension**
+- **Right-click** any image tag.
+- Select **Inspect** to view image details.
+
+### **Using CLI to Inspect Images**
+#### **1. Get the Image ID**
+List all images and retrieve the **image ID**:
+```sh
+docker image ls
+```
+#### **2. Inspect the Image**
+Use the `docker image inspect` command with the image ID:
+```sh
+docker image inspect <image_id>
+```
+Example:
+```sh
+docker image inspect 123456789abc
+```
+This displays detailed JSON output, including:
+- **Full Image ID**
+- **RepoTags**: All associated tags.
+- **Creation Date**: Shown in UTC format.
+- **Container Info**: If the image is linked to a container.
+- **Config Section**: Includes environment variables, command execution, and labels.
+
+#### **Key Information in Image Inspection**
+- **RepoTags**: Lists all tags linked to the image.
+- **Created**: Displays when the image was created.
+- **Container Info**: If attached, it shows container details.
+- **Config Section**:
+  - **Environment Variables**: Verify paths, languages, and dependencies.
+  - **Command Configuration**: The command that runs when a container starts (from the `Dockerfile`).
+  - **Labels**: Metadata defined in the `Dockerfile`.
+
+### **Filtering Image Inspection Results**
+To extract specific details, format output using JSON.
+
+#### **View Labels Only**
+```sh
+docker image inspect --format '{{ json .Config.Labels }}' <image_id>
+```
+
+#### **Extract Environment Variables**
+```sh
+docker image inspect --format '{{ json .Config.Env }}' <image_id>
+```
+
+This is useful when dealing with large images and only needing specific details.
+By effectively inspecting images, you can troubleshoot and ensure configurations are correctly applied.
+
+<br><br><br>
+
+
+
