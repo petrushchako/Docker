@@ -337,4 +337,63 @@ Labels allow adding metadata to images using key-value pairs.
 - **Tags** organize versions of an image.
 - **Labels** provide metadata for filtering and categorization.
 - **Use both** to keep images well-structured, especially in repositories.
+
+<br><br><br>
+
+
+## Working with a Private Image Repository
+
+Docker Hub provides a platform for managing private image repositories, ensuring secure storage while allowing controlled access.
+
+### **Creating a Private Repository**
+1. Navigate to the **Repositories** section in Docker Hub.
+2. Click **Create a New Repository** and provide:
+   - A **name** for the repository.
+   - A **description** (optional).
+3. Configure repository settings:
+   - **Visibility**: Choose **Public** or **Private**.
+   - If set to **Private**, you can invite specific users by entering their Docker Hub usernames.
+
+### **Logging into a Private Repository**
+To authenticate and interact with your repository:
+
+```sh
+docker login
 ```
+- Enter your Docker Hub **username** and **password** when prompted.
+- After login, you can push and pull images from your private repository.
+
+### **Pushing an Image to a Private Repository**
+1. **Tag the image** to match the repository name:
+   ```sh
+   docker tag my-local-image my-dockerhub-username/my-repo-name:tag
+   ```
+   Example:
+   ```sh
+   docker tag big-star-collectibles sbenhoff/big-star-collectibles-repo:v1
+   ```
+2. **Push the image** to Docker Hub:
+   ```sh
+   docker push my-dockerhub-username/my-repo-name:tag
+   ```
+   Example:
+   ```sh
+   docker push sbenhoff/big-star-collectibles-repo:v1
+   ```
+3. **Verify the upload**:
+   - Refresh the **Registries panel** in VS Code.
+   - Check your repository in **Docker Hub**.
+
+
+### **Pulling an Image from a Private Repository**
+To retrieve an image from your private repository:
+```sh
+docker pull my-dockerhub-username/my-repo-name:tag
+```
+Example:
+```sh
+docker pull sbenhoff/big-star-collectibles-repo:v1
+```
+- If the image already exists locally, Docker will indicate that it is **up to date**.
+
+<br><br><br>
