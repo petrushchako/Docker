@@ -457,4 +457,58 @@ By effectively inspecting images, you can troubleshoot and ensure configurations
 <br><br><br>
 
 
+## Removing Docker Images
+Cleaning up unused images helps maintain system efficiency by freeing up disk space.
+### **1. Remove a Specific Image by Name and Tag**
+```sh
+docker rmi <image_name>:<tag>
+```
+Example:
+```sh
+docker rmi myapp:v2
+```
+
+### **2. Remove an Image by ID**
+To delete all tags associated with an image:
+```sh
+docker rmi <image_id>
+```
+Example:
+```sh
+docker rmi 123456789abc
+```
+If the image is referenced in multiple repositories, you may get an error:
+```
+unable to delete (must be forced) - image is referenced in multiple repositories.
+```
+Use the `-f` (force) flag to override:
+```sh
+docker rmi -f <image_id>
+```
+
+### **3. Remove an Image by Digest**
+List image digests:
+```sh
+docker images --digests
+```
+Remove an image using its digest:
+```sh
+docker rmi <repository>@<digest>
+```
+Example:
+```sh
+docker rmi myapp@sha256:abc123...
+```
+
+### **4. Remove Images Using VS Code**
+- Open the **Docker extension** in VS Code.
+- Right-click an image in the **Images panel**.
+- Select **Remove**.
+
+### **5. Remove Images from Docker Hub**
+- Navigate to **Docker Hub**.
+- Open your **repository** and go to the **Tags** section.
+- Select the tags you want to delete.
+- Click **Delete**.
+
 
