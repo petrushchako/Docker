@@ -598,3 +598,42 @@ docker ps --format "table {{.Names}}\t{{.Status}}"
 ```
 
 <br><br><br>
+
+## Inspecting Docker Containers
+### **Basic Command**
+```sh
+docker inspect <container_id_or_name>
+```
+- Returns detailed **JSON output** about the container.
+
+### **Key Fields in `docker inspect` Output**
+| Field | Description |
+|---|---|
+| `.Id` | The **Container ID**. |
+| `.State` | Shows the container **status** (running, stopped, etc.). Also includes **PID** (process ID). |
+| `.Image` | The **Image ID** used to create the container. |
+| `.Name` | The **user-defined name** of the container. |
+| `.RestartCount` | Number of times the container has been **restarted**. |
+| `.HostConfig` | Contains CPU, memory limits, network settings, and mount paths. |
+| `.LogPath` | The **log file path** on the host system. |
+| `.Config` | Shows **environment variables, commands, and exposed ports**. |
+
+### **Filtering Specific Information**
+Instead of viewing the full JSON, you can extract only the required details:
+
+| Command | Description |
+|---|---|
+| `docker inspect -f '{{.Id}}' <container>` | Show **only** the container ID. |
+| `docker inspect -f '{{.Config.Image}}' <container>` | Show the **image name** used for the container. |
+| `docker inspect -f '{{.State.Status}}' <container>` | Display the **container status** (running, exited, etc.). |
+| `docker inspect -f '{{.LogPath}}' <container>` | Get the **log file path** of the container. |
+| `docker inspect -f '{{json .HostConfig}}' <container>` | Show **HostConfig** details in JSON format. |
+
+### **Example: Inspect a Running Container's Image**
+```sh
+docker inspect -f '{{.Config.Image}}' my-container
+```
+
+<br><br><br>
+
+
