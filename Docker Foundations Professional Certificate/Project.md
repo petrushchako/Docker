@@ -512,3 +512,44 @@ docker rmi myapp@sha256:abc123...
 - Click **Delete**.
 
 
+<br><br><br>
+
+## Running a container
+
+### **Key Commands for Running Containers**
+1. **Creating and Running a Container**
+   ```sh
+   docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
+   ```
+   - Creates and starts a new container.
+   - If the image does not exist locally, Docker pulls it from the registry.
+2. **Starting an Existing Stopped Container**
+   ```sh
+   docker start CONTAINER_ID_or_NAME
+   ```
+   - Useful if you've already created the container but stopped it.
+3. **Stopping vs. Killing a Container**
+   ```sh
+   docker stop CONTAINER_ID_or_NAME
+   ```
+   - Sends **SIGTERM** (graceful shutdown).
+   
+   ```sh
+   docker kill CONTAINER_ID_or_NAME
+   ```
+   - Sends **SIGKILL** (forceful termination, immediate stop).
+
+### **Common `docker run` Options**
+| Option | Description |
+|---------|-------------|
+| `-it` | Interactive mode + TTY (useful for debugging) |
+| `-d` | Detached mode (runs in the background) |
+| `-p HOST_PORT:CONTAINER_PORT` | Maps container port to host |
+| `-v HOST_DIR:CONTAINER_DIR` | Mounts a volume for persistent data |
+
+### **Example: Running a Flask App in a Container**
+If your app listens on port **5000**, you can run:
+```sh
+docker run -d -p 5000:5000 my-flask-app
+```
+Then, open **http://localhost:5000** in your browser.
