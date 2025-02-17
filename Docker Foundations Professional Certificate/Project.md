@@ -515,7 +515,6 @@ docker rmi myapp@sha256:abc123...
 <br><br><br>
 
 ## Running a container
-
 ### **Key Commands for Running Containers**
 1. **Creating and Running a Container**
    ```sh
@@ -541,7 +540,7 @@ docker rmi myapp@sha256:abc123...
 
 ### **Common `docker run` Options**
 | Option | Description |
-|---------|-------------|
+|---|---|
 | `-it` | Interactive mode + TTY (useful for debugging) |
 | `-d` | Detached mode (runs in the background) |
 | `-p HOST_PORT:CONTAINER_PORT` | Maps container port to host |
@@ -553,3 +552,49 @@ If your app listens on port **5000**, you can run:
 docker run -d -p 5000:5000 my-flask-app
 ```
 Then, open **http://localhost:5000** in your browser.
+
+<br><br><br>
+
+
+##  Listing and Filtering Containers in Docker
+### **Basic Command:**
+```sh
+docker ps
+```
+- Lists only **running** containers.
+- Displays **Container ID, Image, Status, Ports, and Name**.
+
+### **Showing All Containers (Including Stopped)**
+```sh
+docker ps -a
+```
+- Includes stopped containers.
+
+### **Filtering Containers**
+| Option | Description |
+|---|---|
+| `-n <number>` | Shows the last `<number>` created containers (running or stopped). |
+| `-q` | Displays only container IDs (useful for scripting). |
+| `-s` | Shows the total file size of all containers. |
+| `-l` | Shows the **last created** container. |
+| `--filter "status=exited"` | Lists all containers that have **stopped**. |
+| `--filter "ancestor=IMAGE_NAME"` | Lists containers based on a specific image. |
+| `--filter "label=key=value"` | Filters based on a specific label. |
+| `--format "{{json .}}"` | Outputs in JSON format. |
+| `--format "table {{.ID}}\t{{.Image}}\t{{.Status}}"` | Displays selected fields in a table. |
+
+### **Checking Exit Codes**
+To find failed containers:
+```sh
+docker ps -a --filter "status=exited"
+```
+- **Exit code `137`** → Container was **killed** (possibly due to memory limits).
+- **Exit code `0`** → Container exited **normally**.
+- **Exit code `1`** → General error inside the container.
+
+### **Example: Show Only Names and Status**
+```sh
+docker ps --format "table {{.Names}}\t{{.Status}}"
+```
+
+<br><br><br>
