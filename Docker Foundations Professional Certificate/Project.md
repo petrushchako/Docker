@@ -13,7 +13,7 @@ Docker Foundations Professional Certificate
     - Searching for images in Docker Hub
     - Working with custom images
     - Tagging and labeling images
-    -  Working with a private image repository
+    - Working with a private image repository
     - Inspecting images
     - Removing images
 - Running Docker Containers
@@ -632,6 +632,50 @@ Instead of viewing the full JSON, you can extract only the required details:
 ### **Example: Inspect a Running Container's Image**
 ```sh
 docker inspect -f '{{.Config.Image}}' my-container
+```
+
+<br><br><br>
+
+
+## **Reviewing container log files**
+### **Basic Command**
+```sh
+docker logs <container_id_or_name>
+```
+- Displays **STDOUT** and **STDERR** logs of the running container.
+
+### **Common Options**
+| Option | Description |
+|----|---|
+| `-f` (follow) | Continuously streams logs in real time. |
+| `--tail <num>` | Shows the last `<num>` lines of logs (e.g., `--tail 50`). |
+| `--tail all` | Shows **all logs** from the container. |
+| `--details` | Displays additional metadata in logs. |
+| `--timestamps` | Adds **timestamps** to log output. |
+| `--since <time>` | Shows logs **after** a specific time (`--since 10m` for last 10 min). |
+| `--until <time>` | Shows logs **before** a specific time. |
+
+### **Examples**
+1. **View Logs with Live Updates**
+```sh
+docker logs -f my-container
+```
+- Streams new logs as they appear.
+2. **Show Last 20 Log Entries**
+```sh
+docker logs --tail 20 my-container
+```
+3. **Show Logs from the Last 5 Minutes**
+```sh
+docker logs --since 5m my-container
+```
+4. **Show Logs Between Specific Time Range**
+```sh
+docker logs --since "2024-02-11T14:00:00Z" --until "2024-02-11T15:00:00Z" my-container
+```
+1. **Show Logs with Timestamps**
+```sh
+docker logs --timestamps my-container
 ```
 
 <br><br><br>
