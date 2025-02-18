@@ -729,3 +729,13 @@ docker logs --timestamps my-container
      ```
   3. List files inside the container to verify the bind mount.
 
+
+### **Key Differences between Volumes and Bind Mounts**
+
+| **Feature**| **Volume**| **Bind Mount**|
+|---|---|---|
+| **Persistence**| Data persists even after container deletion | Data is lost when the container is removed |
+| **Use Case**| Best for persisting application or database data | Best for sharing files (code/config) between host and container |
+| **Storage Location** | Managed by Docker (stored outside container) | Stored directly on the host filesystem |
+| **Ease of Use**| Docker handles management| Requires manual management of host directory |
+
