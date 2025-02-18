@@ -709,3 +709,23 @@ docker logs --timestamps my-container
   ```sh
   docker volume rm <volume_name>
   ```
+
+### **Bind Mounts**
+- **Definition**: A bind mount is a way to link a directory on the host machine to a directory in a container. It is commonly used for development environments where you want to modify code on the host and immediately reflect those changes in the container.
+- **Use Case**: Useful for sharing files, code, or configuration between the host and container.
+- **Key Difference**: Data inside bind mounts is not persistent like volumes. If the container is deleted, data in bind mounts could be lost.
+
+#### **Commands for Bind Mounts**
+- **Create a bind mount**:
+  ```sh
+  docker run -v <host_directory>:<container_directory> <image_name>
+  ```
+  If the directory doesn't exist on the host, the `-v` flag will create it.
+- **Verify Bind Mount**:
+  1. Use `docker ps` to get the container ID.
+  2. Access the container shell:
+     ```sh
+     docker exec -it <container_id> sh
+     ```
+  3. List files inside the container to verify the bind mount.
+
