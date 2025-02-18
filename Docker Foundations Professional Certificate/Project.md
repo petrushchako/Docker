@@ -681,3 +681,31 @@ docker logs --timestamps my-container
 <br><br><br>
 
 
+## **Working with volumes and mounts**
+
+### **Volumes**
+- **Definition**: A volume is a type of data storage provided by Docker, which exists outside the container's filesystem but is accessible to it.
+- **Use Case**: Best for persisting data that needs to survive container restarts or deletion. Commonly used for databases or any data you want to retain across container recreation.
+  
+#### **Commands for Volumes**
+- **Create a volume**:
+  ```sh
+  docker volume create <volume_name>
+  ```
+- **List all volumes**:
+  ```sh
+  docker volume ls
+  ```
+- **Inspect a volume**:
+  ```sh
+  docker volume inspect <volume_name>
+  ```
+  This provides details like the mount point (the path inside the container).
+- **Attach a volume to a container**:
+  ```sh
+  docker run -v <volume_name>:<container_path> <image_name>
+  ```
+- **Remove a volume** (only if it's not in use):
+  ```sh
+  docker volume rm <volume_name>
+  ```
