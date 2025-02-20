@@ -765,3 +765,25 @@ When working with Docker daily, it is important to clean up unused objects such 
   docker image prune --filter "until=24h"
   ```
   (Removes images older than 24 hours.)
+
+#### **2. Cleaning Up Containers**
+- **Remove all stopped containers:**  
+  ```sh
+  docker container prune
+  ```
+- **Force removal without prompt:**  
+  ```sh
+  docker container prune -f
+  ```
+- **Remove containers stopped before a specific time:**  
+  ```sh
+  docker container prune --filter "until=24h"
+  ```
+
+#### **3. Cleaning Up Volumes**
+- **Remove all unused volumes:**  
+  ```sh
+  docker volume prune
+  ```
+  - Volumes can only be filtered by labels, not timestamps.
+  
