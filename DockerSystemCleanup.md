@@ -26,3 +26,20 @@ docker system prune -f
 
 echo "Docker cleanup completed!"
 ```
+
+### **Usage Instructions**
+1. **Save the script:**  
+   ```sh
+   nano docker-cleanup.sh
+   ```
+   Paste the script and save (`CTRL+X`, then `Y`, then `ENTER`).
+
+2. **Make it executable:**  
+   ```sh
+   chmod +x docker-cleanup.sh
+   ```
+
+3. **Run the script:**  
+   ```sh
+   ./docker-cleanup.sh
+   ```
