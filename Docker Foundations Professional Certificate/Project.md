@@ -739,3 +739,29 @@ docker logs --timestamps my-container
 | **Storage Location** | Managed by Docker (stored outside container) | Stored directly on the host filesystem |
 | **Ease of Use**| Docker handles management| Requires manual management of host directory |
 
+<br><br><br>
+
+
+### **Daily Docker Workflow and Cleanup**
+
+When working with Docker daily, it is important to clean up unused objects such as images, containers, and volumes to free up system resources. Docker provides several commands to make this process efficient.
+
+#### **1. Cleaning Up Images**
+- **Remove dangling images (untagged and unreferenced by any container):**  
+  ```sh
+  docker image prune
+  ```
+  - Prompts before deletion (use `-f` to force).
+- **Remove all images not used by existing containers:**  
+  ```sh
+  docker image prune -a
+  ```
+- **Bypass prompt:**  
+  ```sh
+  docker image prune -a -f
+  ```
+- **Filter images for selective pruning:**  
+  ```sh
+  docker image prune --filter "until=24h"
+  ```
+  (Removes images older than 24 hours.)
