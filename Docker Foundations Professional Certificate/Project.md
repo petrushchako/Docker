@@ -787,3 +787,22 @@ When working with Docker daily, it is important to clean up unused objects such 
   ```
   - Volumes can only be filtered by labels, not timestamps.
   
+#### **4. Cleaning Up the Entire System**
+- **Remove all unused images, containers, and networks (but not volumes):**  
+  ```sh
+  docker system prune
+  ```
+- **Include volumes:**  
+  ```sh
+  docker system prune --volumes
+  ```
+- **Force without prompt:**  
+  ```sh
+  docker system prune --volumes -f
+  ```
+
+### **Key Takeaways**
+- **Use `docker system prune` for a full cleanup.**  
+- **Specify `-a` for images to remove everything unused.**  
+- **Use filters (`until` or `label`) to refine cleanup.**  
+- **Volumes are not removed by `system prune` unless explicitly specified.**
