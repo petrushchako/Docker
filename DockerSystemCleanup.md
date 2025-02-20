@@ -43,3 +43,13 @@ echo "Docker cleanup completed!"
    ```sh
    ./docker-cleanup.sh
    ```
+
+## **Schedule daily cleanup:**  
+   Add it to **cron** for automatic daily execution:  
+   ```sh
+   crontab -e
+   ```
+   Add this line to run the script every day at midnight:
+   ```sh
+   0 0 * * * /path/to/docker-cleanup.sh
+   ```
