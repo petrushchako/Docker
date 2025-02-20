@@ -806,3 +806,5 @@ When working with Docker daily, it is important to clean up unused objects such 
 - **Specify `-a` for images to remove everything unused.**  
 - **Use filters (`until` or `label`) to refine cleanup.**  
 - **Volumes are not removed by `system prune` unless explicitly specified.**
+
+###
