@@ -48,3 +48,35 @@
 - Provides detailed, practical examples of how to use Docker Compose effectively.
 - Helps integrate Compose into Docker-based software systems efficiently.
 
+<br><br><br>
+
+## Docker Compose Basics
+### Understanding Configuration as Code
+Configuration as code is a key concept in Docker Compose. Configuration defines the settings required for a system to run, including:
+- Persistent data locations
+- Internal and external service communication
+- Environment-specific values
+
+Most configuration-as-code tools, including Docker Compose, are **declarative** rather than **procedural**.
+
+<br>
+
+### Declarative vs. Procedural Approaches
+#### Procedural Configuration
+- Involves executing a sequence of steps in a predefined order.
+- Each step depends on the previous step and assumes a specific system state.
+- Can lead to errors if the environment does not match the expected state.
+- Example issue: Running a container twice without stopping the first instance may cause failures.
+#### Declarative Configuration
+- Specifies the desired end state rather than the steps to achieve it.
+- Docker Compose ensures the system reaches the defined state automatically.
+- Running the same configuration multiple times should always yield the same result.
+
+<br>
+
+### Advantages of Configuration as Code
+- **Version Control**: Configuration files can be stored in a repository, making it easy to track and revert changes.
+- **Self-Documenting**: Eliminates the need to recall commands manually.
+- **Environment Management**: Different environments (e.g., development and testing) can have their own independent configuration files.
+
+Docker Compose simplifies and standardizes Docker container management by ensuring consistent results and reducing manual intervention.
