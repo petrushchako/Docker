@@ -128,6 +128,25 @@ A Docker Compose configuration file typically includes the following:
 2. **Services Definition**: Lists all the containers needed for the application.
 3. **Build or Image Instructions**: Specifies how to create or retrieve container images.
 
+### Example Configuration
+Let's consider an example for **KinetEco**, a clean energy business that operates an online storefront backed by a MySQL database.
+
+```yaml
+version: '3'
+
+services:
+  storefront:
+    build: .  # Uses the Dockerfile in the current directory
+
+  database:
+    image: mysql  # Pulls the MySQL image from Docker Hub
+```
+
+### Key Components
+- **`services`**: Defines individual containers.
+- **`build`**: Points to the directory containing the Dockerfile for the custom application.
+- **`image`**: Specifies a prebuilt image from a registry like Docker Hub.
+
 ### Naming Services
 Service names in Docker Compose are customizable and should be meaningful. While you could name services arbitrarily (e.g., `storefront` as `Alice` and `database` as `Bob`), using clear, descriptive names ensures better maintainability.
 
