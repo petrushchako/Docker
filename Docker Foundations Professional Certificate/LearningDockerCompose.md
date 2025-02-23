@@ -48,7 +48,11 @@
 - Provides detailed, practical examples of how to use Docker Compose effectively.
 - Helps integrate Compose into Docker-based software systems efficiently.
 
+
+
 <br><br><br>
+
+
 
 ## Docker Compose Basics
 ### Understanding Configuration as Code
@@ -80,3 +84,20 @@ Most configuration-as-code tools, including Docker Compose, are **declarative** 
 - **Environment Management**: Different environments (e.g., development and testing) can have their own independent configuration files.
 
 Docker Compose simplifies and standardizes Docker container management by ensuring consistent results and reducing manual intervention.
+
+
+
+<br><br><br>
+
+## Where to Use Docker Compose
+Docker Compose was designed as a tool for managing containers on a single hosted server. It is particularly useful for local development, staging environments, and continuous integration (CI) testing. However, it is not designed for distributed systems and lacks functionality for running containers across multiple hosts.
+
+### Ideal Use Cases
+- **Local Development**: Developers can define and configure multi-container applications easily using `docker-compose.yml` files.
+- **Staging Environments**: Useful for testing deployments before moving to production.
+- **Continuous Integration (CI) Testing**: Automates testing processes by spinning up required services in a controlled environment.
+
+### Limitations in Production
+For production environments with high user traffic, Docker Compose is not ideal because:
+- **No Independent Scaling**: All services in a `docker-compose.yml` file scale together, which can waste resources.
+- **Lack of Auto Scaling**: It does not provide mechanisms for automatically adjusting the number of running containers based on demand.
