@@ -101,3 +101,20 @@ Docker Compose was designed as a tool for managing containers on a single hosted
 For production environments with high user traffic, Docker Compose is not ideal because:
 - **No Independent Scaling**: All services in a `docker-compose.yml` file scale together, which can waste resources.
 - **Lack of Auto Scaling**: It does not provide mechanisms for automatically adjusting the number of running containers based on demand.
+
+### Example Scenario
+Consider **KinetEco**, a clean energy business with two primary applications:
+1. **Online Storefront**: Sells solar panels and inverters.
+2. **Scheduler**: Manages professional equipment installation appointments.
+
+If KinetEco runs a promotional sale, the storefront may require additional instances to handle increased web traffic. However, using Docker Compose, scaling up the storefront would also scale the scheduler, even though it does not need additional resources. This inefficiency makes Docker Compose unsuitable for production environments requiring dynamic scaling.
+
+### Alternatives for Production
+For scalable and efficient production deployments, dedicated container orchestration tools should be used, such as:
+- **Docker Swarm**: A native clustering and orchestration solution for Docker.
+- **Kubernetes**: A robust and widely used container orchestration platform that supports auto-scaling, load balancing, and distributed deployments.
+
+
+<br><br><br>
+
+
