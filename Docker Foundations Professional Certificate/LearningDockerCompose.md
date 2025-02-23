@@ -153,3 +153,31 @@ Service names in Docker Compose are customizable and should be meaningful. While
 ### Conclusion
 With this basic configuration, you now have a working `docker-compose.yml` file that defines multiple services, builds images locally, and fetches prebuilt images from Docker Hub. Future enhancements may include adding networking, environment variables, and volume definitions to optimize the deployment further.
 
+
+<br><br><br>
+
+
+## Core Docker Compose Commands
+Docker Compose provides essential commands for managing the lifecycle of Docker services. The most commonly used commands include `up`, `down`, `stop`, and `restart`.
+
+### Running Docker Compose Commands
+Before running any Docker Compose command, navigate to the directory containing the `docker-compose.yml` file. All commands start with:
+```sh
+docker-compose
+```
+
+### Starting Services
+- **`docker-compose up`**: Builds images (if necessary), creates containers, and starts all services defined in the `docker-compose.yml` file.
+- To start a specific service:
+  ```sh
+  docker-compose up <service_name>
+  ```
+  Example:
+  ```sh
+  docker-compose up storefront
+  ```
+  This will start only the `storefront` service and its dependencies.
+- Alternative individual commands:
+  - `docker-compose build`: Builds the Docker images.
+  - `docker-compose create`: Creates the containers but does not start them.
+  - `docker-compose start`: Starts existing containers.
