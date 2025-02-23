@@ -181,3 +181,15 @@ docker-compose
   - `docker-compose build`: Builds the Docker images.
   - `docker-compose create`: Creates the containers but does not start them.
   - `docker-compose start`: Starts existing containers.
+
+### Stopping Services
+- **`docker-compose stop`**: Stops all running containers without removing them. Useful for saving resources.
+- **`docker-compose down`**: Stops and removes all containers, networks, and artifacts created by `docker-compose up`.
+- Alternative individual command:
+  - `docker-compose rm`: Removes stopped containers.
+
+### Restarting Services
+- **`docker-compose restart`**: Stops and starts all running containers in one step. Equivalent to running `stop` followed by `start`.
+
+### Getting Help
+- **`docker-compose --help`**: Displays a list of available commands along with their descriptions.
