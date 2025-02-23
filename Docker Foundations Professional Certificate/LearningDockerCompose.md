@@ -193,3 +193,19 @@ docker-compose
 
 ### Getting Help
 - **`docker-compose --help`**: Displays a list of available commands along with their descriptions.
+
+### Summary
+| **Command** | **Description** |
+|---|---|
+| `docker-compose up` | Builds, creates, and starts services |
+| `docker-compose up <service_name>` | Starts a specific service |
+| `docker-compose build` | Builds images without starting containers |
+| `docker-compose stop` | Stops running containers but retains them |
+| `docker-compose down` | Stops and removes all containers and artifacts |
+| `docker-compose restart` | Restarts all running containers |
+| `docker-compose --help` | Displays available commands and descriptions |
+
+
+<br><br><br>
+
+
