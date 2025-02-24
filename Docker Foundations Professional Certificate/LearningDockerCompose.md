@@ -368,3 +368,24 @@ services:
       - ./mysql:/var/lib/mysql
 ```
 This mounts the `./mysql` directory from the host to `/var/lib/mysql` inside the container.
+
+### Specifying Paths
+Docker Compose follows Bash standards for specifying file paths:
+- `./directory_name` → Relative to the `docker-compose.yml` file.
+- `../directory_name` → One level above the `docker-compose.yml` file.
+- `/absolute/path` → Specifies an absolute path on the host machine.
+
+### Setting Access Modes
+The default mode is **read-write (rw)**, but for read-only access, set it to **ro**:
+```yaml
+volumes:
+  - ./mysql_dump:/docker-entrypoint-initdb.d:ro
+```
+This ensures the container can read the data but cannot modify it.
+
+### Summary
+| **Parameter**  | **Description** |
+|---|---|
+| **Target** | Directory inside the container where data is stored. |
+| **Source** | Directory on the host machine providing the data. |
+| **Mode** | Defines access level (`rw` for read-write, `ro` for read-only). |
