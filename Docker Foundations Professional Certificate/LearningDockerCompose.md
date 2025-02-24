@@ -228,7 +228,7 @@ services:
       args:
         REGION: us-east-1
 ```
-- `context`: Specifies the build directory.
+- `context`: Specifies the build directory (location of the Dockerfile)
 - `args`: Defines a list of build arguments.
 - Arguments follow the syntax `ARG_NAME=VALUE` with no spaces.
 
@@ -288,12 +288,51 @@ MYSQL_PASSWORD=mypassword
 MYSQL_DATABASE=mydb
 ```
 
+#### .env file extra
+In an `.env` file, wrapping secrets (or any values) in quotation marks (`" "` or `' '`) is optional, but it can affect how the values are interpreted.
+
+##### **Key Rules for Secrets in an `.env` File:**
+1. **No Quotes Needed (Default Behavior)**
+   - The value is taken as-is.
+   ```ini
+   DB_PASSWORD=mysecretpassword
+   ```
+   - The value of `DB_PASSWORD` will be `mysecretpassword`.
+
+2. **Using Quotes (`"` or `'`)**
+   - If wrapped in double or single quotes, the quotes become part of the value unless the parser trims them.
+   ```ini
+   DB_PASSWORD="mysecretpassword"
+   ```
+   - Some applications **strip the quotes**, so `DB_PASSWORD` is still `mysecretpassword`.
+   - Others **retain the quotes**, making it `"mysecretpassword"` (including the quotes).
+
+3. **Special Cases**
+   - If the secret contains spaces or special characters, **use quotes**.
+   ```ini
+   DB_PASSWORD="my secret password"
+   ```
+   - Without quotes, only `DB_PASSWORD=my` would be read, and the rest would be ignored.
+
+4. **Escape Characters in Quotes**
+   - If using quotes, you might need to escape `$` or `\`:
+   ```ini
+   API_KEY="my\$ecretKey"
+   ```
+   - The `$` won't be interpreted as a variable.
+
+### **Best Practice**
+- If the value contains **spaces, special characters, or leading/trailing whitespace**, use **double quotes** (`"`).
+- Otherwise, you can leave them unquoted.
+
+
+
 ### Summary
 | **Feature** | **Availability** | **Use Case** |
 |---|---|---|
-| Build Arguments | Build Time Only | Configuring build-time settings |
-| Environment Variables | Runtime | Setting application configurations |
-| Environment Files | Runtime | Managing multiple variables easily |
+| **Build Arguments** | Build Time Only | Configuring build-time settings |
+| **Environment Variables** | Runtime | Setting application configurations |
+| **Environment Files** | Runtime | Managing multiple variables easily |
 
 
 
