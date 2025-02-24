@@ -233,3 +233,25 @@ services:
 - Arguments follow the syntax `ARG_NAME=VALUE` with no spaces.
 
 These arguments are available only at build time and do not persist inside the running container.
+
+### Environment Variables
+Environment variables provide a way to pass runtime configurations into a container. They can be useful for setting application modes (`dev`, `test`, `prod`), enabling feature flags, or passing credentials.
+
+#### Defining Environment Variables in Docker Compose
+```yaml
+services:
+  app:
+    environment:
+      - RUNTIME_ENV=dev
+```
+If an environment variable is set on the host machine, it can be passed to the container without defining a value:
+```yaml
+services:
+  app:
+    environment:
+      - RUNTIME_ENV
+```
+Before running `docker-compose up`, ensure the variable is set on the host:
+```sh
+export RUNTIME_ENV=dev
+```
