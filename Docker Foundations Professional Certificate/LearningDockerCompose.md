@@ -417,3 +417,23 @@ In this example:
 - `db_data` is the named volume.
 - It is mounted to `/var/lib/mysql` inside the `db` container.
 - The `volumes` section at the bottom ensures `db_data` is managed by Docker Compose.
+
+### Creating Named Volumes
+Named volumes can be created explicitly using the `docker volume create` command:
+```sh
+docker volume create db_data
+```
+Alternatively, Docker Compose will automatically create the volume when `docker-compose up` is run if it is defined in the `docker-compose.yml` file.
+
+### Mounting Named Volumes
+Once the volume is created, you can mount it to a container manually:
+```sh
+docker run -d --name my_container -v db_data:/var/lib/mysql mysql:latest
+```
+This ensures that MySQL data is stored persistently in the `db_data` volume.
+
+### Benefits of Named Volumes
+1. **Persistent Storage**: Data is retained across container stops and removals.
+2. **Automatic Data Management**: Docker handles volume storage and cleanup.
+3. **Avoids Orphaned Volumes**: Prevents excessive disk usage from accumulating unnamed volumes.
+4. **Data Migration**: Allows seamless data reuse between container instances.
