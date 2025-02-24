@@ -437,3 +437,31 @@ This ensures that MySQL data is stored persistently in the `db_data` volume.
 2. **Automatic Data Management**: Docker handles volume storage and cleanup.
 3. **Avoids Orphaned Volumes**: Prevents excessive disk usage from accumulating unnamed volumes.
 4. **Data Migration**: Allows seamless data reuse between container instances.
+
+### Managing Named Volumes
+- **List all volumes**:
+  ```sh
+  docker volume ls
+  ```
+- **Inspect volume details**:
+  ```sh
+  docker volume inspect db_data
+  ```
+- **Remove unused volumes**:
+  ```sh
+  docker volume prune
+  ```
+- **Delete a specific named volume**:
+  ```sh
+  docker volume rm db_data
+  ```
+
+### Cleanup Considerations
+- Running `docker-compose down` **without** `--volumes` retains named volumes.
+- Adding `--volumes` removes named volumes, freeing up disk space.
+  ```sh
+  docker-compose down --volumes
+  ```
+
+Using named volumes ensures better control over persistent data storage while preventing unintentional data loss or excessive disk usage.
+
