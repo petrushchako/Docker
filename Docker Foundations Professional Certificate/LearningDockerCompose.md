@@ -206,6 +206,30 @@ docker-compose
 | `docker-compose --help` | Displays available commands and descriptions |
 
 
+
 <br><br><br>
 
 
+
+## Docker Compose Core Features
+## Build Arguments and Environment Variables
+Build arguments and environment variables enhance Docker builds by making them more flexible. While environment variables are accessible inside a running container, build arguments are only available at build time.
+
+### Build Arguments
+Build arguments are useful for specifying build-specific configurations, such as selecting a tool version or defining a cloud provider region.
+
+#### Defining Build Arguments in Docker Compose
+To specify a build argument in a `docker-compose.yml` file, the build path must use an explicit syntax:
+```yaml
+services:
+  app:
+    build:
+      context: .
+      args:
+        REGION: us-east-1
+```
+- `context`: Specifies the build directory.
+- `args`: Defines a list of build arguments.
+- Arguments follow the syntax `ARG_NAME=VALUE` with no spaces.
+
+These arguments are available only at build time and do not persist inside the running container.
