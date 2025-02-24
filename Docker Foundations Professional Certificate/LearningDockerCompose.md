@@ -255,3 +255,50 @@ Before running `docker-compose up`, ensure the variable is set on the host:
 ```sh
 export RUNTIME_ENV=dev
 ```
+
+### Using an Environment File
+Instead of listing each variable individually, Docker Compose allows using an environment file:
+```yaml
+services:
+  app:
+    env_file:
+      - .env
+```
+The `.env` file should contain key-value pairs:
+```
+RUNTIME_ENV=dev
+DB_USER=root
+DB_PASSWORD=securepassword
+```
+
+### MySQL Example
+Many official Docker images, such as MySQL, rely on environment variables:
+```yaml
+services:
+  mysql:
+    image: mysql
+    env_file:
+      - mysql_env_vars
+```
+The `mysql_env_vars` file might contain:
+```
+MYSQL_ROOT_PASSWORD=rootpass
+MYSQL_USER=myuser
+MYSQL_PASSWORD=mypassword
+MYSQL_DATABASE=mydb
+```
+
+### Summary
+| **Feature** | **Availability** | **Use Case** |
+|---|---|---|
+| Build Arguments | Build Time Only | Configuring build-time settings |
+| Environment Variables | Runtime | Setting application configurations |
+| Environment Files | Runtime | Managing multiple variables easily |
+
+
+
+<br><br><br>
+
+
+
+## 
