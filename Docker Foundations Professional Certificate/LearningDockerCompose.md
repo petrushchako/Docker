@@ -340,4 +340,31 @@ In an `.env` file, wrapping secrets (or any values) in quotation marks (`" "` or
 
 
 
-## 
+## Mounting Volumes
+Volumes are a Docker construct used for persisted storage, ensuring that important data is not lost when a container stops running.
+
+### Defining a Volume
+When mounting a volume to a Docker service, at a minimum, you must specify a **target** directory. Typically, you also include a **source** and an **access mode**:
+- **Target**: The directory inside the running container where the volume data is mounted.
+- **Source**: The location on the host machine where the volume data resides.
+- **Mode**: Defines access permissions, such as read-write (default) or read-only.
+
+### Syntax in Docker Compose
+In `docker-compose.yml`, volumes are defined within a service using the `volumes` object. The basic syntax is:
+```yaml
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - source_path:target_path:mode
+```
+#### Example:
+Mounting a MySQL data directory:
+```yaml
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+```
+This mounts the `./mysql` directory from the host to `/var/lib/mysql` inside the container.
