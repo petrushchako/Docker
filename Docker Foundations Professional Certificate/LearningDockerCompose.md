@@ -389,3 +389,31 @@ This ensures the container can read the data but cannot modify it.
 | **Target** | Directory inside the container where data is stored. |
 | **Source** | Directory on the host machine providing the data. |
 | **Mode** | Defines access level (`rw` for read-write, `ro` for read-only). |
+
+
+
+<br><br><br>
+
+
+
+## Named Volumes in Docker Compose
+Named volumes in Docker Compose allow for better management of persistent storage by linking volumes to specific containers. Unlike anonymous volumes, named volumes persist even when containers are removed, ensuring data is retained across container restarts.
+
+### Defining Named Volumes
+To define a named volume in a `docker-compose.yml` file, include a `volumes` section at the same level as `services` and provide a custom name for the volume.
+
+Example:
+```yaml
+version: "3.8"
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
+```
+In this example:
+- `db_data` is the named volume.
+- It is mounted to `/var/lib/mysql` inside the `db` container.
+- The `volumes` section at the bottom ensures `db_data` is managed by Docker Compose.
