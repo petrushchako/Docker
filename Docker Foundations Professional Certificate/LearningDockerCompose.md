@@ -526,3 +526,21 @@ services:
 ```
 
 Here, the `storefront` container exposes both port **80** (for HTTP traffic) and port **443** (for HTTPS traffic).
+
+### YAML Parsing Considerations
+When defining ports, it is recommended to use quotes around port mappings, especially for numbers below 60, due to YAML’s handling of base-60 integers. For example:
+
+```yaml
+ports:
+  - "50:50"  # Correct
+  - 50:50    # May cause parsing issues
+```
+
+### Key Takeaways
+1. Ports are exposed using `<host_port>:<container_port>` syntax.
+2. Avoid port collisions by assigning unique host ports.
+3. Use quotes around port numbers, especially for values below 60.
+4. Multiple ports can be mapped for a single service.
+5. Port mapping allows external access to containerized applications.
+
+Exposing ports is crucial for enabling communication between Docker services and external systems, making it one of the most common configurations in Docker Compose setups.
