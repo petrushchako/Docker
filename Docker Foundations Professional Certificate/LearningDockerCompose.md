@@ -465,3 +465,37 @@ This ensures that MySQL data is stored persistently in the `db_data` volume.
 
 Using named volumes ensures better control over persistent data storage while preventing unintentional data loss or excessive disk usage.
 
+
+
+<br><br><br>
+
+
+
+## Exposing Ports in Docker Compose
+By default, Docker containers are isolated and do not expose any ports to the host machine or other containers. To allow communication, developers need to explicitly expose ports, mapping them between the host and the container.
+
+### Port Mapping Syntax
+Ports in Docker Compose are mapped using the following syntax:
+
+```yaml
+ports:
+  - "<host_port>:<container_port>"
+```
+
+This means traffic sent to `<host_port>` on the host machine will be forwarded to `<container_port>` inside the container.
+
+### Example Configuration
+Example `docker-compose.yml` file:
+
+```yaml
+version: "3.8"
+services:
+  storefront:
+    image: storefront:latest
+    ports:
+      - "80:80"
+  scheduler:
+    image: scheduler:latest
+    ports:
+      - "81:80"
+```
