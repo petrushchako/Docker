@@ -499,3 +499,30 @@ services:
     ports:
       - "81:80"
 ```
+
+#### Explanation:
+- The `storefront` service exposes port **80** on the host and maps it to port **80** inside the container.
+- The `scheduler` service is also configured to run on port **80** internally, but to prevent conflicts, it is mapped to port **81** on the host.
+
+### Handling Port Collisions
+If two services attempt to bind to the same host port, a port collision occurs. To avoid this, always ensure that the ports on the host machine are unique. For example:
+
+```yaml
+ports:
+  - "8080:80"  # Maps container's port 80 to host port 8080
+```
+
+### Multiple Port Exposures
+A service may require multiple ports to be exposed. For instance, a monitoring tool might collect metrics on a different port:
+
+```yaml
+version: "3.8"
+services:
+  storefront:
+    image: storefront:latest
+    ports:
+      - "80:80"
+      - "443:443"
+```
+
+Here, the `storefront` container exposes both port **80** (for HTTP traffic) and port **443** (for HTTPS traffic).
