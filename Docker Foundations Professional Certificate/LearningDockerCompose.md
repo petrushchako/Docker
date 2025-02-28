@@ -706,3 +706,32 @@ storefront:
 ```
 
 This makes `storefront` part of **both `storefront_services` and `shared_services` profiles**, allowing flexibility when selecting service groups.
+
+### Why Use Profiles?
+- **Selective Start-up**: Avoid running unnecessary services, saving resources.
+- **Team Separation**: Each team can run only the services they care about.
+- **Shared Config**: You can still have **one Compose file** for all services, simplifying configuration management.
+- **Flexible Testing**: Easily switch between isolated services and full integration environments.
+
+### Key Benefits
+- Simplifies **running only what you need**  
+- Avoids **duplicating Compose files** for subsets of services  
+- Works with all Compose commands like `up`, `down`, `restart`
+
+### Key Commands Summary
+- Run **default profile only**:
+    ```sh
+    docker-compose up
+    ```
+- Run **storefront services and default services**:
+    ```sh
+    docker-compose --profile storefront_services up
+    ```
+- Stop all **scheduler services and default services**:
+    ```sh
+    docker-compose --profile scheduling_services down
+    ```
+
+
+
+<br><br><br>
