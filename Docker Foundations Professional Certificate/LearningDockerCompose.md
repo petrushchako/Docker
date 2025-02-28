@@ -596,3 +596,31 @@ This command will:
 - Start `db` first.
 - Start `storefront` next.
 
+
+### Handling Health Checks (External Solutions)
+Because Docker Compose does not natively **wait for services to become healthy**, if your application absolutely requires a dependency to be fully available, you will need to:
+
+- Use **health check wrappers**.
+- Use **init scripts** to check service availability (for example, wait-for-it scripts).
+- Add retry logic directly inside your application.
+
+
+### Recommendations
+- **Avoid tightly coupling service start-up to the availability of dependencies.** 
+- Design services to **handle temporary unavailability** of dependencies.
+- Use **retry mechanisms** within your application code to reconnect if a dependency isn’t available at start-up.
+
+
+### Key Commands
+- Start all services in dependency order:
+    ```sh
+    docker-compose up
+    ```
+- Start one service and all its dependencies:
+    ```sh
+    docker-compose up storefront
+    ```
+- Stop all services in reverse dependency order:
+    ```sh
+    docker-compose down
+    ```
