@@ -544,3 +544,35 @@ ports:
 5. Port mapping allows external access to containerized applications.
 
 Exposing ports is crucial for enabling communication between Docker services and external systems, making it one of the most common configurations in Docker Compose setups.
+
+
+
+<br><br><br>
+
+
+
+## Enforcing Start-up Order in Docker Compose
+Many modern applications have **service dependencies**, meaning certain services cannot function properly unless others are already running. For example, a web application may rely on a database being up before it can fully initialize. Docker Compose offers tools to help manage **start-up order** for these types of architectures.
+
+### Enforcing Start-up Order with `depends_on`
+Docker Compose provides the `depends_on` key, which allows you to **define dependencies between services** in the `docker-compose.yml` file. This ensures:
+
+- When running `docker-compose up`, the dependent service (like a database) starts **before** the dependent application (like a web app).
+- When running `docker-compose down`, the dependent application stops **before** the database.
+- Example:
+    ```yaml
+    version: "3.8"
+    services:
+      storefront:
+        image: storefront-app:latest
+        depends_on:
+          - db
+      db:
+        image: mysql:latest
+    ```
+
+In this case:
+- `storefront` depends on `db`.
+- When you run `docker-compose up`, Compose will start `db` **first**, then `storefront`.
+- When stopping the services, `storefront` will **stop first**, then `db`.
+
