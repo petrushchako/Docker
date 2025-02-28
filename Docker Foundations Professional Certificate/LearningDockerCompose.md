@@ -670,3 +670,39 @@ In this example:
 - `storefront` belongs to the **storefront_services** profile.
 - `scheduler` belongs to the **scheduling_services** profile.
 - `db` does not have a profile, so it automatically belongs to the **default** profile, meaning it runs in **all cases**, regardless of which profile is selected.
+
+### Running Services with Profiles
+#### Default Behavior
+If you just run:
+```sh
+docker-compose up
+```
+Only services in the **default profile** (like `db`) will run.
+
+#### Running Specific Profiles
+To start only services in a specific profile (plus any default services like `db`), use:
+```sh
+docker-compose --profile storefront_services up
+```
+
+This starts:
+- `db` (because it's in the default profile)
+- `storefront` (because it’s part of `storefront_services`)
+
+You can also stop, restart, or manage services using profiles:
+```sh
+docker-compose --profile scheduling_services down
+```
+
+### Multiple Profiles
+You can assign a service to **more than one profile** if needed:
+
+```yaml
+storefront:
+  image: storefront-app:latest
+  profiles:
+    - storefront_services
+    - shared_services
+```
+
+This makes `storefront` part of **both `storefront_services` and `shared_services` profiles**, allowing flexibility when selecting service groups.
