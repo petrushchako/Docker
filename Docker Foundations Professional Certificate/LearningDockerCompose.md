@@ -624,3 +624,49 @@ Because Docker Compose does not natively **wait for services to become healthy**
     ```sh
     docker-compose down
     ```
+
+
+
+<br><br><br>
+
+
+
+## Dynamic Configurations in Docker Compose
+## Named Subsets of Services (Service Profiles) in Docker Compose
+Docker Compose allows you to create **named subsets of services** within a single `docker-compose.yml` file using **service profiles**. This is especially useful in larger projects where different teams or environments may only need specific sets of services running at any given time.
+
+### Use Case Example
+Imagine a company, Kinetico, with two engineering teams:
+- One team works on **storefront** and services related to purchasing.
+- Another team works on **scheduler** and services related to installation.
+
+Both teams need to share a common **database**, but they do not need to run each other’s services during development. With **profiles**, you can group services and choose which subset to run.
+
+### Defining Service Profiles
+In the `docker-compose.yml`, you can add a `profiles` key under each service. This defines **which group (profile)** the service belongs to.
+
+#### Example
+
+```yaml
+version: "3.8"
+
+services:
+  db:
+    image: mysql:latest
+    # No profile assigned, so db runs in the default profile (always available)
+
+  storefront:
+    image: storefront-app:latest
+    profiles:
+      - storefront_services
+
+  scheduler:
+    image: scheduler-app:latest
+    profiles:
+      - scheduling_services
+```
+
+In this example:
+- `storefront` belongs to the **storefront_services** profile.
+- `scheduler` belongs to the **scheduling_services** profile.
+- `db` does not have a profile, so it automatically belongs to the **default** profile, meaning it runs in **all cases**, regardless of which profile is selected.
