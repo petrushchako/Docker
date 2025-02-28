@@ -576,3 +576,23 @@ In this case:
 - When you run `docker-compose up`, Compose will start `db` **first**, then `storefront`.
 - When stopping the services, `storefront` will **stop first**, then `db`.
 
+
+### Important Limitation: Start ≠ Healthy
+**Compose does NOT guarantee that a dependent service is fully initialized or healthy** — it only guarantees the service **has been started**.
+
+This is important in cases where:
+- The `db` service might need a few seconds to initialize.
+- Compose will start `storefront` immediately after `db` starts, even if `db` is not ready to accept connections yet.
+
+
+### Starting Individual Services
+If you want to start only one service (like `storefront`), Compose will automatically **start any services listed in `depends_on` first**.
+
+```sh
+docker-compose up storefront
+```
+
+This command will:
+- Start `db` first.
+- Start `storefront` next.
+
