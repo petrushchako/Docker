@@ -772,3 +772,26 @@ services:
 ```
 In this case, the `ENV` variable would be set to **dev** when using both files.
 
+
+### File Paths in Overrides
+- **Paths (like volume mounts or build contexts) in override files must be relative to the primary file.**
+- Override files don’t need to be complete; they can **contain only the parts you want to change**.
+
+### Custom Override Files
+- You can create **custom override files** (not just `override`).
+- Examples:
+    - `docker-compose.local.yaml`
+    - `docker-compose.staging.yaml`
+
+- These are **not used automatically** — you have to specify them explicitly when running Docker Compose.
+
+
+### Running with Custom Override Files
+#### Command Syntax
+```bash
+docker-compose -f docker-compose.yaml -f docker-compose.local.yaml up
+```
+Explanation:
+- `-f` specifies the **files to use**.
+- **Order matters** — the **last file** overrides any settings from earlier files.
+- After the files, you provide the actual command (e.g., `up`).
