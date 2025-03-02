@@ -735,3 +735,40 @@ This makes `storefront` part of **both `storefront_services` and `shared_service
 
 
 <br><br><br>
+
+
+
+## Multiple Compose Files in Docker Compose
+### When to Use Multiple Compose Files
+- **Best for**: Different environments (local, staging, CI, production) where the configurations:
+    - **Are completely distinct**.
+    - **Will never run together on the same machine**.
+- **Not recommended for**: Different parts of the same system (use **service profiles** for that instead).
+
+### Default Files
+By default, Docker Compose automatically looks for:
+- `docker-compose.yaml` — The **main configuration file**.
+- `docker-compose.override.yaml` — Optional override file that **extends** the main file.
+
+### How Overrides Work
+- Docker Compose **merges** the two files.
+- Fields like `depends_on` (arrays) will **combine values** from both files.
+- Fields like `build` (single values) will **prefer the value from the override file**.
+
+### Example
+```yaml
+# docker-compose.yaml
+services:
+  web:
+    image: myapp:latest
+    environment:
+      - ENV=prod
+
+# docker-compose.override.yaml
+services:
+  web:
+    environment:
+      - ENV=dev
+```
+In this case, the `ENV` variable would be set to **dev** when using both files.
+
