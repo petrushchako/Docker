@@ -795,3 +795,26 @@ Explanation:
 - `-f` specifies the **files to use**.
 - **Order matters** — the **last file** overrides any settings from earlier files.
 - After the files, you provide the actual command (e.g., `up`).
+
+### Benefits
+- Reuse the same **base compose file** across different environments.  
+- Customize only the necessary fields in **small override files**.  
+- Avoid duplication across environments.  
+- Supports multiple overrides (you can chain `-f` options).
+
+### Example for Local and Staging
+```bash
+docker-compose -f docker-compose.yaml -f docker-compose.local.yaml up
+```
+Runs with **local overrides**.
+
+```bash
+docker-compose -f docker-compose.yaml -f docker-compose.staging.yaml up
+```
+Runs with **staging overrides**.
+
+### Key Takeaways
+| Use Case | Recommended Approach |
+|---|---|
+| Different environments (local, staging, etc.) |  **Multiple compose files with overrides** |
+| Different service groups within one system | Use **Service Profiles** instead |
