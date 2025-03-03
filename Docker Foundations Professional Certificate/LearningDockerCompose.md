@@ -914,3 +914,16 @@ Runs with **staging overrides**.
 | `${VAR:-default}` | Use `default` if unset/empty |
 | `${VAR-default}` | Use `default` if unset (empty is OK) |
 | `${VAR:?error}` | **Require** `VAR` to be set |
+
+### Best Use Cases
+- Flexible tags, ports, versions across environments.
+- Avoids needing separate **Compose files** for every minor difference.
+- Works well with **CI/CD pipelines** where variables can be injected.
+
+### Key Takeaways
+| Feature | Syntax Example |
+|---|---|
+| Basic reference | `${TAG}` |
+| Inline default | `${TAG:-latest}` |
+| Required variable with error message | `${TAG:?TAG is required}` |
+| External `.env` file | `docker-compose --env-file custom.env up` |
