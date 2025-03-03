@@ -861,3 +861,16 @@ Runs with **staging overrides**.
     PORT=8080
     ```
 - Variables in `.env` can be used directly in the Compose file.
+
+### Custom Environment Files
+- You can **specify a different environment file** with:
+    ```bash
+    docker-compose --env-file custom.env up
+    ```
+
+### Variable Precedence
+| Source | Priority |
+|---|---|
+| Shell environment variable (exported or set inline) | Highest |
+| Variable in `.env` file | Used if not set in shell |
+| Inline default in Compose file | Used if not set anywhere else |
