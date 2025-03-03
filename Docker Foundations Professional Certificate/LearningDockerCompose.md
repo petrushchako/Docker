@@ -874,3 +874,11 @@ Runs with **staging overrides**.
 | Shell environment variable (exported or set inline) | Highest |
 | Variable in `.env` file | Used if not set in shell |
 | Inline default in Compose file | Used if not set anywhere else |
+
+### Requiring Variables
+- You can **require a variable to be set** with:
+    ```yaml
+    image: my-image:${TAG:?Error: TAG must be set}
+    ```
+- If `$TAG` is missing, Compose will **fail** with the message:  
+    `Error: TAG must be set`
