@@ -818,3 +818,46 @@ Runs with **staging overrides**.
 |---|---|
 | Different environments (local, staging, etc.) |  **Multiple compose files with overrides** |
 | Different service groups within one system | Use **Service Profiles** instead |
+
+
+
+<br><br><br>
+
+
+
+## Environment Variables in Docker Compose
+- Environment variables make **Compose files flexible** across different environments.
+- Variables can come from:
+    - The **host shell environment**:
+      ```sh
+      export TAG=1.2.3
+      docker-compose up
+      ```
+    - An **`.env` file**.
+    - **Inline defaults** in the Compose file itself.
+
+### Referencing Variables in Compose Files
+- Syntax:  
+    ```yaml
+    image: my-image:${TAG}
+    ```
+- Optional curly braces help with **readability**, but aren’t required:
+    ```yaml
+    image: my-image:$TAG
+    ```
+
+### Inline Defaults
+- Set a default value directly in the Compose file using `:-` syntax:
+    ```yaml
+    image: my-image:${VARIABLE:-default_value}
+    ```
+- `default_value` — value to use if `VARIABLE` is not set or is empty
+
+### Using `.env` Files
+- Docker Compose **automatically loads** a file named `.env` in the **project root**.
+- Format:
+    ```sh
+    TAG=1.0.0
+    PORT=8080
+    ```
+- Variables in `.env` can be used directly in the Compose file.
