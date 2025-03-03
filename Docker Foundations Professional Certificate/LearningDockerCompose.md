@@ -882,3 +882,35 @@ Runs with **staging overrides**.
     ```
 - If `$TAG` is missing, Compose will **fail** with the message:  
     `Error: TAG must be set`
+
+### Requiring Variables Examples
+- Example 1 - Require with Message
+  ```yaml
+  image: myapp:${TAG:?TAG is required}
+  ```
+  > Fails if `TAG` is missing, shows:  
+  > `TAG is required`
+
+- Example 2 - Require Without Message
+  ```yaml
+  image: myapp:${TAG:?}
+  ```
+  > Fails if `TAG` is missing, shows:  
+  > `TAG: parameter null or not set`
+
+- Example 3 - Required Database Credentials
+  ```yaml
+  services:
+    db:
+      environment:
+        MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+  ```
+  > Fails if either is missing.
+
+#### Quick Reference
+| Syntax | Meaning |
+|---|---|
+| `${VAR:-default}` | Use `default` if unset/empty |
+| `${VAR-default}` | Use `default` if unset (empty is OK) |
+| `${VAR:?error}` | **Require** `VAR` to be set |
