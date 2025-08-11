@@ -51,12 +51,17 @@ func main() {
 	- Germany: "Hawaii-Toast" is a related open-faced sandwich with ham, pineapple, and cheese
 	- Sweden: "Flying Jacob" pizza includes banana, pineapple, curry powder, and chicken
 	`
-	
+
 	///USER QUESTION:
 	userQuestion := "What is your name?"
 	//userQuestion := "What is the best pizza in the world?"
 	// userQuestion := "What are the ingredients of the hawaiian pizza?"
 
+	message := []openai.ChatCompletionMessageParamUnion{
+		openai.SystemMessage(SystemMessage),
+		openai.SystemMessage(knowledgeBase),
+		openai.UserMessage(userQuestion)
+	}
 
 
 
