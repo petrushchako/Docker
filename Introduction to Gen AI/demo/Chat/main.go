@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/joho/godotenv"
-	"github.com/openai/openai-go"
-	"github.com/openai/openai-go/option"
 	"log"
 	"os"
+
+	"github.com/openai/openai-go"
+	"github.com/openai/openai-go/option"
 )
 
 // MODEL_RUNNER_BASE_URL=http://Localhost:12434 go run main.go
@@ -16,7 +16,7 @@ func main() {
 	llmURL := os.Getenv("MODEL_RUNNER_BASE_URL") + "/engines/llama.cpp/v1/"
 	model := os.Getenv("MODEL_RUNNER_LLM_CHAT")
 
-	client = openai.NewClient(
+	client := openai.NewClient(
 		option.WithBaseURL(llmURL),
 		option.WithAPIKey(""),
 	)
@@ -68,18 +68,18 @@ func main() {
 		Temperature: openai.Opt(0.5),
 	}
 
-	stream := client.Chat.Completion.NewStreaming(ctx, param)
+	stream := client.Chat.Completions.NewStreaming(ctx, param)
 
 	for stream.Next() {
 		chunk := stream.Current()
 		//Stream each chunk as it arrives
-		if len(chunk.Choices) > 0 && chunk.Choice[0].Delta.Content != "" {
-			fmt.Print(chunk.Choice[0].Delta.Content)
+		if len(chunk.Choices) > 0 && chunk.Choices[0].Delta.Content != "" {
+			fmt.Print(chunk.Choices[0].Delta.Content)
 		}
 	}
 
 	if err := stream.Err(); err != nil {
-		long.Fatalln("Error: ", err)
+		log.Fatalln("Error: ", err)
 	}
 
 	// err := godotenv.Load()
