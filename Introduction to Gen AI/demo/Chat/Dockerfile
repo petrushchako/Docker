@@ -11,6 +11,6 @@ EOF
 
 FROM scratch
 WORKDIR /app
-COPY --from=builder /app/quick-chat
+COPY --from=builder /app/quick-chat .
 
 CMD ["./quick-chat"]
