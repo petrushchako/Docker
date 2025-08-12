@@ -7,9 +7,9 @@ services:
       - MODEL_RUNNER_BASE_URL=${MODEL_RUNNER_BASE_URL}
       - MODEL_RUNNER_LLM_CHAT=${MODEL_RUNNER_LLM_CHAT}
 
-# Download local LLMs
-download-chat-llm:
-  provider:
-    type: model
-    option:
-      model: ${MODEL_RUNNER_LLM_CHAT}
+  # Download local LLMs
+  download-chat-llm:
+    provider:
+      type: model
+      options:
+        model: ${MODEL_RUNNER_LLM_CHAT}
