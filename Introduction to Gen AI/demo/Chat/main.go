@@ -63,7 +63,25 @@ func main() {
 		openai.UserMessage(userQuestion)
 	}
 
+	param := openai.ChatCompletionNewParams{
+		Message:		messages,
+		Model:			model,
+		Temperature:	openai.Opt(0.5)
+	}
 
+	stream := client.Chat.Completion.NewStreaming(ctx, param)
+
+	for stream.Next(){
+		chunk := stream.Current()
+		//Stream each chunk as it arrives
+		if len(chunk.Choices) > 0 && chunk.Choice[0].Delta.Content != "" {
+			fmt.Print(chunk.Choice[0].Delta.Content)
+		}
+	}
+
+	if err := stream.Err(); err != nil {
+		long.Fatalln("Error: ", err)
+	}
 
 
 	// err := godotenv.Load()
