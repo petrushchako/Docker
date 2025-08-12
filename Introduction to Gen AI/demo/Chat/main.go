@@ -3,13 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"os"
+	"github.com/joho/godotenv"
 	"github.com/openai/openai-go"
 	"github.com/openai/openai-go/option"
-	"github.com/joho/godotenv"
+	"log"
+	"os"
 )
-
 
 // MODEL_RUNNER_BASE_URL=http://Localhost:12434 go run main.go
 func main() {
@@ -19,13 +18,13 @@ func main() {
 
 	client = openai.NewClient(
 		option.WithBaseURL(llmURL),
-		option.WithAPIKey("")
+		option.WithAPIKey(""),
 	)
 
 	ctx := context.Background()
 
 	// SYSTEM INSTRUCTIONS:
-	sytemInstructions:= `
+	systemInstructions := `
 	You are a Hawaiian pizza expert. Your name is Bob.
 	Provide accurate, enthusiastic information about Hawaiian pizza's history
 	(invented in Canada in 1962 by Sam Panopoulos) ,
@@ -57,21 +56,21 @@ func main() {
 	//userQuestion := "What is the best pizza in the world?"
 	// userQuestion := "What are the ingredients of the hawaiian pizza?"
 
-	message := []openai.ChatCompletionMessageParamUnion{
-		openai.SystemMessage(SystemMessage),
+	messages := []openai.ChatCompletionMessageParamUnion{
+		openai.SystemMessage(systemInstructions),
 		openai.SystemMessage(knowledgeBase),
-		openai.UserMessage(userQuestion)
+		openai.UserMessage(userQuestion),
 	}
 
 	param := openai.ChatCompletionNewParams{
-		Message:		messages,
-		Model:			model,
-		Temperature:	openai.Opt(0.5)
+		Messages:    messages,
+		Model:       model,
+		Temperature: openai.Opt(0.5),
 	}
 
 	stream := client.Chat.Completion.NewStreaming(ctx, param)
 
-	for stream.Next(){
+	for stream.Next() {
 		chunk := stream.Current()
 		//Stream each chunk as it arrives
 		if len(chunk.Choices) > 0 && chunk.Choice[0].Delta.Content != "" {
@@ -82,7 +81,6 @@ func main() {
 	if err := stream.Err(); err != nil {
 		long.Fatalln("Error: ", err)
 	}
-
 
 	// err := godotenv.Load()
 	// if err != nil {
