@@ -8,11 +8,14 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 
+# Copy settings.xml
+COPY settings.xml /root/.m2/settings.xml
+
 # Copy the source code
 COPY src ./src
 
 # Package the application
-RUN mvn clean package -DskipTests
+RUN mvn -s /root/.m2/settings.xml clean package -DskipTests
 
 # Start a new stage with an OpenJDK image
 FROM openjdk:17-jdk-slim
